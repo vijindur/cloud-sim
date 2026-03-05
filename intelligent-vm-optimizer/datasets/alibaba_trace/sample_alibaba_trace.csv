@@ -1,0 +1,4 @@
+timestamp,cpu,memory,duration
+1,1,1024,15
+2,2,2048,20
+3,4,4096,25

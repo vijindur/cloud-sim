@@ -1,0 +1,56 @@
+[
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": "0.72",
+    "slaCompliance": "0.81",
+    "energyEfficiency": "0.67",
+    "energyConsumption": "11.2",
+    "averageResponseTime": "220"
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": "0.69",
+    "slaCompliance": "0.79",
+    "energyEfficiency": "0.65",
+    "energyConsumption": "11.5",
+    "averageResponseTime": "240"
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": "0.76",
+    "slaCompliance": "0.84",
+    "energyEfficiency": "0.71",
+    "energyConsumption": "10.8",
+    "averageResponseTime": "210"
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": "0.82",
+    "slaCompliance": "0.88",
+    "energyEfficiency": "0.77",
+    "energyConsumption": "10.1",
+    "averageResponseTime": "185"
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": "0.85",
+    "slaCompliance": "0.91",
+    "energyEfficiency": "0.81",
+    "energyConsumption": "9.6",
+    "averageResponseTime": "170"
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": "0.87",
+    "slaCompliance": "0.93",
+    "energyEfficiency": "0.83",
+    "energyConsumption": "9.3",
+    "averageResponseTime": "160"
+  }
+]
