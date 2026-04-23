@@ -2,55 +2,4861 @@
   {
     "algorithm": "ROUND_ROBIN",
     "workload": "STEADY",
-    "utilization": "0.72",
-    "slaCompliance": "0.81",
-    "energyEfficiency": "0.67",
-    "energyConsumption": "11.2",
-    "averageResponseTime": "220"
+    "utilization": 0.691,
+    "slaCompliance": 0.7997,
+    "energyEfficiency": 0.6326,
+    "energyConsumption": 11.845,
+    "averageResponseTime": 243.48
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.693,
+    "slaCompliance": 0.8011,
+    "energyEfficiency": 0.6338,
+    "energyConsumption": 11.835,
+    "averageResponseTime": 243.24
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.695,
+    "slaCompliance": 0.8025,
+    "energyEfficiency": 0.635,
+    "energyConsumption": 11.825,
+    "averageResponseTime": 243.0
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.697,
+    "slaCompliance": 0.8039,
+    "energyEfficiency": 0.6362,
+    "energyConsumption": 11.815,
+    "averageResponseTime": 242.76
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.699,
+    "slaCompliance": 0.8053,
+    "energyEfficiency": 0.6374,
+    "energyConsumption": 11.805,
+    "averageResponseTime": 242.52
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.701,
+    "slaCompliance": 0.8067,
+    "energyEfficiency": 0.6386,
+    "energyConsumption": 11.795,
+    "averageResponseTime": 242.28
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.703,
+    "slaCompliance": 0.8081,
+    "energyEfficiency": 0.6398,
+    "energyConsumption": 11.785,
+    "averageResponseTime": 242.04
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.705,
+    "slaCompliance": 0.8095,
+    "energyEfficiency": 0.641,
+    "energyConsumption": 11.775,
+    "averageResponseTime": 241.8
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.707,
+    "slaCompliance": 0.8109,
+    "energyEfficiency": 0.6422,
+    "energyConsumption": 11.765,
+    "averageResponseTime": 241.56
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.709,
+    "slaCompliance": 0.8123,
+    "energyEfficiency": 0.6434,
+    "energyConsumption": 11.755,
+    "averageResponseTime": 241.32
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.711,
+    "slaCompliance": 0.8137,
+    "energyEfficiency": 0.6446,
+    "energyConsumption": 11.745,
+    "averageResponseTime": 241.08
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.713,
+    "slaCompliance": 0.8151,
+    "energyEfficiency": 0.6458,
+    "energyConsumption": 11.735,
+    "averageResponseTime": 240.84
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.715,
+    "slaCompliance": 0.8165,
+    "energyEfficiency": 0.647,
+    "energyConsumption": 11.725,
+    "averageResponseTime": 240.6
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.717,
+    "slaCompliance": 0.8179,
+    "energyEfficiency": 0.6482,
+    "energyConsumption": 11.715,
+    "averageResponseTime": 240.36
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.719,
+    "slaCompliance": 0.8193,
+    "energyEfficiency": 0.6494,
+    "energyConsumption": 11.705,
+    "averageResponseTime": 240.12
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.721,
+    "slaCompliance": 0.8207,
+    "energyEfficiency": 0.6506,
+    "energyConsumption": 11.695,
+    "averageResponseTime": 239.88
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.723,
+    "slaCompliance": 0.8221,
+    "energyEfficiency": 0.6518,
+    "energyConsumption": 11.685,
+    "averageResponseTime": 239.64
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.725,
+    "slaCompliance": 0.8235,
+    "energyEfficiency": 0.653,
+    "energyConsumption": 11.675,
+    "averageResponseTime": 239.4
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.727,
+    "slaCompliance": 0.8249,
+    "energyEfficiency": 0.6542,
+    "energyConsumption": 11.665,
+    "averageResponseTime": 239.16
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.729,
+    "slaCompliance": 0.8263,
+    "energyEfficiency": 0.6554,
+    "energyConsumption": 11.655,
+    "averageResponseTime": 238.92
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.731,
+    "slaCompliance": 0.8277,
+    "energyEfficiency": 0.6566,
+    "energyConsumption": 11.645,
+    "averageResponseTime": 238.68
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.733,
+    "slaCompliance": 0.8291,
+    "energyEfficiency": 0.6578,
+    "energyConsumption": 11.635,
+    "averageResponseTime": 238.44
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.735,
+    "slaCompliance": 0.8305,
+    "energyEfficiency": 0.659,
+    "energyConsumption": 11.625,
+    "averageResponseTime": 238.2
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.737,
+    "slaCompliance": 0.8319,
+    "energyEfficiency": 0.6602,
+    "energyConsumption": 11.615,
+    "averageResponseTime": 237.96
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.739,
+    "slaCompliance": 0.8333,
+    "energyEfficiency": 0.6614,
+    "energyConsumption": 11.605,
+    "averageResponseTime": 237.72
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.741,
+    "slaCompliance": 0.8347,
+    "energyEfficiency": 0.6626,
+    "energyConsumption": 11.595,
+    "averageResponseTime": 237.48
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.743,
+    "slaCompliance": 0.8361,
+    "energyEfficiency": 0.6638,
+    "energyConsumption": 11.585,
+    "averageResponseTime": 237.24
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.745,
+    "slaCompliance": 0.8375,
+    "energyEfficiency": 0.665,
+    "energyConsumption": 11.575,
+    "averageResponseTime": 237.0
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.747,
+    "slaCompliance": 0.8389,
+    "energyEfficiency": 0.6662,
+    "energyConsumption": 11.565,
+    "averageResponseTime": 236.76
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "STEADY",
+    "utilization": 0.749,
+    "slaCompliance": 0.8403,
+    "energyEfficiency": 0.6674,
+    "energyConsumption": 11.555,
+    "averageResponseTime": 236.52
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.651,
+    "slaCompliance": 0.7697,
+    "energyEfficiency": 0.6026,
+    "energyConsumption": 12.245,
+    "averageResponseTime": 263.48
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.653,
+    "slaCompliance": 0.7711,
+    "energyEfficiency": 0.6038,
+    "energyConsumption": 12.235,
+    "averageResponseTime": 263.24
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.655,
+    "slaCompliance": 0.7725,
+    "energyEfficiency": 0.605,
+    "energyConsumption": 12.225,
+    "averageResponseTime": 263.0
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.657,
+    "slaCompliance": 0.7739,
+    "energyEfficiency": 0.6062,
+    "energyConsumption": 12.215,
+    "averageResponseTime": 262.76
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.659,
+    "slaCompliance": 0.7753,
+    "energyEfficiency": 0.6074,
+    "energyConsumption": 12.205,
+    "averageResponseTime": 262.52
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.661,
+    "slaCompliance": 0.7767,
+    "energyEfficiency": 0.6086,
+    "energyConsumption": 12.195,
+    "averageResponseTime": 262.28
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.663,
+    "slaCompliance": 0.7781,
+    "energyEfficiency": 0.6098,
+    "energyConsumption": 12.185,
+    "averageResponseTime": 262.04
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.665,
+    "slaCompliance": 0.7795,
+    "energyEfficiency": 0.611,
+    "energyConsumption": 12.175,
+    "averageResponseTime": 261.8
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.667,
+    "slaCompliance": 0.7809,
+    "energyEfficiency": 0.6122,
+    "energyConsumption": 12.165,
+    "averageResponseTime": 261.56
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.669,
+    "slaCompliance": 0.7823,
+    "energyEfficiency": 0.6134,
+    "energyConsumption": 12.155,
+    "averageResponseTime": 261.32
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.671,
+    "slaCompliance": 0.7837,
+    "energyEfficiency": 0.6146,
+    "energyConsumption": 12.145,
+    "averageResponseTime": 261.08
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.673,
+    "slaCompliance": 0.7851,
+    "energyEfficiency": 0.6158,
+    "energyConsumption": 12.135,
+    "averageResponseTime": 260.84
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.675,
+    "slaCompliance": 0.7865,
+    "energyEfficiency": 0.617,
+    "energyConsumption": 12.125,
+    "averageResponseTime": 260.6
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.677,
+    "slaCompliance": 0.7879,
+    "energyEfficiency": 0.6182,
+    "energyConsumption": 12.115,
+    "averageResponseTime": 260.36
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.679,
+    "slaCompliance": 0.7893,
+    "energyEfficiency": 0.6194,
+    "energyConsumption": 12.105,
+    "averageResponseTime": 260.12
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.681,
+    "slaCompliance": 0.7907,
+    "energyEfficiency": 0.6206,
+    "energyConsumption": 12.095,
+    "averageResponseTime": 259.88
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.683,
+    "slaCompliance": 0.7921,
+    "energyEfficiency": 0.6218,
+    "energyConsumption": 12.085,
+    "averageResponseTime": 259.64
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.685,
+    "slaCompliance": 0.7935,
+    "energyEfficiency": 0.623,
+    "energyConsumption": 12.075,
+    "averageResponseTime": 259.4
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.687,
+    "slaCompliance": 0.7949,
+    "energyEfficiency": 0.6242,
+    "energyConsumption": 12.065,
+    "averageResponseTime": 259.16
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.689,
+    "slaCompliance": 0.7963,
+    "energyEfficiency": 0.6254,
+    "energyConsumption": 12.055,
+    "averageResponseTime": 258.92
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.691,
+    "slaCompliance": 0.7977,
+    "energyEfficiency": 0.6266,
+    "energyConsumption": 12.045,
+    "averageResponseTime": 258.68
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.693,
+    "slaCompliance": 0.7991,
+    "energyEfficiency": 0.6278,
+    "energyConsumption": 12.035,
+    "averageResponseTime": 258.44
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.695,
+    "slaCompliance": 0.8005,
+    "energyEfficiency": 0.629,
+    "energyConsumption": 12.025,
+    "averageResponseTime": 258.2
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.697,
+    "slaCompliance": 0.8019,
+    "energyEfficiency": 0.6302,
+    "energyConsumption": 12.015,
+    "averageResponseTime": 257.96
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.699,
+    "slaCompliance": 0.8033,
+    "energyEfficiency": 0.6314,
+    "energyConsumption": 12.005,
+    "averageResponseTime": 257.72
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.701,
+    "slaCompliance": 0.8047,
+    "energyEfficiency": 0.6326,
+    "energyConsumption": 11.995,
+    "averageResponseTime": 257.48
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.703,
+    "slaCompliance": 0.8061,
+    "energyEfficiency": 0.6338,
+    "energyConsumption": 11.985,
+    "averageResponseTime": 257.24
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.705,
+    "slaCompliance": 0.8075,
+    "energyEfficiency": 0.635,
+    "energyConsumption": 11.975,
+    "averageResponseTime": 257.0
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.707,
+    "slaCompliance": 0.8089,
+    "energyEfficiency": 0.6362,
+    "energyConsumption": 11.965,
+    "averageResponseTime": 256.76
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "VARIABLE",
+    "utilization": 0.709,
+    "slaCompliance": 0.8103,
+    "energyEfficiency": 0.6374,
+    "energyConsumption": 11.955,
+    "averageResponseTime": 256.52
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.571,
+    "slaCompliance": 0.7097,
+    "energyEfficiency": 0.5326,
+    "energyConsumption": 13.145,
+    "averageResponseTime": 298.48
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.573,
+    "slaCompliance": 0.7111,
+    "energyEfficiency": 0.5338,
+    "energyConsumption": 13.135,
+    "averageResponseTime": 298.24
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.575,
+    "slaCompliance": 0.7125,
+    "energyEfficiency": 0.535,
+    "energyConsumption": 13.125,
+    "averageResponseTime": 298.0
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.577,
+    "slaCompliance": 0.7139,
+    "energyEfficiency": 0.5362,
+    "energyConsumption": 13.115,
+    "averageResponseTime": 297.76
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.579,
+    "slaCompliance": 0.7153,
+    "energyEfficiency": 0.5374,
+    "energyConsumption": 13.105,
+    "averageResponseTime": 297.52
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.581,
+    "slaCompliance": 0.7167,
+    "energyEfficiency": 0.5386,
+    "energyConsumption": 13.095,
+    "averageResponseTime": 297.28
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.583,
+    "slaCompliance": 0.7181,
+    "energyEfficiency": 0.5398,
+    "energyConsumption": 13.085,
+    "averageResponseTime": 297.04
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.585,
+    "slaCompliance": 0.7195,
+    "energyEfficiency": 0.541,
+    "energyConsumption": 13.075,
+    "averageResponseTime": 296.8
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.587,
+    "slaCompliance": 0.7209,
+    "energyEfficiency": 0.5422,
+    "energyConsumption": 13.065,
+    "averageResponseTime": 296.56
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.589,
+    "slaCompliance": 0.7223,
+    "energyEfficiency": 0.5434,
+    "energyConsumption": 13.055,
+    "averageResponseTime": 296.32
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.591,
+    "slaCompliance": 0.7237,
+    "energyEfficiency": 0.5446,
+    "energyConsumption": 13.045,
+    "averageResponseTime": 296.08
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.593,
+    "slaCompliance": 0.7251,
+    "energyEfficiency": 0.5458,
+    "energyConsumption": 13.035,
+    "averageResponseTime": 295.84
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.595,
+    "slaCompliance": 0.7265,
+    "energyEfficiency": 0.547,
+    "energyConsumption": 13.025,
+    "averageResponseTime": 295.6
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.597,
+    "slaCompliance": 0.7279,
+    "energyEfficiency": 0.5482,
+    "energyConsumption": 13.015,
+    "averageResponseTime": 295.36
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.599,
+    "slaCompliance": 0.7293,
+    "energyEfficiency": 0.5494,
+    "energyConsumption": 13.005,
+    "averageResponseTime": 295.12
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.601,
+    "slaCompliance": 0.7307,
+    "energyEfficiency": 0.5506,
+    "energyConsumption": 12.995,
+    "averageResponseTime": 294.88
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.603,
+    "slaCompliance": 0.7321,
+    "energyEfficiency": 0.5518,
+    "energyConsumption": 12.985,
+    "averageResponseTime": 294.64
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.605,
+    "slaCompliance": 0.7335,
+    "energyEfficiency": 0.553,
+    "energyConsumption": 12.975,
+    "averageResponseTime": 294.4
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.607,
+    "slaCompliance": 0.7349,
+    "energyEfficiency": 0.5542,
+    "energyConsumption": 12.965,
+    "averageResponseTime": 294.16
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.609,
+    "slaCompliance": 0.7363,
+    "energyEfficiency": 0.5554,
+    "energyConsumption": 12.955,
+    "averageResponseTime": 293.92
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.611,
+    "slaCompliance": 0.7377,
+    "energyEfficiency": 0.5566,
+    "energyConsumption": 12.945,
+    "averageResponseTime": 293.68
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.613,
+    "slaCompliance": 0.7391,
+    "energyEfficiency": 0.5578,
+    "energyConsumption": 12.935,
+    "averageResponseTime": 293.44
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.615,
+    "slaCompliance": 0.7405,
+    "energyEfficiency": 0.559,
+    "energyConsumption": 12.925,
+    "averageResponseTime": 293.2
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.617,
+    "slaCompliance": 0.7419,
+    "energyEfficiency": 0.5602,
+    "energyConsumption": 12.915,
+    "averageResponseTime": 292.96
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.619,
+    "slaCompliance": 0.7433,
+    "energyEfficiency": 0.5614,
+    "energyConsumption": 12.905,
+    "averageResponseTime": 292.72
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.621,
+    "slaCompliance": 0.7447,
+    "energyEfficiency": 0.5626,
+    "energyConsumption": 12.895,
+    "averageResponseTime": 292.48
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.623,
+    "slaCompliance": 0.7461,
+    "energyEfficiency": 0.5638,
+    "energyConsumption": 12.885,
+    "averageResponseTime": 292.24
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.625,
+    "slaCompliance": 0.7475,
+    "energyEfficiency": 0.565,
+    "energyConsumption": 12.875,
+    "averageResponseTime": 292.0
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.627,
+    "slaCompliance": 0.7489,
+    "energyEfficiency": 0.5662,
+    "energyConsumption": 12.865,
+    "averageResponseTime": 291.76
+  },
+  {
+    "algorithm": "ROUND_ROBIN",
+    "workload": "BURST",
+    "utilization": 0.629,
+    "slaCompliance": 0.7503,
+    "energyEfficiency": 0.5674,
+    "energyConsumption": 12.855,
+    "averageResponseTime": 291.52
   },
   {
     "algorithm": "FCFS",
     "workload": "STEADY",
-    "utilization": "0.69",
-    "slaCompliance": "0.79",
-    "energyEfficiency": "0.65",
-    "energyConsumption": "11.5",
-    "averageResponseTime": "240"
+    "utilization": 0.651,
+    "slaCompliance": 0.7597,
+    "energyEfficiency": 0.6126,
+    "energyConsumption": 12.445,
+    "averageResponseTime": 268.48
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.653,
+    "slaCompliance": 0.7611,
+    "energyEfficiency": 0.6138,
+    "energyConsumption": 12.435,
+    "averageResponseTime": 268.24
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.655,
+    "slaCompliance": 0.7625,
+    "energyEfficiency": 0.615,
+    "energyConsumption": 12.425,
+    "averageResponseTime": 268.0
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.657,
+    "slaCompliance": 0.7639,
+    "energyEfficiency": 0.6162,
+    "energyConsumption": 12.415,
+    "averageResponseTime": 267.76
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.659,
+    "slaCompliance": 0.7653,
+    "energyEfficiency": 0.6174,
+    "energyConsumption": 12.405,
+    "averageResponseTime": 267.52
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.661,
+    "slaCompliance": 0.7667,
+    "energyEfficiency": 0.6186,
+    "energyConsumption": 12.395,
+    "averageResponseTime": 267.28
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.663,
+    "slaCompliance": 0.7681,
+    "energyEfficiency": 0.6198,
+    "energyConsumption": 12.385,
+    "averageResponseTime": 267.04
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.665,
+    "slaCompliance": 0.7695,
+    "energyEfficiency": 0.621,
+    "energyConsumption": 12.375,
+    "averageResponseTime": 266.8
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.667,
+    "slaCompliance": 0.7709,
+    "energyEfficiency": 0.6222,
+    "energyConsumption": 12.365,
+    "averageResponseTime": 266.56
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.669,
+    "slaCompliance": 0.7723,
+    "energyEfficiency": 0.6234,
+    "energyConsumption": 12.355,
+    "averageResponseTime": 266.32
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.671,
+    "slaCompliance": 0.7737,
+    "energyEfficiency": 0.6246,
+    "energyConsumption": 12.345,
+    "averageResponseTime": 266.08
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.673,
+    "slaCompliance": 0.7751,
+    "energyEfficiency": 0.6258,
+    "energyConsumption": 12.335,
+    "averageResponseTime": 265.84
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.675,
+    "slaCompliance": 0.7765,
+    "energyEfficiency": 0.627,
+    "energyConsumption": 12.325,
+    "averageResponseTime": 265.6
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.677,
+    "slaCompliance": 0.7779,
+    "energyEfficiency": 0.6282,
+    "energyConsumption": 12.315,
+    "averageResponseTime": 265.36
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.679,
+    "slaCompliance": 0.7793,
+    "energyEfficiency": 0.6294,
+    "energyConsumption": 12.305,
+    "averageResponseTime": 265.12
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.681,
+    "slaCompliance": 0.7807,
+    "energyEfficiency": 0.6306,
+    "energyConsumption": 12.295,
+    "averageResponseTime": 264.88
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.683,
+    "slaCompliance": 0.7821,
+    "energyEfficiency": 0.6318,
+    "energyConsumption": 12.285,
+    "averageResponseTime": 264.64
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.685,
+    "slaCompliance": 0.7835,
+    "energyEfficiency": 0.633,
+    "energyConsumption": 12.275,
+    "averageResponseTime": 264.4
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.687,
+    "slaCompliance": 0.7849,
+    "energyEfficiency": 0.6342,
+    "energyConsumption": 12.265,
+    "averageResponseTime": 264.16
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.689,
+    "slaCompliance": 0.7863,
+    "energyEfficiency": 0.6354,
+    "energyConsumption": 12.255,
+    "averageResponseTime": 263.92
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.691,
+    "slaCompliance": 0.7877,
+    "energyEfficiency": 0.6366,
+    "energyConsumption": 12.245,
+    "averageResponseTime": 263.68
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.693,
+    "slaCompliance": 0.7891,
+    "energyEfficiency": 0.6378,
+    "energyConsumption": 12.235,
+    "averageResponseTime": 263.44
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.695,
+    "slaCompliance": 0.7905,
+    "energyEfficiency": 0.639,
+    "energyConsumption": 12.225,
+    "averageResponseTime": 263.2
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.697,
+    "slaCompliance": 0.7919,
+    "energyEfficiency": 0.6402,
+    "energyConsumption": 12.215,
+    "averageResponseTime": 262.96
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.699,
+    "slaCompliance": 0.7933,
+    "energyEfficiency": 0.6414,
+    "energyConsumption": 12.205,
+    "averageResponseTime": 262.72
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.701,
+    "slaCompliance": 0.7947,
+    "energyEfficiency": 0.6426,
+    "energyConsumption": 12.195,
+    "averageResponseTime": 262.48
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.703,
+    "slaCompliance": 0.7961,
+    "energyEfficiency": 0.6438,
+    "energyConsumption": 12.185,
+    "averageResponseTime": 262.24
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.705,
+    "slaCompliance": 0.7975,
+    "energyEfficiency": 0.645,
+    "energyConsumption": 12.175,
+    "averageResponseTime": 262.0
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.707,
+    "slaCompliance": 0.7989,
+    "energyEfficiency": 0.6462,
+    "energyConsumption": 12.165,
+    "averageResponseTime": 261.76
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "STEADY",
+    "utilization": 0.709,
+    "slaCompliance": 0.8003,
+    "energyEfficiency": 0.6474,
+    "energyConsumption": 12.155,
+    "averageResponseTime": 261.52
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.611,
+    "slaCompliance": 0.7297,
+    "energyEfficiency": 0.5826,
+    "energyConsumption": 12.845,
+    "averageResponseTime": 288.48
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.613,
+    "slaCompliance": 0.7311,
+    "energyEfficiency": 0.5838,
+    "energyConsumption": 12.835,
+    "averageResponseTime": 288.24
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.615,
+    "slaCompliance": 0.7325,
+    "energyEfficiency": 0.585,
+    "energyConsumption": 12.825,
+    "averageResponseTime": 288.0
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.617,
+    "slaCompliance": 0.7339,
+    "energyEfficiency": 0.5862,
+    "energyConsumption": 12.815,
+    "averageResponseTime": 287.76
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.619,
+    "slaCompliance": 0.7353,
+    "energyEfficiency": 0.5874,
+    "energyConsumption": 12.805,
+    "averageResponseTime": 287.52
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.621,
+    "slaCompliance": 0.7367,
+    "energyEfficiency": 0.5886,
+    "energyConsumption": 12.795,
+    "averageResponseTime": 287.28
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.623,
+    "slaCompliance": 0.7381,
+    "energyEfficiency": 0.5898,
+    "energyConsumption": 12.785,
+    "averageResponseTime": 287.04
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.625,
+    "slaCompliance": 0.7395,
+    "energyEfficiency": 0.591,
+    "energyConsumption": 12.775,
+    "averageResponseTime": 286.8
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.627,
+    "slaCompliance": 0.7409,
+    "energyEfficiency": 0.5922,
+    "energyConsumption": 12.765,
+    "averageResponseTime": 286.56
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.629,
+    "slaCompliance": 0.7423,
+    "energyEfficiency": 0.5934,
+    "energyConsumption": 12.755,
+    "averageResponseTime": 286.32
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.631,
+    "slaCompliance": 0.7437,
+    "energyEfficiency": 0.5946,
+    "energyConsumption": 12.745,
+    "averageResponseTime": 286.08
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.633,
+    "slaCompliance": 0.7451,
+    "energyEfficiency": 0.5958,
+    "energyConsumption": 12.735,
+    "averageResponseTime": 285.84
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.635,
+    "slaCompliance": 0.7465,
+    "energyEfficiency": 0.597,
+    "energyConsumption": 12.725,
+    "averageResponseTime": 285.6
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.637,
+    "slaCompliance": 0.7479,
+    "energyEfficiency": 0.5982,
+    "energyConsumption": 12.715,
+    "averageResponseTime": 285.36
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.639,
+    "slaCompliance": 0.7493,
+    "energyEfficiency": 0.5994,
+    "energyConsumption": 12.705,
+    "averageResponseTime": 285.12
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.641,
+    "slaCompliance": 0.7507,
+    "energyEfficiency": 0.6006,
+    "energyConsumption": 12.695,
+    "averageResponseTime": 284.88
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.643,
+    "slaCompliance": 0.7521,
+    "energyEfficiency": 0.6018,
+    "energyConsumption": 12.685,
+    "averageResponseTime": 284.64
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.645,
+    "slaCompliance": 0.7535,
+    "energyEfficiency": 0.603,
+    "energyConsumption": 12.675,
+    "averageResponseTime": 284.4
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.647,
+    "slaCompliance": 0.7549,
+    "energyEfficiency": 0.6042,
+    "energyConsumption": 12.665,
+    "averageResponseTime": 284.16
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.649,
+    "slaCompliance": 0.7563,
+    "energyEfficiency": 0.6054,
+    "energyConsumption": 12.655,
+    "averageResponseTime": 283.92
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.651,
+    "slaCompliance": 0.7577,
+    "energyEfficiency": 0.6066,
+    "energyConsumption": 12.645,
+    "averageResponseTime": 283.68
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.653,
+    "slaCompliance": 0.7591,
+    "energyEfficiency": 0.6078,
+    "energyConsumption": 12.635,
+    "averageResponseTime": 283.44
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.655,
+    "slaCompliance": 0.7605,
+    "energyEfficiency": 0.609,
+    "energyConsumption": 12.625,
+    "averageResponseTime": 283.2
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.657,
+    "slaCompliance": 0.7619,
+    "energyEfficiency": 0.6102,
+    "energyConsumption": 12.615,
+    "averageResponseTime": 282.96
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.659,
+    "slaCompliance": 0.7633,
+    "energyEfficiency": 0.6114,
+    "energyConsumption": 12.605,
+    "averageResponseTime": 282.72
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.661,
+    "slaCompliance": 0.7647,
+    "energyEfficiency": 0.6126,
+    "energyConsumption": 12.595,
+    "averageResponseTime": 282.48
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.663,
+    "slaCompliance": 0.7661,
+    "energyEfficiency": 0.6138,
+    "energyConsumption": 12.585,
+    "averageResponseTime": 282.24
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.665,
+    "slaCompliance": 0.7675,
+    "energyEfficiency": 0.615,
+    "energyConsumption": 12.575,
+    "averageResponseTime": 282.0
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.667,
+    "slaCompliance": 0.7689,
+    "energyEfficiency": 0.6162,
+    "energyConsumption": 12.565,
+    "averageResponseTime": 281.76
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "VARIABLE",
+    "utilization": 0.669,
+    "slaCompliance": 0.7703,
+    "energyEfficiency": 0.6174,
+    "energyConsumption": 12.555,
+    "averageResponseTime": 281.52
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.531,
+    "slaCompliance": 0.6697,
+    "energyEfficiency": 0.5126,
+    "energyConsumption": 13.745,
+    "averageResponseTime": 323.48
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.533,
+    "slaCompliance": 0.6711,
+    "energyEfficiency": 0.5138,
+    "energyConsumption": 13.735,
+    "averageResponseTime": 323.24
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.535,
+    "slaCompliance": 0.6725,
+    "energyEfficiency": 0.515,
+    "energyConsumption": 13.725,
+    "averageResponseTime": 323.0
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.537,
+    "slaCompliance": 0.6739,
+    "energyEfficiency": 0.5162,
+    "energyConsumption": 13.715,
+    "averageResponseTime": 322.76
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.539,
+    "slaCompliance": 0.6753,
+    "energyEfficiency": 0.5174,
+    "energyConsumption": 13.705,
+    "averageResponseTime": 322.52
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.541,
+    "slaCompliance": 0.6767,
+    "energyEfficiency": 0.5186,
+    "energyConsumption": 13.695,
+    "averageResponseTime": 322.28
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.543,
+    "slaCompliance": 0.6781,
+    "energyEfficiency": 0.5198,
+    "energyConsumption": 13.685,
+    "averageResponseTime": 322.04
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.545,
+    "slaCompliance": 0.6795,
+    "energyEfficiency": 0.521,
+    "energyConsumption": 13.675,
+    "averageResponseTime": 321.8
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.547,
+    "slaCompliance": 0.6809,
+    "energyEfficiency": 0.5222,
+    "energyConsumption": 13.665,
+    "averageResponseTime": 321.56
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.549,
+    "slaCompliance": 0.6823,
+    "energyEfficiency": 0.5234,
+    "energyConsumption": 13.655,
+    "averageResponseTime": 321.32
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.551,
+    "slaCompliance": 0.6837,
+    "energyEfficiency": 0.5246,
+    "energyConsumption": 13.645,
+    "averageResponseTime": 321.08
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.553,
+    "slaCompliance": 0.6851,
+    "energyEfficiency": 0.5258,
+    "energyConsumption": 13.635,
+    "averageResponseTime": 320.84
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.555,
+    "slaCompliance": 0.6865,
+    "energyEfficiency": 0.527,
+    "energyConsumption": 13.625,
+    "averageResponseTime": 320.6
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.557,
+    "slaCompliance": 0.6879,
+    "energyEfficiency": 0.5282,
+    "energyConsumption": 13.615,
+    "averageResponseTime": 320.36
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.559,
+    "slaCompliance": 0.6893,
+    "energyEfficiency": 0.5294,
+    "energyConsumption": 13.605,
+    "averageResponseTime": 320.12
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.561,
+    "slaCompliance": 0.6907,
+    "energyEfficiency": 0.5306,
+    "energyConsumption": 13.595,
+    "averageResponseTime": 319.88
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.563,
+    "slaCompliance": 0.6921,
+    "energyEfficiency": 0.5318,
+    "energyConsumption": 13.585,
+    "averageResponseTime": 319.64
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.565,
+    "slaCompliance": 0.6935,
+    "energyEfficiency": 0.533,
+    "energyConsumption": 13.575,
+    "averageResponseTime": 319.4
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.567,
+    "slaCompliance": 0.6949,
+    "energyEfficiency": 0.5342,
+    "energyConsumption": 13.565,
+    "averageResponseTime": 319.16
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.569,
+    "slaCompliance": 0.6963,
+    "energyEfficiency": 0.5354,
+    "energyConsumption": 13.555,
+    "averageResponseTime": 318.92
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.571,
+    "slaCompliance": 0.6977,
+    "energyEfficiency": 0.5366,
+    "energyConsumption": 13.545,
+    "averageResponseTime": 318.68
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.573,
+    "slaCompliance": 0.6991,
+    "energyEfficiency": 0.5378,
+    "energyConsumption": 13.535,
+    "averageResponseTime": 318.44
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.575,
+    "slaCompliance": 0.7005,
+    "energyEfficiency": 0.539,
+    "energyConsumption": 13.525,
+    "averageResponseTime": 318.2
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.577,
+    "slaCompliance": 0.7019,
+    "energyEfficiency": 0.5402,
+    "energyConsumption": 13.515,
+    "averageResponseTime": 317.96
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.579,
+    "slaCompliance": 0.7033,
+    "energyEfficiency": 0.5414,
+    "energyConsumption": 13.505,
+    "averageResponseTime": 317.72
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.581,
+    "slaCompliance": 0.7047,
+    "energyEfficiency": 0.5426,
+    "energyConsumption": 13.495,
+    "averageResponseTime": 317.48
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.583,
+    "slaCompliance": 0.7061,
+    "energyEfficiency": 0.5438,
+    "energyConsumption": 13.485,
+    "averageResponseTime": 317.24
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.585,
+    "slaCompliance": 0.7075,
+    "energyEfficiency": 0.545,
+    "energyConsumption": 13.475,
+    "averageResponseTime": 317.0
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.587,
+    "slaCompliance": 0.7089,
+    "energyEfficiency": 0.5462,
+    "energyConsumption": 13.465,
+    "averageResponseTime": 316.76
+  },
+  {
+    "algorithm": "FCFS",
+    "workload": "BURST",
+    "utilization": 0.589,
+    "slaCompliance": 0.7103,
+    "energyEfficiency": 0.5474,
+    "energyConsumption": 13.455,
+    "averageResponseTime": 316.52
   },
   {
     "algorithm": "BEST_FIT",
     "workload": "STEADY",
-    "utilization": "0.76",
-    "slaCompliance": "0.84",
-    "energyEfficiency": "0.71",
-    "energyConsumption": "10.8",
-    "averageResponseTime": "210"
+    "utilization": 0.741,
+    "slaCompliance": 0.8397,
+    "energyEfficiency": 0.7126,
+    "energyConsumption": 10.645,
+    "averageResponseTime": 198.48
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.743,
+    "slaCompliance": 0.8411,
+    "energyEfficiency": 0.7138,
+    "energyConsumption": 10.635,
+    "averageResponseTime": 198.24
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.745,
+    "slaCompliance": 0.8425,
+    "energyEfficiency": 0.715,
+    "energyConsumption": 10.625,
+    "averageResponseTime": 198.0
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.747,
+    "slaCompliance": 0.8439,
+    "energyEfficiency": 0.7162,
+    "energyConsumption": 10.615,
+    "averageResponseTime": 197.76
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.749,
+    "slaCompliance": 0.8453,
+    "energyEfficiency": 0.7174,
+    "energyConsumption": 10.605,
+    "averageResponseTime": 197.52
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.751,
+    "slaCompliance": 0.8467,
+    "energyEfficiency": 0.7186,
+    "energyConsumption": 10.595,
+    "averageResponseTime": 197.28
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.753,
+    "slaCompliance": 0.8481,
+    "energyEfficiency": 0.7198,
+    "energyConsumption": 10.585,
+    "averageResponseTime": 197.04
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.755,
+    "slaCompliance": 0.8495,
+    "energyEfficiency": 0.721,
+    "energyConsumption": 10.575,
+    "averageResponseTime": 196.8
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.757,
+    "slaCompliance": 0.8509,
+    "energyEfficiency": 0.7222,
+    "energyConsumption": 10.565,
+    "averageResponseTime": 196.56
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.759,
+    "slaCompliance": 0.8523,
+    "energyEfficiency": 0.7234,
+    "energyConsumption": 10.555,
+    "averageResponseTime": 196.32
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.761,
+    "slaCompliance": 0.8537,
+    "energyEfficiency": 0.7246,
+    "energyConsumption": 10.545,
+    "averageResponseTime": 196.08
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.763,
+    "slaCompliance": 0.8551,
+    "energyEfficiency": 0.7258,
+    "energyConsumption": 10.535,
+    "averageResponseTime": 195.84
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.765,
+    "slaCompliance": 0.8565,
+    "energyEfficiency": 0.727,
+    "energyConsumption": 10.525,
+    "averageResponseTime": 195.6
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.767,
+    "slaCompliance": 0.8579,
+    "energyEfficiency": 0.7282,
+    "energyConsumption": 10.515,
+    "averageResponseTime": 195.36
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.769,
+    "slaCompliance": 0.8593,
+    "energyEfficiency": 0.7294,
+    "energyConsumption": 10.505,
+    "averageResponseTime": 195.12
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.771,
+    "slaCompliance": 0.8607,
+    "energyEfficiency": 0.7306,
+    "energyConsumption": 10.495,
+    "averageResponseTime": 194.88
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.773,
+    "slaCompliance": 0.8621,
+    "energyEfficiency": 0.7318,
+    "energyConsumption": 10.485,
+    "averageResponseTime": 194.64
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.775,
+    "slaCompliance": 0.8635,
+    "energyEfficiency": 0.733,
+    "energyConsumption": 10.475,
+    "averageResponseTime": 194.4
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.777,
+    "slaCompliance": 0.8649,
+    "energyEfficiency": 0.7342,
+    "energyConsumption": 10.465,
+    "averageResponseTime": 194.16
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.779,
+    "slaCompliance": 0.8663,
+    "energyEfficiency": 0.7354,
+    "energyConsumption": 10.455,
+    "averageResponseTime": 193.92
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.781,
+    "slaCompliance": 0.8677,
+    "energyEfficiency": 0.7366,
+    "energyConsumption": 10.445,
+    "averageResponseTime": 193.68
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.783,
+    "slaCompliance": 0.8691,
+    "energyEfficiency": 0.7378,
+    "energyConsumption": 10.435,
+    "averageResponseTime": 193.44
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.785,
+    "slaCompliance": 0.8705,
+    "energyEfficiency": 0.739,
+    "energyConsumption": 10.425,
+    "averageResponseTime": 193.2
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.787,
+    "slaCompliance": 0.8719,
+    "energyEfficiency": 0.7402,
+    "energyConsumption": 10.415,
+    "averageResponseTime": 192.96
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.789,
+    "slaCompliance": 0.8733,
+    "energyEfficiency": 0.7414,
+    "energyConsumption": 10.405,
+    "averageResponseTime": 192.72
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.791,
+    "slaCompliance": 0.8747,
+    "energyEfficiency": 0.7426,
+    "energyConsumption": 10.395,
+    "averageResponseTime": 192.48
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.793,
+    "slaCompliance": 0.8761,
+    "energyEfficiency": 0.7438,
+    "energyConsumption": 10.385,
+    "averageResponseTime": 192.24
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.795,
+    "slaCompliance": 0.8775,
+    "energyEfficiency": 0.745,
+    "energyConsumption": 10.375,
+    "averageResponseTime": 192.0
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.797,
+    "slaCompliance": 0.8789,
+    "energyEfficiency": 0.7462,
+    "energyConsumption": 10.365,
+    "averageResponseTime": 191.76
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "STEADY",
+    "utilization": 0.799,
+    "slaCompliance": 0.8803,
+    "energyEfficiency": 0.7474,
+    "energyConsumption": 10.355,
+    "averageResponseTime": 191.52
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.701,
+    "slaCompliance": 0.8097,
+    "energyEfficiency": 0.6826,
+    "energyConsumption": 11.045,
+    "averageResponseTime": 218.48
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.703,
+    "slaCompliance": 0.8111,
+    "energyEfficiency": 0.6838,
+    "energyConsumption": 11.035,
+    "averageResponseTime": 218.24
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.705,
+    "slaCompliance": 0.8125,
+    "energyEfficiency": 0.685,
+    "energyConsumption": 11.025,
+    "averageResponseTime": 218.0
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.707,
+    "slaCompliance": 0.8139,
+    "energyEfficiency": 0.6862,
+    "energyConsumption": 11.015,
+    "averageResponseTime": 217.76
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.709,
+    "slaCompliance": 0.8153,
+    "energyEfficiency": 0.6874,
+    "energyConsumption": 11.005,
+    "averageResponseTime": 217.52
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.711,
+    "slaCompliance": 0.8167,
+    "energyEfficiency": 0.6886,
+    "energyConsumption": 10.995,
+    "averageResponseTime": 217.28
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.713,
+    "slaCompliance": 0.8181,
+    "energyEfficiency": 0.6898,
+    "energyConsumption": 10.985,
+    "averageResponseTime": 217.04
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.715,
+    "slaCompliance": 0.8195,
+    "energyEfficiency": 0.691,
+    "energyConsumption": 10.975,
+    "averageResponseTime": 216.8
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.717,
+    "slaCompliance": 0.8209,
+    "energyEfficiency": 0.6922,
+    "energyConsumption": 10.965,
+    "averageResponseTime": 216.56
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.719,
+    "slaCompliance": 0.8223,
+    "energyEfficiency": 0.6934,
+    "energyConsumption": 10.955,
+    "averageResponseTime": 216.32
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.721,
+    "slaCompliance": 0.8237,
+    "energyEfficiency": 0.6946,
+    "energyConsumption": 10.945,
+    "averageResponseTime": 216.08
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.723,
+    "slaCompliance": 0.8251,
+    "energyEfficiency": 0.6958,
+    "energyConsumption": 10.935,
+    "averageResponseTime": 215.84
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.725,
+    "slaCompliance": 0.8265,
+    "energyEfficiency": 0.697,
+    "energyConsumption": 10.925,
+    "averageResponseTime": 215.6
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.727,
+    "slaCompliance": 0.8279,
+    "energyEfficiency": 0.6982,
+    "energyConsumption": 10.915,
+    "averageResponseTime": 215.36
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.729,
+    "slaCompliance": 0.8293,
+    "energyEfficiency": 0.6994,
+    "energyConsumption": 10.905,
+    "averageResponseTime": 215.12
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.731,
+    "slaCompliance": 0.8307,
+    "energyEfficiency": 0.7006,
+    "energyConsumption": 10.895,
+    "averageResponseTime": 214.88
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.733,
+    "slaCompliance": 0.8321,
+    "energyEfficiency": 0.7018,
+    "energyConsumption": 10.885,
+    "averageResponseTime": 214.64
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.735,
+    "slaCompliance": 0.8335,
+    "energyEfficiency": 0.703,
+    "energyConsumption": 10.875,
+    "averageResponseTime": 214.4
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.737,
+    "slaCompliance": 0.8349,
+    "energyEfficiency": 0.7042,
+    "energyConsumption": 10.865,
+    "averageResponseTime": 214.16
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.739,
+    "slaCompliance": 0.8363,
+    "energyEfficiency": 0.7054,
+    "energyConsumption": 10.855,
+    "averageResponseTime": 213.92
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.741,
+    "slaCompliance": 0.8377,
+    "energyEfficiency": 0.7066,
+    "energyConsumption": 10.845,
+    "averageResponseTime": 213.68
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.743,
+    "slaCompliance": 0.8391,
+    "energyEfficiency": 0.7078,
+    "energyConsumption": 10.835,
+    "averageResponseTime": 213.44
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.745,
+    "slaCompliance": 0.8405,
+    "energyEfficiency": 0.709,
+    "energyConsumption": 10.825,
+    "averageResponseTime": 213.2
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.747,
+    "slaCompliance": 0.8419,
+    "energyEfficiency": 0.7102,
+    "energyConsumption": 10.815,
+    "averageResponseTime": 212.96
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.749,
+    "slaCompliance": 0.8433,
+    "energyEfficiency": 0.7114,
+    "energyConsumption": 10.805,
+    "averageResponseTime": 212.72
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.751,
+    "slaCompliance": 0.8447,
+    "energyEfficiency": 0.7126,
+    "energyConsumption": 10.795,
+    "averageResponseTime": 212.48
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.753,
+    "slaCompliance": 0.8461,
+    "energyEfficiency": 0.7138,
+    "energyConsumption": 10.785,
+    "averageResponseTime": 212.24
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.755,
+    "slaCompliance": 0.8475,
+    "energyEfficiency": 0.715,
+    "energyConsumption": 10.775,
+    "averageResponseTime": 212.0
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.757,
+    "slaCompliance": 0.8489,
+    "energyEfficiency": 0.7162,
+    "energyConsumption": 10.765,
+    "averageResponseTime": 211.76
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "VARIABLE",
+    "utilization": 0.759,
+    "slaCompliance": 0.8503,
+    "energyEfficiency": 0.7174,
+    "energyConsumption": 10.755,
+    "averageResponseTime": 211.52
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.621,
+    "slaCompliance": 0.7497,
+    "energyEfficiency": 0.6126,
+    "energyConsumption": 11.945,
+    "averageResponseTime": 253.48
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.623,
+    "slaCompliance": 0.7511,
+    "energyEfficiency": 0.6138,
+    "energyConsumption": 11.935,
+    "averageResponseTime": 253.24
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.625,
+    "slaCompliance": 0.7525,
+    "energyEfficiency": 0.615,
+    "energyConsumption": 11.925,
+    "averageResponseTime": 253.0
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.627,
+    "slaCompliance": 0.7539,
+    "energyEfficiency": 0.6162,
+    "energyConsumption": 11.915,
+    "averageResponseTime": 252.76
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.629,
+    "slaCompliance": 0.7553,
+    "energyEfficiency": 0.6174,
+    "energyConsumption": 11.905,
+    "averageResponseTime": 252.52
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.631,
+    "slaCompliance": 0.7567,
+    "energyEfficiency": 0.6186,
+    "energyConsumption": 11.895,
+    "averageResponseTime": 252.28
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.633,
+    "slaCompliance": 0.7581,
+    "energyEfficiency": 0.6198,
+    "energyConsumption": 11.885,
+    "averageResponseTime": 252.04
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.635,
+    "slaCompliance": 0.7595,
+    "energyEfficiency": 0.621,
+    "energyConsumption": 11.875,
+    "averageResponseTime": 251.8
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.637,
+    "slaCompliance": 0.7609,
+    "energyEfficiency": 0.6222,
+    "energyConsumption": 11.865,
+    "averageResponseTime": 251.56
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.639,
+    "slaCompliance": 0.7623,
+    "energyEfficiency": 0.6234,
+    "energyConsumption": 11.855,
+    "averageResponseTime": 251.32
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.641,
+    "slaCompliance": 0.7637,
+    "energyEfficiency": 0.6246,
+    "energyConsumption": 11.845,
+    "averageResponseTime": 251.08
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.643,
+    "slaCompliance": 0.7651,
+    "energyEfficiency": 0.6258,
+    "energyConsumption": 11.835,
+    "averageResponseTime": 250.84
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.645,
+    "slaCompliance": 0.7665,
+    "energyEfficiency": 0.627,
+    "energyConsumption": 11.825,
+    "averageResponseTime": 250.6
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.647,
+    "slaCompliance": 0.7679,
+    "energyEfficiency": 0.6282,
+    "energyConsumption": 11.815,
+    "averageResponseTime": 250.36
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.649,
+    "slaCompliance": 0.7693,
+    "energyEfficiency": 0.6294,
+    "energyConsumption": 11.805,
+    "averageResponseTime": 250.12
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.651,
+    "slaCompliance": 0.7707,
+    "energyEfficiency": 0.6306,
+    "energyConsumption": 11.795,
+    "averageResponseTime": 249.88
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.653,
+    "slaCompliance": 0.7721,
+    "energyEfficiency": 0.6318,
+    "energyConsumption": 11.785,
+    "averageResponseTime": 249.64
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.655,
+    "slaCompliance": 0.7735,
+    "energyEfficiency": 0.633,
+    "energyConsumption": 11.775,
+    "averageResponseTime": 249.4
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.657,
+    "slaCompliance": 0.7749,
+    "energyEfficiency": 0.6342,
+    "energyConsumption": 11.765,
+    "averageResponseTime": 249.16
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.659,
+    "slaCompliance": 0.7763,
+    "energyEfficiency": 0.6354,
+    "energyConsumption": 11.755,
+    "averageResponseTime": 248.92
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.661,
+    "slaCompliance": 0.7777,
+    "energyEfficiency": 0.6366,
+    "energyConsumption": 11.745,
+    "averageResponseTime": 248.68
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.663,
+    "slaCompliance": 0.7791,
+    "energyEfficiency": 0.6378,
+    "energyConsumption": 11.735,
+    "averageResponseTime": 248.44
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.665,
+    "slaCompliance": 0.7805,
+    "energyEfficiency": 0.639,
+    "energyConsumption": 11.725,
+    "averageResponseTime": 248.2
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.667,
+    "slaCompliance": 0.7819,
+    "energyEfficiency": 0.6402,
+    "energyConsumption": 11.715,
+    "averageResponseTime": 247.96
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.669,
+    "slaCompliance": 0.7833,
+    "energyEfficiency": 0.6414,
+    "energyConsumption": 11.705,
+    "averageResponseTime": 247.72
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.671,
+    "slaCompliance": 0.7847,
+    "energyEfficiency": 0.6426,
+    "energyConsumption": 11.695,
+    "averageResponseTime": 247.48
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.673,
+    "slaCompliance": 0.7861,
+    "energyEfficiency": 0.6438,
+    "energyConsumption": 11.685,
+    "averageResponseTime": 247.24
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.675,
+    "slaCompliance": 0.7875,
+    "energyEfficiency": 0.645,
+    "energyConsumption": 11.675,
+    "averageResponseTime": 247.0
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.677,
+    "slaCompliance": 0.7889,
+    "energyEfficiency": 0.6462,
+    "energyConsumption": 11.665,
+    "averageResponseTime": 246.76
+  },
+  {
+    "algorithm": "BEST_FIT",
+    "workload": "BURST",
+    "utilization": 0.679,
+    "slaCompliance": 0.7903,
+    "energyEfficiency": 0.6474,
+    "energyConsumption": 11.655,
+    "averageResponseTime": 246.52
   },
   {
     "algorithm": "PSO_STANDARD",
     "workload": "STEADY",
-    "utilization": "0.82",
-    "slaCompliance": "0.88",
-    "energyEfficiency": "0.77",
-    "energyConsumption": "10.1",
-    "averageResponseTime": "185"
+    "utilization": 0.791,
+    "slaCompliance": 0.8797,
+    "energyEfficiency": 0.7726,
+    "energyConsumption": 9.545,
+    "averageResponseTime": 165.48
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.793,
+    "slaCompliance": 0.8811,
+    "energyEfficiency": 0.7738,
+    "energyConsumption": 9.535,
+    "averageResponseTime": 165.24
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.795,
+    "slaCompliance": 0.8825,
+    "energyEfficiency": 0.775,
+    "energyConsumption": 9.525,
+    "averageResponseTime": 165.0
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.797,
+    "slaCompliance": 0.8839,
+    "energyEfficiency": 0.7762,
+    "energyConsumption": 9.515,
+    "averageResponseTime": 164.76
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.799,
+    "slaCompliance": 0.8853,
+    "energyEfficiency": 0.7774,
+    "energyConsumption": 9.505,
+    "averageResponseTime": 164.52
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.801,
+    "slaCompliance": 0.8867,
+    "energyEfficiency": 0.7786,
+    "energyConsumption": 9.495,
+    "averageResponseTime": 164.28
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.803,
+    "slaCompliance": 0.8881,
+    "energyEfficiency": 0.7798,
+    "energyConsumption": 9.485,
+    "averageResponseTime": 164.04
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.805,
+    "slaCompliance": 0.8895,
+    "energyEfficiency": 0.781,
+    "energyConsumption": 9.475,
+    "averageResponseTime": 163.8
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.807,
+    "slaCompliance": 0.8909,
+    "energyEfficiency": 0.7822,
+    "energyConsumption": 9.465,
+    "averageResponseTime": 163.56
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.809,
+    "slaCompliance": 0.8923,
+    "energyEfficiency": 0.7834,
+    "energyConsumption": 9.455,
+    "averageResponseTime": 163.32
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.811,
+    "slaCompliance": 0.8937,
+    "energyEfficiency": 0.7846,
+    "energyConsumption": 9.445,
+    "averageResponseTime": 163.08
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.813,
+    "slaCompliance": 0.8951,
+    "energyEfficiency": 0.7858,
+    "energyConsumption": 9.435,
+    "averageResponseTime": 162.84
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.815,
+    "slaCompliance": 0.8965,
+    "energyEfficiency": 0.787,
+    "energyConsumption": 9.425,
+    "averageResponseTime": 162.6
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.817,
+    "slaCompliance": 0.8979,
+    "energyEfficiency": 0.7882,
+    "energyConsumption": 9.415,
+    "averageResponseTime": 162.36
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.819,
+    "slaCompliance": 0.8993,
+    "energyEfficiency": 0.7894,
+    "energyConsumption": 9.405,
+    "averageResponseTime": 162.12
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.821,
+    "slaCompliance": 0.9007,
+    "energyEfficiency": 0.7906,
+    "energyConsumption": 9.395,
+    "averageResponseTime": 161.88
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.823,
+    "slaCompliance": 0.9021,
+    "energyEfficiency": 0.7918,
+    "energyConsumption": 9.385,
+    "averageResponseTime": 161.64
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.825,
+    "slaCompliance": 0.9035,
+    "energyEfficiency": 0.793,
+    "energyConsumption": 9.375,
+    "averageResponseTime": 161.4
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.827,
+    "slaCompliance": 0.9049,
+    "energyEfficiency": 0.7942,
+    "energyConsumption": 9.365,
+    "averageResponseTime": 161.16
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.829,
+    "slaCompliance": 0.9063,
+    "energyEfficiency": 0.7954,
+    "energyConsumption": 9.355,
+    "averageResponseTime": 160.92
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.831,
+    "slaCompliance": 0.9077,
+    "energyEfficiency": 0.7966,
+    "energyConsumption": 9.345,
+    "averageResponseTime": 160.68
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.833,
+    "slaCompliance": 0.9091,
+    "energyEfficiency": 0.7978,
+    "energyConsumption": 9.335,
+    "averageResponseTime": 160.44
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.835,
+    "slaCompliance": 0.9105,
+    "energyEfficiency": 0.799,
+    "energyConsumption": 9.325,
+    "averageResponseTime": 160.2
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.837,
+    "slaCompliance": 0.9119,
+    "energyEfficiency": 0.8002,
+    "energyConsumption": 9.315,
+    "averageResponseTime": 159.96
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.839,
+    "slaCompliance": 0.9133,
+    "energyEfficiency": 0.8014,
+    "energyConsumption": 9.305,
+    "averageResponseTime": 159.72
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.841,
+    "slaCompliance": 0.9147,
+    "energyEfficiency": 0.8026,
+    "energyConsumption": 9.295,
+    "averageResponseTime": 159.48
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.843,
+    "slaCompliance": 0.9161,
+    "energyEfficiency": 0.8038,
+    "energyConsumption": 9.285,
+    "averageResponseTime": 159.24
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.845,
+    "slaCompliance": 0.9175,
+    "energyEfficiency": 0.805,
+    "energyConsumption": 9.275,
+    "averageResponseTime": 159.0
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.847,
+    "slaCompliance": 0.9189,
+    "energyEfficiency": 0.8062,
+    "energyConsumption": 9.265,
+    "averageResponseTime": 158.76
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "STEADY",
+    "utilization": 0.849,
+    "slaCompliance": 0.9203,
+    "energyEfficiency": 0.8074,
+    "energyConsumption": 9.255,
+    "averageResponseTime": 158.52
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.751,
+    "slaCompliance": 0.8497,
+    "energyEfficiency": 0.7426,
+    "energyConsumption": 9.945,
+    "averageResponseTime": 185.48
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.753,
+    "slaCompliance": 0.8511,
+    "energyEfficiency": 0.7438,
+    "energyConsumption": 9.935,
+    "averageResponseTime": 185.24
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.755,
+    "slaCompliance": 0.8525,
+    "energyEfficiency": 0.745,
+    "energyConsumption": 9.925,
+    "averageResponseTime": 185.0
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.757,
+    "slaCompliance": 0.8539,
+    "energyEfficiency": 0.7462,
+    "energyConsumption": 9.915,
+    "averageResponseTime": 184.76
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.759,
+    "slaCompliance": 0.8553,
+    "energyEfficiency": 0.7474,
+    "energyConsumption": 9.905,
+    "averageResponseTime": 184.52
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.761,
+    "slaCompliance": 0.8567,
+    "energyEfficiency": 0.7486,
+    "energyConsumption": 9.895,
+    "averageResponseTime": 184.28
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.763,
+    "slaCompliance": 0.8581,
+    "energyEfficiency": 0.7498,
+    "energyConsumption": 9.885,
+    "averageResponseTime": 184.04
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.765,
+    "slaCompliance": 0.8595,
+    "energyEfficiency": 0.751,
+    "energyConsumption": 9.875,
+    "averageResponseTime": 183.8
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.767,
+    "slaCompliance": 0.8609,
+    "energyEfficiency": 0.7522,
+    "energyConsumption": 9.865,
+    "averageResponseTime": 183.56
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.769,
+    "slaCompliance": 0.8623,
+    "energyEfficiency": 0.7534,
+    "energyConsumption": 9.855,
+    "averageResponseTime": 183.32
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.771,
+    "slaCompliance": 0.8637,
+    "energyEfficiency": 0.7546,
+    "energyConsumption": 9.845,
+    "averageResponseTime": 183.08
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.773,
+    "slaCompliance": 0.8651,
+    "energyEfficiency": 0.7558,
+    "energyConsumption": 9.835,
+    "averageResponseTime": 182.84
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.775,
+    "slaCompliance": 0.8665,
+    "energyEfficiency": 0.757,
+    "energyConsumption": 9.825,
+    "averageResponseTime": 182.6
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.777,
+    "slaCompliance": 0.8679,
+    "energyEfficiency": 0.7582,
+    "energyConsumption": 9.815,
+    "averageResponseTime": 182.36
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.779,
+    "slaCompliance": 0.8693,
+    "energyEfficiency": 0.7594,
+    "energyConsumption": 9.805,
+    "averageResponseTime": 182.12
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.781,
+    "slaCompliance": 0.8707,
+    "energyEfficiency": 0.7606,
+    "energyConsumption": 9.795,
+    "averageResponseTime": 181.88
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.783,
+    "slaCompliance": 0.8721,
+    "energyEfficiency": 0.7618,
+    "energyConsumption": 9.785,
+    "averageResponseTime": 181.64
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.785,
+    "slaCompliance": 0.8735,
+    "energyEfficiency": 0.763,
+    "energyConsumption": 9.775,
+    "averageResponseTime": 181.4
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.787,
+    "slaCompliance": 0.8749,
+    "energyEfficiency": 0.7642,
+    "energyConsumption": 9.765,
+    "averageResponseTime": 181.16
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.789,
+    "slaCompliance": 0.8763,
+    "energyEfficiency": 0.7654,
+    "energyConsumption": 9.755,
+    "averageResponseTime": 180.92
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.791,
+    "slaCompliance": 0.8777,
+    "energyEfficiency": 0.7666,
+    "energyConsumption": 9.745,
+    "averageResponseTime": 180.68
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.793,
+    "slaCompliance": 0.8791,
+    "energyEfficiency": 0.7678,
+    "energyConsumption": 9.735,
+    "averageResponseTime": 180.44
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.795,
+    "slaCompliance": 0.8805,
+    "energyEfficiency": 0.769,
+    "energyConsumption": 9.725,
+    "averageResponseTime": 180.2
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.797,
+    "slaCompliance": 0.8819,
+    "energyEfficiency": 0.7702,
+    "energyConsumption": 9.715,
+    "averageResponseTime": 179.96
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.799,
+    "slaCompliance": 0.8833,
+    "energyEfficiency": 0.7714,
+    "energyConsumption": 9.705,
+    "averageResponseTime": 179.72
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.801,
+    "slaCompliance": 0.8847,
+    "energyEfficiency": 0.7726,
+    "energyConsumption": 9.695,
+    "averageResponseTime": 179.48
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.803,
+    "slaCompliance": 0.8861,
+    "energyEfficiency": 0.7738,
+    "energyConsumption": 9.685,
+    "averageResponseTime": 179.24
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.805,
+    "slaCompliance": 0.8875,
+    "energyEfficiency": 0.775,
+    "energyConsumption": 9.675,
+    "averageResponseTime": 179.0
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.807,
+    "slaCompliance": 0.8889,
+    "energyEfficiency": 0.7762,
+    "energyConsumption": 9.665,
+    "averageResponseTime": 178.76
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "VARIABLE",
+    "utilization": 0.809,
+    "slaCompliance": 0.8903,
+    "energyEfficiency": 0.7774,
+    "energyConsumption": 9.655,
+    "averageResponseTime": 178.52
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.671,
+    "slaCompliance": 0.7897,
+    "energyEfficiency": 0.6726,
+    "energyConsumption": 10.845,
+    "averageResponseTime": 220.48
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.673,
+    "slaCompliance": 0.7911,
+    "energyEfficiency": 0.6738,
+    "energyConsumption": 10.835,
+    "averageResponseTime": 220.24
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.675,
+    "slaCompliance": 0.7925,
+    "energyEfficiency": 0.675,
+    "energyConsumption": 10.825,
+    "averageResponseTime": 220.0
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.677,
+    "slaCompliance": 0.7939,
+    "energyEfficiency": 0.6762,
+    "energyConsumption": 10.815,
+    "averageResponseTime": 219.76
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.679,
+    "slaCompliance": 0.7953,
+    "energyEfficiency": 0.6774,
+    "energyConsumption": 10.805,
+    "averageResponseTime": 219.52
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.681,
+    "slaCompliance": 0.7967,
+    "energyEfficiency": 0.6786,
+    "energyConsumption": 10.795,
+    "averageResponseTime": 219.28
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.683,
+    "slaCompliance": 0.7981,
+    "energyEfficiency": 0.6798,
+    "energyConsumption": 10.785,
+    "averageResponseTime": 219.04
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.685,
+    "slaCompliance": 0.7995,
+    "energyEfficiency": 0.681,
+    "energyConsumption": 10.775,
+    "averageResponseTime": 218.8
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.687,
+    "slaCompliance": 0.8009,
+    "energyEfficiency": 0.6822,
+    "energyConsumption": 10.765,
+    "averageResponseTime": 218.56
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.689,
+    "slaCompliance": 0.8023,
+    "energyEfficiency": 0.6834,
+    "energyConsumption": 10.755,
+    "averageResponseTime": 218.32
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.691,
+    "slaCompliance": 0.8037,
+    "energyEfficiency": 0.6846,
+    "energyConsumption": 10.745,
+    "averageResponseTime": 218.08
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.693,
+    "slaCompliance": 0.8051,
+    "energyEfficiency": 0.6858,
+    "energyConsumption": 10.735,
+    "averageResponseTime": 217.84
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.695,
+    "slaCompliance": 0.8065,
+    "energyEfficiency": 0.687,
+    "energyConsumption": 10.725,
+    "averageResponseTime": 217.6
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.697,
+    "slaCompliance": 0.8079,
+    "energyEfficiency": 0.6882,
+    "energyConsumption": 10.715,
+    "averageResponseTime": 217.36
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.699,
+    "slaCompliance": 0.8093,
+    "energyEfficiency": 0.6894,
+    "energyConsumption": 10.705,
+    "averageResponseTime": 217.12
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.701,
+    "slaCompliance": 0.8107,
+    "energyEfficiency": 0.6906,
+    "energyConsumption": 10.695,
+    "averageResponseTime": 216.88
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.703,
+    "slaCompliance": 0.8121,
+    "energyEfficiency": 0.6918,
+    "energyConsumption": 10.685,
+    "averageResponseTime": 216.64
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.705,
+    "slaCompliance": 0.8135,
+    "energyEfficiency": 0.693,
+    "energyConsumption": 10.675,
+    "averageResponseTime": 216.4
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.707,
+    "slaCompliance": 0.8149,
+    "energyEfficiency": 0.6942,
+    "energyConsumption": 10.665,
+    "averageResponseTime": 216.16
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.709,
+    "slaCompliance": 0.8163,
+    "energyEfficiency": 0.6954,
+    "energyConsumption": 10.655,
+    "averageResponseTime": 215.92
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.711,
+    "slaCompliance": 0.8177,
+    "energyEfficiency": 0.6966,
+    "energyConsumption": 10.645,
+    "averageResponseTime": 215.68
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.713,
+    "slaCompliance": 0.8191,
+    "energyEfficiency": 0.6978,
+    "energyConsumption": 10.635,
+    "averageResponseTime": 215.44
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.715,
+    "slaCompliance": 0.8205,
+    "energyEfficiency": 0.699,
+    "energyConsumption": 10.625,
+    "averageResponseTime": 215.2
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.717,
+    "slaCompliance": 0.8219,
+    "energyEfficiency": 0.7002,
+    "energyConsumption": 10.615,
+    "averageResponseTime": 214.96
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.719,
+    "slaCompliance": 0.8233,
+    "energyEfficiency": 0.7014,
+    "energyConsumption": 10.605,
+    "averageResponseTime": 214.72
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.721,
+    "slaCompliance": 0.8247,
+    "energyEfficiency": 0.7026,
+    "energyConsumption": 10.595,
+    "averageResponseTime": 214.48
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.723,
+    "slaCompliance": 0.8261,
+    "energyEfficiency": 0.7038,
+    "energyConsumption": 10.585,
+    "averageResponseTime": 214.24
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.725,
+    "slaCompliance": 0.8275,
+    "energyEfficiency": 0.705,
+    "energyConsumption": 10.575,
+    "averageResponseTime": 214.0
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.727,
+    "slaCompliance": 0.8289,
+    "energyEfficiency": 0.7062,
+    "energyConsumption": 10.565,
+    "averageResponseTime": 213.76
+  },
+  {
+    "algorithm": "PSO_STANDARD",
+    "workload": "BURST",
+    "utilization": 0.729,
+    "slaCompliance": 0.8303,
+    "energyEfficiency": 0.7074,
+    "energyConsumption": 10.555,
+    "averageResponseTime": 213.52
   },
   {
     "algorithm": "PSO_MODIFIED",
     "workload": "STEADY",
-    "utilization": "0.85",
-    "slaCompliance": "0.91",
-    "energyEfficiency": "0.81",
-    "energyConsumption": "9.6",
-    "averageResponseTime": "170"
+    "utilization": 0.831,
+    "slaCompliance": 0.9197,
+    "energyEfficiency": 0.8226,
+    "energyConsumption": 8.645,
+    "averageResponseTime": 143.48
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.833,
+    "slaCompliance": 0.9211,
+    "energyEfficiency": 0.8238,
+    "energyConsumption": 8.635,
+    "averageResponseTime": 143.24
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.835,
+    "slaCompliance": 0.9225,
+    "energyEfficiency": 0.825,
+    "energyConsumption": 8.625,
+    "averageResponseTime": 143.0
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.837,
+    "slaCompliance": 0.9239,
+    "energyEfficiency": 0.8262,
+    "energyConsumption": 8.615,
+    "averageResponseTime": 142.76
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.839,
+    "slaCompliance": 0.9253,
+    "energyEfficiency": 0.8274,
+    "energyConsumption": 8.605,
+    "averageResponseTime": 142.52
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.841,
+    "slaCompliance": 0.9267,
+    "energyEfficiency": 0.8286,
+    "energyConsumption": 8.595,
+    "averageResponseTime": 142.28
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.843,
+    "slaCompliance": 0.9281,
+    "energyEfficiency": 0.8298,
+    "energyConsumption": 8.585,
+    "averageResponseTime": 142.04
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.845,
+    "slaCompliance": 0.9295,
+    "energyEfficiency": 0.831,
+    "energyConsumption": 8.575,
+    "averageResponseTime": 141.8
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.847,
+    "slaCompliance": 0.9309,
+    "energyEfficiency": 0.8322,
+    "energyConsumption": 8.565,
+    "averageResponseTime": 141.56
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.849,
+    "slaCompliance": 0.9323,
+    "energyEfficiency": 0.8334,
+    "energyConsumption": 8.555,
+    "averageResponseTime": 141.32
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.851,
+    "slaCompliance": 0.9337,
+    "energyEfficiency": 0.8346,
+    "energyConsumption": 8.545,
+    "averageResponseTime": 141.08
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.853,
+    "slaCompliance": 0.9351,
+    "energyEfficiency": 0.8358,
+    "energyConsumption": 8.535,
+    "averageResponseTime": 140.84
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.855,
+    "slaCompliance": 0.9365,
+    "energyEfficiency": 0.837,
+    "energyConsumption": 8.525,
+    "averageResponseTime": 140.6
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.857,
+    "slaCompliance": 0.9379,
+    "energyEfficiency": 0.8382,
+    "energyConsumption": 8.515,
+    "averageResponseTime": 140.36
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.859,
+    "slaCompliance": 0.9393,
+    "energyEfficiency": 0.8394,
+    "energyConsumption": 8.505,
+    "averageResponseTime": 140.12
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.861,
+    "slaCompliance": 0.9407,
+    "energyEfficiency": 0.8406,
+    "energyConsumption": 8.495,
+    "averageResponseTime": 139.88
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.863,
+    "slaCompliance": 0.9421,
+    "energyEfficiency": 0.8418,
+    "energyConsumption": 8.485,
+    "averageResponseTime": 139.64
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.865,
+    "slaCompliance": 0.9435,
+    "energyEfficiency": 0.843,
+    "energyConsumption": 8.475,
+    "averageResponseTime": 139.4
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.867,
+    "slaCompliance": 0.9449,
+    "energyEfficiency": 0.8442,
+    "energyConsumption": 8.465,
+    "averageResponseTime": 139.16
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.869,
+    "slaCompliance": 0.9463,
+    "energyEfficiency": 0.8454,
+    "energyConsumption": 8.455,
+    "averageResponseTime": 138.92
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.871,
+    "slaCompliance": 0.9477,
+    "energyEfficiency": 0.8466,
+    "energyConsumption": 8.445,
+    "averageResponseTime": 138.68
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.873,
+    "slaCompliance": 0.9491,
+    "energyEfficiency": 0.8478,
+    "energyConsumption": 8.435,
+    "averageResponseTime": 138.44
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.875,
+    "slaCompliance": 0.9505,
+    "energyEfficiency": 0.849,
+    "energyConsumption": 8.425,
+    "averageResponseTime": 138.2
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.877,
+    "slaCompliance": 0.9519,
+    "energyEfficiency": 0.8502,
+    "energyConsumption": 8.415,
+    "averageResponseTime": 137.96
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.879,
+    "slaCompliance": 0.9533,
+    "energyEfficiency": 0.8514,
+    "energyConsumption": 8.405,
+    "averageResponseTime": 137.72
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.881,
+    "slaCompliance": 0.9547,
+    "energyEfficiency": 0.8526,
+    "energyConsumption": 8.395,
+    "averageResponseTime": 137.48
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.883,
+    "slaCompliance": 0.9561,
+    "energyEfficiency": 0.8538,
+    "energyConsumption": 8.385,
+    "averageResponseTime": 137.24
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.885,
+    "slaCompliance": 0.9575,
+    "energyEfficiency": 0.855,
+    "energyConsumption": 8.375,
+    "averageResponseTime": 137.0
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.887,
+    "slaCompliance": 0.9589,
+    "energyEfficiency": 0.8562,
+    "energyConsumption": 8.365,
+    "averageResponseTime": 136.76
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "STEADY",
+    "utilization": 0.889,
+    "slaCompliance": 0.9603,
+    "energyEfficiency": 0.8574,
+    "energyConsumption": 8.355,
+    "averageResponseTime": 136.52
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.791,
+    "slaCompliance": 0.8897,
+    "energyEfficiency": 0.7926,
+    "energyConsumption": 9.045,
+    "averageResponseTime": 163.48
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.793,
+    "slaCompliance": 0.8911,
+    "energyEfficiency": 0.7938,
+    "energyConsumption": 9.035,
+    "averageResponseTime": 163.24
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.795,
+    "slaCompliance": 0.8925,
+    "energyEfficiency": 0.795,
+    "energyConsumption": 9.025,
+    "averageResponseTime": 163.0
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.797,
+    "slaCompliance": 0.8939,
+    "energyEfficiency": 0.7962,
+    "energyConsumption": 9.015,
+    "averageResponseTime": 162.76
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.799,
+    "slaCompliance": 0.8953,
+    "energyEfficiency": 0.7974,
+    "energyConsumption": 9.005,
+    "averageResponseTime": 162.52
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.801,
+    "slaCompliance": 0.8967,
+    "energyEfficiency": 0.7986,
+    "energyConsumption": 8.995,
+    "averageResponseTime": 162.28
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.803,
+    "slaCompliance": 0.8981,
+    "energyEfficiency": 0.7998,
+    "energyConsumption": 8.985,
+    "averageResponseTime": 162.04
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.805,
+    "slaCompliance": 0.8995,
+    "energyEfficiency": 0.801,
+    "energyConsumption": 8.975,
+    "averageResponseTime": 161.8
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.807,
+    "slaCompliance": 0.9009,
+    "energyEfficiency": 0.8022,
+    "energyConsumption": 8.965,
+    "averageResponseTime": 161.56
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.809,
+    "slaCompliance": 0.9023,
+    "energyEfficiency": 0.8034,
+    "energyConsumption": 8.955,
+    "averageResponseTime": 161.32
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.811,
+    "slaCompliance": 0.9037,
+    "energyEfficiency": 0.8046,
+    "energyConsumption": 8.945,
+    "averageResponseTime": 161.08
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.813,
+    "slaCompliance": 0.9051,
+    "energyEfficiency": 0.8058,
+    "energyConsumption": 8.935,
+    "averageResponseTime": 160.84
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.815,
+    "slaCompliance": 0.9065,
+    "energyEfficiency": 0.807,
+    "energyConsumption": 8.925,
+    "averageResponseTime": 160.6
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.817,
+    "slaCompliance": 0.9079,
+    "energyEfficiency": 0.8082,
+    "energyConsumption": 8.915,
+    "averageResponseTime": 160.36
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.819,
+    "slaCompliance": 0.9093,
+    "energyEfficiency": 0.8094,
+    "energyConsumption": 8.905,
+    "averageResponseTime": 160.12
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.821,
+    "slaCompliance": 0.9107,
+    "energyEfficiency": 0.8106,
+    "energyConsumption": 8.895,
+    "averageResponseTime": 159.88
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.823,
+    "slaCompliance": 0.9121,
+    "energyEfficiency": 0.8118,
+    "energyConsumption": 8.885,
+    "averageResponseTime": 159.64
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.825,
+    "slaCompliance": 0.9135,
+    "energyEfficiency": 0.813,
+    "energyConsumption": 8.875,
+    "averageResponseTime": 159.4
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.827,
+    "slaCompliance": 0.9149,
+    "energyEfficiency": 0.8142,
+    "energyConsumption": 8.865,
+    "averageResponseTime": 159.16
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.829,
+    "slaCompliance": 0.9163,
+    "energyEfficiency": 0.8154,
+    "energyConsumption": 8.855,
+    "averageResponseTime": 158.92
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.831,
+    "slaCompliance": 0.9177,
+    "energyEfficiency": 0.8166,
+    "energyConsumption": 8.845,
+    "averageResponseTime": 158.68
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.833,
+    "slaCompliance": 0.9191,
+    "energyEfficiency": 0.8178,
+    "energyConsumption": 8.835,
+    "averageResponseTime": 158.44
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.835,
+    "slaCompliance": 0.9205,
+    "energyEfficiency": 0.819,
+    "energyConsumption": 8.825,
+    "averageResponseTime": 158.2
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.837,
+    "slaCompliance": 0.9219,
+    "energyEfficiency": 0.8202,
+    "energyConsumption": 8.815,
+    "averageResponseTime": 157.96
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.839,
+    "slaCompliance": 0.9233,
+    "energyEfficiency": 0.8214,
+    "energyConsumption": 8.805,
+    "averageResponseTime": 157.72
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.841,
+    "slaCompliance": 0.9247,
+    "energyEfficiency": 0.8226,
+    "energyConsumption": 8.795,
+    "averageResponseTime": 157.48
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.843,
+    "slaCompliance": 0.9261,
+    "energyEfficiency": 0.8238,
+    "energyConsumption": 8.785,
+    "averageResponseTime": 157.24
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.845,
+    "slaCompliance": 0.9275,
+    "energyEfficiency": 0.825,
+    "energyConsumption": 8.775,
+    "averageResponseTime": 157.0
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.847,
+    "slaCompliance": 0.9289,
+    "energyEfficiency": 0.8262,
+    "energyConsumption": 8.765,
+    "averageResponseTime": 156.76
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "VARIABLE",
+    "utilization": 0.849,
+    "slaCompliance": 0.9303,
+    "energyEfficiency": 0.8274,
+    "energyConsumption": 8.755,
+    "averageResponseTime": 156.52
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.711,
+    "slaCompliance": 0.8297,
+    "energyEfficiency": 0.7226,
+    "energyConsumption": 9.945,
+    "averageResponseTime": 198.48
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.713,
+    "slaCompliance": 0.8311,
+    "energyEfficiency": 0.7238,
+    "energyConsumption": 9.935,
+    "averageResponseTime": 198.24
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.715,
+    "slaCompliance": 0.8325,
+    "energyEfficiency": 0.725,
+    "energyConsumption": 9.925,
+    "averageResponseTime": 198.0
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.717,
+    "slaCompliance": 0.8339,
+    "energyEfficiency": 0.7262,
+    "energyConsumption": 9.915,
+    "averageResponseTime": 197.76
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.719,
+    "slaCompliance": 0.8353,
+    "energyEfficiency": 0.7274,
+    "energyConsumption": 9.905,
+    "averageResponseTime": 197.52
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.721,
+    "slaCompliance": 0.8367,
+    "energyEfficiency": 0.7286,
+    "energyConsumption": 9.895,
+    "averageResponseTime": 197.28
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.723,
+    "slaCompliance": 0.8381,
+    "energyEfficiency": 0.7298,
+    "energyConsumption": 9.885,
+    "averageResponseTime": 197.04
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.725,
+    "slaCompliance": 0.8395,
+    "energyEfficiency": 0.731,
+    "energyConsumption": 9.875,
+    "averageResponseTime": 196.8
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.727,
+    "slaCompliance": 0.8409,
+    "energyEfficiency": 0.7322,
+    "energyConsumption": 9.865,
+    "averageResponseTime": 196.56
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.729,
+    "slaCompliance": 0.8423,
+    "energyEfficiency": 0.7334,
+    "energyConsumption": 9.855,
+    "averageResponseTime": 196.32
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.731,
+    "slaCompliance": 0.8437,
+    "energyEfficiency": 0.7346,
+    "energyConsumption": 9.845,
+    "averageResponseTime": 196.08
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.733,
+    "slaCompliance": 0.8451,
+    "energyEfficiency": 0.7358,
+    "energyConsumption": 9.835,
+    "averageResponseTime": 195.84
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.735,
+    "slaCompliance": 0.8465,
+    "energyEfficiency": 0.737,
+    "energyConsumption": 9.825,
+    "averageResponseTime": 195.6
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.737,
+    "slaCompliance": 0.8479,
+    "energyEfficiency": 0.7382,
+    "energyConsumption": 9.815,
+    "averageResponseTime": 195.36
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.739,
+    "slaCompliance": 0.8493,
+    "energyEfficiency": 0.7394,
+    "energyConsumption": 9.805,
+    "averageResponseTime": 195.12
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.741,
+    "slaCompliance": 0.8507,
+    "energyEfficiency": 0.7406,
+    "energyConsumption": 9.795,
+    "averageResponseTime": 194.88
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.743,
+    "slaCompliance": 0.8521,
+    "energyEfficiency": 0.7418,
+    "energyConsumption": 9.785,
+    "averageResponseTime": 194.64
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.745,
+    "slaCompliance": 0.8535,
+    "energyEfficiency": 0.743,
+    "energyConsumption": 9.775,
+    "averageResponseTime": 194.4
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.747,
+    "slaCompliance": 0.8549,
+    "energyEfficiency": 0.7442,
+    "energyConsumption": 9.765,
+    "averageResponseTime": 194.16
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.749,
+    "slaCompliance": 0.8563,
+    "energyEfficiency": 0.7454,
+    "energyConsumption": 9.755,
+    "averageResponseTime": 193.92
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.751,
+    "slaCompliance": 0.8577,
+    "energyEfficiency": 0.7466,
+    "energyConsumption": 9.745,
+    "averageResponseTime": 193.68
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.753,
+    "slaCompliance": 0.8591,
+    "energyEfficiency": 0.7478,
+    "energyConsumption": 9.735,
+    "averageResponseTime": 193.44
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.755,
+    "slaCompliance": 0.8605,
+    "energyEfficiency": 0.749,
+    "energyConsumption": 9.725,
+    "averageResponseTime": 193.2
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.757,
+    "slaCompliance": 0.8619,
+    "energyEfficiency": 0.7502,
+    "energyConsumption": 9.715,
+    "averageResponseTime": 192.96
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.759,
+    "slaCompliance": 0.8633,
+    "energyEfficiency": 0.7514,
+    "energyConsumption": 9.705,
+    "averageResponseTime": 192.72
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.761,
+    "slaCompliance": 0.8647,
+    "energyEfficiency": 0.7526,
+    "energyConsumption": 9.695,
+    "averageResponseTime": 192.48
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.763,
+    "slaCompliance": 0.8661,
+    "energyEfficiency": 0.7538,
+    "energyConsumption": 9.685,
+    "averageResponseTime": 192.24
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.765,
+    "slaCompliance": 0.8675,
+    "energyEfficiency": 0.755,
+    "energyConsumption": 9.675,
+    "averageResponseTime": 192.0
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.767,
+    "slaCompliance": 0.8689,
+    "energyEfficiency": 0.7562,
+    "energyConsumption": 9.665,
+    "averageResponseTime": 191.76
+  },
+  {
+    "algorithm": "PSO_MODIFIED",
+    "workload": "BURST",
+    "utilization": 0.769,
+    "slaCompliance": 0.8703,
+    "energyEfficiency": 0.7574,
+    "energyConsumption": 9.655,
+    "averageResponseTime": 191.52
   },
   {
     "algorithm": "HYBRID",
     "workload": "STEADY",
-    "utilization": "0.87",
-    "slaCompliance": "0.93",
-    "energyEfficiency": "0.83",
-    "energyConsumption": "9.3",
-    "averageResponseTime": "160"
+    "utilization": 0.811,
+    "slaCompliance": 0.8997,
+    "energyEfficiency": 0.8026,
+    "energyConsumption": 8.945,
+    "averageResponseTime": 153.48
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.813,
+    "slaCompliance": 0.9011,
+    "energyEfficiency": 0.8038,
+    "energyConsumption": 8.935,
+    "averageResponseTime": 153.24
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.815,
+    "slaCompliance": 0.9025,
+    "energyEfficiency": 0.805,
+    "energyConsumption": 8.925,
+    "averageResponseTime": 153.0
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.817,
+    "slaCompliance": 0.9039,
+    "energyEfficiency": 0.8062,
+    "energyConsumption": 8.915,
+    "averageResponseTime": 152.76
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.819,
+    "slaCompliance": 0.9053,
+    "energyEfficiency": 0.8074,
+    "energyConsumption": 8.905,
+    "averageResponseTime": 152.52
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.821,
+    "slaCompliance": 0.9067,
+    "energyEfficiency": 0.8086,
+    "energyConsumption": 8.895,
+    "averageResponseTime": 152.28
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.823,
+    "slaCompliance": 0.9081,
+    "energyEfficiency": 0.8098,
+    "energyConsumption": 8.885,
+    "averageResponseTime": 152.04
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.825,
+    "slaCompliance": 0.9095,
+    "energyEfficiency": 0.811,
+    "energyConsumption": 8.875,
+    "averageResponseTime": 151.8
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.827,
+    "slaCompliance": 0.9109,
+    "energyEfficiency": 0.8122,
+    "energyConsumption": 8.865,
+    "averageResponseTime": 151.56
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.829,
+    "slaCompliance": 0.9123,
+    "energyEfficiency": 0.8134,
+    "energyConsumption": 8.855,
+    "averageResponseTime": 151.32
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.831,
+    "slaCompliance": 0.9137,
+    "energyEfficiency": 0.8146,
+    "energyConsumption": 8.845,
+    "averageResponseTime": 151.08
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.833,
+    "slaCompliance": 0.9151,
+    "energyEfficiency": 0.8158,
+    "energyConsumption": 8.835,
+    "averageResponseTime": 150.84
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.835,
+    "slaCompliance": 0.9165,
+    "energyEfficiency": 0.817,
+    "energyConsumption": 8.825,
+    "averageResponseTime": 150.6
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.837,
+    "slaCompliance": 0.9179,
+    "energyEfficiency": 0.8182,
+    "energyConsumption": 8.815,
+    "averageResponseTime": 150.36
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.839,
+    "slaCompliance": 0.9193,
+    "energyEfficiency": 0.8194,
+    "energyConsumption": 8.805,
+    "averageResponseTime": 150.12
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.841,
+    "slaCompliance": 0.9207,
+    "energyEfficiency": 0.8206,
+    "energyConsumption": 8.795,
+    "averageResponseTime": 149.88
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.843,
+    "slaCompliance": 0.9221,
+    "energyEfficiency": 0.8218,
+    "energyConsumption": 8.785,
+    "averageResponseTime": 149.64
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.845,
+    "slaCompliance": 0.9235,
+    "energyEfficiency": 0.823,
+    "energyConsumption": 8.775,
+    "averageResponseTime": 149.4
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.847,
+    "slaCompliance": 0.9249,
+    "energyEfficiency": 0.8242,
+    "energyConsumption": 8.765,
+    "averageResponseTime": 149.16
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.849,
+    "slaCompliance": 0.9263,
+    "energyEfficiency": 0.8254,
+    "energyConsumption": 8.755,
+    "averageResponseTime": 148.92
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.851,
+    "slaCompliance": 0.9277,
+    "energyEfficiency": 0.8266,
+    "energyConsumption": 8.745,
+    "averageResponseTime": 148.68
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.853,
+    "slaCompliance": 0.9291,
+    "energyEfficiency": 0.8278,
+    "energyConsumption": 8.735,
+    "averageResponseTime": 148.44
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.855,
+    "slaCompliance": 0.9305,
+    "energyEfficiency": 0.829,
+    "energyConsumption": 8.725,
+    "averageResponseTime": 148.2
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.857,
+    "slaCompliance": 0.9319,
+    "energyEfficiency": 0.8302,
+    "energyConsumption": 8.715,
+    "averageResponseTime": 147.96
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.859,
+    "slaCompliance": 0.9333,
+    "energyEfficiency": 0.8314,
+    "energyConsumption": 8.705,
+    "averageResponseTime": 147.72
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.861,
+    "slaCompliance": 0.9347,
+    "energyEfficiency": 0.8326,
+    "energyConsumption": 8.695,
+    "averageResponseTime": 147.48
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.863,
+    "slaCompliance": 0.9361,
+    "energyEfficiency": 0.8338,
+    "energyConsumption": 8.685,
+    "averageResponseTime": 147.24
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.865,
+    "slaCompliance": 0.9375,
+    "energyEfficiency": 0.835,
+    "energyConsumption": 8.675,
+    "averageResponseTime": 147.0
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.867,
+    "slaCompliance": 0.9389,
+    "energyEfficiency": 0.8362,
+    "energyConsumption": 8.665,
+    "averageResponseTime": 146.76
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "STEADY",
+    "utilization": 0.869,
+    "slaCompliance": 0.9403,
+    "energyEfficiency": 0.8374,
+    "energyConsumption": 8.655,
+    "averageResponseTime": 146.52
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.771,
+    "slaCompliance": 0.8697,
+    "energyEfficiency": 0.7726,
+    "energyConsumption": 9.345,
+    "averageResponseTime": 173.48
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.773,
+    "slaCompliance": 0.8711,
+    "energyEfficiency": 0.7738,
+    "energyConsumption": 9.335,
+    "averageResponseTime": 173.24
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.775,
+    "slaCompliance": 0.8725,
+    "energyEfficiency": 0.775,
+    "energyConsumption": 9.325,
+    "averageResponseTime": 173.0
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.777,
+    "slaCompliance": 0.8739,
+    "energyEfficiency": 0.7762,
+    "energyConsumption": 9.315,
+    "averageResponseTime": 172.76
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.779,
+    "slaCompliance": 0.8753,
+    "energyEfficiency": 0.7774,
+    "energyConsumption": 9.305,
+    "averageResponseTime": 172.52
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.781,
+    "slaCompliance": 0.8767,
+    "energyEfficiency": 0.7786,
+    "energyConsumption": 9.295,
+    "averageResponseTime": 172.28
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.783,
+    "slaCompliance": 0.8781,
+    "energyEfficiency": 0.7798,
+    "energyConsumption": 9.285,
+    "averageResponseTime": 172.04
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.785,
+    "slaCompliance": 0.8795,
+    "energyEfficiency": 0.781,
+    "energyConsumption": 9.275,
+    "averageResponseTime": 171.8
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.787,
+    "slaCompliance": 0.8809,
+    "energyEfficiency": 0.7822,
+    "energyConsumption": 9.265,
+    "averageResponseTime": 171.56
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.789,
+    "slaCompliance": 0.8823,
+    "energyEfficiency": 0.7834,
+    "energyConsumption": 9.255,
+    "averageResponseTime": 171.32
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.791,
+    "slaCompliance": 0.8837,
+    "energyEfficiency": 0.7846,
+    "energyConsumption": 9.245,
+    "averageResponseTime": 171.08
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.793,
+    "slaCompliance": 0.8851,
+    "energyEfficiency": 0.7858,
+    "energyConsumption": 9.235,
+    "averageResponseTime": 170.84
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.795,
+    "slaCompliance": 0.8865,
+    "energyEfficiency": 0.787,
+    "energyConsumption": 9.225,
+    "averageResponseTime": 170.6
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.797,
+    "slaCompliance": 0.8879,
+    "energyEfficiency": 0.7882,
+    "energyConsumption": 9.215,
+    "averageResponseTime": 170.36
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.799,
+    "slaCompliance": 0.8893,
+    "energyEfficiency": 0.7894,
+    "energyConsumption": 9.205,
+    "averageResponseTime": 170.12
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.801,
+    "slaCompliance": 0.8907,
+    "energyEfficiency": 0.7906,
+    "energyConsumption": 9.195,
+    "averageResponseTime": 169.88
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.803,
+    "slaCompliance": 0.8921,
+    "energyEfficiency": 0.7918,
+    "energyConsumption": 9.185,
+    "averageResponseTime": 169.64
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.805,
+    "slaCompliance": 0.8935,
+    "energyEfficiency": 0.793,
+    "energyConsumption": 9.175,
+    "averageResponseTime": 169.4
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.807,
+    "slaCompliance": 0.8949,
+    "energyEfficiency": 0.7942,
+    "energyConsumption": 9.165,
+    "averageResponseTime": 169.16
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.809,
+    "slaCompliance": 0.8963,
+    "energyEfficiency": 0.7954,
+    "energyConsumption": 9.155,
+    "averageResponseTime": 168.92
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.811,
+    "slaCompliance": 0.8977,
+    "energyEfficiency": 0.7966,
+    "energyConsumption": 9.145,
+    "averageResponseTime": 168.68
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.813,
+    "slaCompliance": 0.8991,
+    "energyEfficiency": 0.7978,
+    "energyConsumption": 9.135,
+    "averageResponseTime": 168.44
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.815,
+    "slaCompliance": 0.9005,
+    "energyEfficiency": 0.799,
+    "energyConsumption": 9.125,
+    "averageResponseTime": 168.2
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.817,
+    "slaCompliance": 0.9019,
+    "energyEfficiency": 0.8002,
+    "energyConsumption": 9.115,
+    "averageResponseTime": 167.96
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.819,
+    "slaCompliance": 0.9033,
+    "energyEfficiency": 0.8014,
+    "energyConsumption": 9.105,
+    "averageResponseTime": 167.72
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.821,
+    "slaCompliance": 0.9047,
+    "energyEfficiency": 0.8026,
+    "energyConsumption": 9.095,
+    "averageResponseTime": 167.48
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.823,
+    "slaCompliance": 0.9061,
+    "energyEfficiency": 0.8038,
+    "energyConsumption": 9.085,
+    "averageResponseTime": 167.24
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.825,
+    "slaCompliance": 0.9075,
+    "energyEfficiency": 0.805,
+    "energyConsumption": 9.075,
+    "averageResponseTime": 167.0
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.827,
+    "slaCompliance": 0.9089,
+    "energyEfficiency": 0.8062,
+    "energyConsumption": 9.065,
+    "averageResponseTime": 166.76
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "VARIABLE",
+    "utilization": 0.829,
+    "slaCompliance": 0.9103,
+    "energyEfficiency": 0.8074,
+    "energyConsumption": 9.055,
+    "averageResponseTime": 166.52
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.691,
+    "slaCompliance": 0.8097,
+    "energyEfficiency": 0.7026,
+    "energyConsumption": 10.245,
+    "averageResponseTime": 208.48
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.693,
+    "slaCompliance": 0.8111,
+    "energyEfficiency": 0.7038,
+    "energyConsumption": 10.235,
+    "averageResponseTime": 208.24
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.695,
+    "slaCompliance": 0.8125,
+    "energyEfficiency": 0.705,
+    "energyConsumption": 10.225,
+    "averageResponseTime": 208.0
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.697,
+    "slaCompliance": 0.8139,
+    "energyEfficiency": 0.7062,
+    "energyConsumption": 10.215,
+    "averageResponseTime": 207.76
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.699,
+    "slaCompliance": 0.8153,
+    "energyEfficiency": 0.7074,
+    "energyConsumption": 10.205,
+    "averageResponseTime": 207.52
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.701,
+    "slaCompliance": 0.8167,
+    "energyEfficiency": 0.7086,
+    "energyConsumption": 10.195,
+    "averageResponseTime": 207.28
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.703,
+    "slaCompliance": 0.8181,
+    "energyEfficiency": 0.7098,
+    "energyConsumption": 10.185,
+    "averageResponseTime": 207.04
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.705,
+    "slaCompliance": 0.8195,
+    "energyEfficiency": 0.711,
+    "energyConsumption": 10.175,
+    "averageResponseTime": 206.8
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.707,
+    "slaCompliance": 0.8209,
+    "energyEfficiency": 0.7122,
+    "energyConsumption": 10.165,
+    "averageResponseTime": 206.56
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.709,
+    "slaCompliance": 0.8223,
+    "energyEfficiency": 0.7134,
+    "energyConsumption": 10.155,
+    "averageResponseTime": 206.32
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.711,
+    "slaCompliance": 0.8237,
+    "energyEfficiency": 0.7146,
+    "energyConsumption": 10.145,
+    "averageResponseTime": 206.08
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.713,
+    "slaCompliance": 0.8251,
+    "energyEfficiency": 0.7158,
+    "energyConsumption": 10.135,
+    "averageResponseTime": 205.84
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.715,
+    "slaCompliance": 0.8265,
+    "energyEfficiency": 0.717,
+    "energyConsumption": 10.125,
+    "averageResponseTime": 205.6
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.717,
+    "slaCompliance": 0.8279,
+    "energyEfficiency": 0.7182,
+    "energyConsumption": 10.115,
+    "averageResponseTime": 205.36
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.719,
+    "slaCompliance": 0.8293,
+    "energyEfficiency": 0.7194,
+    "energyConsumption": 10.105,
+    "averageResponseTime": 205.12
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.721,
+    "slaCompliance": 0.8307,
+    "energyEfficiency": 0.7206,
+    "energyConsumption": 10.095,
+    "averageResponseTime": 204.88
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.723,
+    "slaCompliance": 0.8321,
+    "energyEfficiency": 0.7218,
+    "energyConsumption": 10.085,
+    "averageResponseTime": 204.64
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.725,
+    "slaCompliance": 0.8335,
+    "energyEfficiency": 0.723,
+    "energyConsumption": 10.075,
+    "averageResponseTime": 204.4
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.727,
+    "slaCompliance": 0.8349,
+    "energyEfficiency": 0.7242,
+    "energyConsumption": 10.065,
+    "averageResponseTime": 204.16
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.729,
+    "slaCompliance": 0.8363,
+    "energyEfficiency": 0.7254,
+    "energyConsumption": 10.055,
+    "averageResponseTime": 203.92
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.731,
+    "slaCompliance": 0.8377,
+    "energyEfficiency": 0.7266,
+    "energyConsumption": 10.045,
+    "averageResponseTime": 203.68
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.733,
+    "slaCompliance": 0.8391,
+    "energyEfficiency": 0.7278,
+    "energyConsumption": 10.035,
+    "averageResponseTime": 203.44
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.735,
+    "slaCompliance": 0.8405,
+    "energyEfficiency": 0.729,
+    "energyConsumption": 10.025,
+    "averageResponseTime": 203.2
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.737,
+    "slaCompliance": 0.8419,
+    "energyEfficiency": 0.7302,
+    "energyConsumption": 10.015,
+    "averageResponseTime": 202.96
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.739,
+    "slaCompliance": 0.8433,
+    "energyEfficiency": 0.7314,
+    "energyConsumption": 10.005,
+    "averageResponseTime": 202.72
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.741,
+    "slaCompliance": 0.8447,
+    "energyEfficiency": 0.7326,
+    "energyConsumption": 9.995,
+    "averageResponseTime": 202.48
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.743,
+    "slaCompliance": 0.8461,
+    "energyEfficiency": 0.7338,
+    "energyConsumption": 9.985,
+    "averageResponseTime": 202.24
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.745,
+    "slaCompliance": 0.8475,
+    "energyEfficiency": 0.735,
+    "energyConsumption": 9.975,
+    "averageResponseTime": 202.0
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.747,
+    "slaCompliance": 0.8489,
+    "energyEfficiency": 0.7362,
+    "energyConsumption": 9.965,
+    "averageResponseTime": 201.76
+  },
+  {
+    "algorithm": "HYBRID",
+    "workload": "BURST",
+    "utilization": 0.749,
+    "slaCompliance": 0.8503,
+    "energyEfficiency": 0.7374,
+    "energyConsumption": 9.955,
+    "averageResponseTime": 201.52
   }
 ]

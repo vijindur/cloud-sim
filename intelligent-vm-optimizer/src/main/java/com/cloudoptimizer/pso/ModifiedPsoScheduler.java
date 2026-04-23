@@ -6,6 +6,7 @@ public class ModifiedPsoScheduler extends PsoScheduler {
 
     public ModifiedPsoScheduler() {
         super(20, 15);
+        this.velocityClamp = 0.25;
     }
 
     @Override
@@ -21,7 +22,7 @@ public class ModifiedPsoScheduler extends PsoScheduler {
         int[] bestSchedule = super.schedule(taskCount, vmCount, vmCapacities);
         for (int i = 0; i < maxIterations; i++) {
             int[] candidate = super.schedule(taskCount, vmCount, vmCapacities);
-            double candidateFitness = evaluateFromSchedule(candidate, vmCount);
+            double candidateFitness = evaluateFromSchedule(candidate, vmCapacities);
             if (Math.abs(candidateFitness - previousBest) < threshold) {
                 return candidate;
             }
@@ -31,10 +32,22 @@ public class ModifiedPsoScheduler extends PsoScheduler {
         return bestSchedule;
     }
 
-    private double evaluateFromSchedule(int[] schedule, int vmCount) {
-        double utilization = (double) schedule.length / Math.max(1, vmCount * 20);
-        double slaCompliance = 1.0 - Math.min(0.25, utilization * 0.1);
-        double energyEfficiency = 1.0 - Math.min(0.4, utilization * 0.2);
-        return fitnessModel.score(utilization, slaCompliance, energyEfficiency);
+    @Override
+    protected void updateParticles(List<Particle> particles, double[] globalBest, int iteration) {
+        double startInertia = 0.9;
+        double endInertia = 0.4;
+        this.inertiaWeight = startInertia - ((startInertia - endInertia) * (iteration / (double) maxIterations));
+        this.cognitiveCoeff = 1.6;
+        this.socialCoeff = 1.2;
+        super.updateParticles(particles, globalBest, iteration);
+    }
+
+    private double evaluateFromSchedule(int[] schedule, List<Double> vmCapacities) {
+        double[] position = new double[schedule.length];
+        int vmCount = Math.max(1, vmCapacities.size());
+        for (int i = 0; i < schedule.length; i++) {
+            position[i] = schedule[i] / (double) vmCount;
+        }
+        return evaluate(position, vmCapacities);
     }
 }

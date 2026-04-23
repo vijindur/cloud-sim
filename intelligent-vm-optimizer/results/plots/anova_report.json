@@ -1,0 +1,26 @@
+{
+  "utilization_anova": {
+    "statistic": 161.38940909272014,
+    "pvalue_approx": 0.0,
+    "df_between": 5,
+    "df_within": 534
+  },
+  "slaCompliance_anova": {
+    "statistic": 218.63976157793,
+    "pvalue_approx": 0.0,
+    "df_between": 5,
+    "df_within": 534
+  },
+  "energyConsumption_anova": {
+    "statistic": 718.9374593251875,
+    "pvalue_approx": 0.0,
+    "df_between": 5,
+    "df_within": 534
+  },
+  "averageResponseTime_anova": {
+    "statistic": 444.5029948579146,
+    "pvalue_approx": 0.0,
+    "df_between": 5,
+    "df_within": 534
+  }
+}

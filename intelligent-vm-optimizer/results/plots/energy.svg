@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520">
+<rect width="100%" height="100%" fill="white"/>
+<text x="550.0" y="35" text-anchor="middle" font-size="22">Energy Consumption Comparison</text>
+<line x1="150.0" y1="112.30055658627086" x2="150.0" y2="127.98701298701299" stroke="black"/>
+<line x1="150.0" y1="208.71057513914656" x2="150.0" y2="224.39703153988867" stroke="black"/>
+<rect x="114.0" y="127.98701298701299" width="72.0" height="80.72356215213357" fill="#cfe8ff" stroke="black"/>
+<line x1="114.0" y1="185.97402597402584" x2="186.0" y2="185.97402597402584" stroke="black" stroke-width="2"/>
+<text x="150.0" y="500" text-anchor="middle" font-size="11" transform="rotate(20 150.0 500)">ROUND_ROBIN</text>
+<line x1="310.0" y1="70.0" x2="310.0" y2="85.686456400742" stroke="black"/>
+<line x1="310.0" y1="166.4100185528757" x2="310.0" y2="182.09647495361781" stroke="black"/>
+<rect x="274.0" y="85.686456400742" width="72.0" height="80.7235621521337" fill="#cfe8ff" stroke="black"/>
+<line x1="274.0" y1="143.67346938775512" x2="346.0" y2="143.67346938775512" stroke="black" stroke-width="2"/>
+<text x="310.0" y="500" text-anchor="middle" font-size="11" transform="rotate(20 310.0 500)">FCFS</text>
+<line x1="470.0" y1="196.90166975881257" x2="470.0" y2="212.5881261595547" stroke="black"/>
+<line x1="470.0" y1="293.3116883116883" x2="470.0" y2="308.9981447124304" stroke="black"/>
+<rect x="434.0" y="212.5881261595547" width="72.0" height="80.72356215213358" fill="#cfe8ff" stroke="black"/>
+<line x1="434.0" y1="270.57513914656784" x2="506.0" y2="270.57513914656784" stroke="black" stroke-width="2"/>
+<text x="470.0" y="500" text-anchor="middle" font-size="11" transform="rotate(20 470.0 500)">BEST_FIT</text>
+<line x1="630.0" y1="274.4526901669758" x2="630.0" y2="290.13914656771794" stroke="black"/>
+<line x1="630.0" y1="370.86270871985164" x2="630.0" y2="386.5491651205936" stroke="black"/>
+<rect x="594.0" y="290.13914656771794" width="72.0" height="80.7235621521337" fill="#cfe8ff" stroke="black"/>
+<line x1="594.0" y1="348.126159554731" x2="666.0" y2="348.126159554731" stroke="black" stroke-width="2"/>
+<text x="630.0" y="500" text-anchor="middle" font-size="11" transform="rotate(20 630.0 500)">PSO_STANDARD</text>
+<line x1="790.0" y1="337.9035250463822" x2="790.0" y2="353.58998144712433" stroke="black"/>
+<line x1="790.0" y1="434.31354359925786" x2="790.0" y2="450.0" stroke="black"/>
+<rect x="754.0" y="353.58998144712433" width="72.0" height="80.72356215213352" fill="#cfe8ff" stroke="black"/>
+<line x1="754.0" y1="411.5769944341374" x2="826.0" y2="411.5769944341374" stroke="black" stroke-width="2"/>
+<text x="790.0" y="500" text-anchor="middle" font-size="11" transform="rotate(20 790.0 500)">PSO_MODIFIED</text>
+<line x1="950.0" y1="316.7532467532468" x2="950.0" y2="332.43970315398883" stroke="black"/>
+<line x1="950.0" y1="413.1632653061225" x2="950.0" y2="428.8497217068646" stroke="black"/>
+<rect x="914.0" y="332.43970315398883" width="72.0" height="80.7235621521337" fill="#cfe8ff" stroke="black"/>
+<line x1="914.0" y1="390.4267161410019" x2="986.0" y2="390.4267161410019" stroke="black" stroke-width="2"/>
+<text x="950.0" y="500" text-anchor="middle" font-size="11" transform="rotate(20 950.0 500)">HYBRID</text>
+</svg>

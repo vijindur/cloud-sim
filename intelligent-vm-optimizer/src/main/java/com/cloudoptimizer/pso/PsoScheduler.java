@@ -1,5 +1,6 @@
 package com.cloudoptimizer.pso;
 
+import com.cloudoptimizer.core.MetricComputer;
 import com.cloudoptimizer.scheduler.SchedulerStrategy;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,10 @@ public class PsoScheduler implements SchedulerStrategy {
     protected final int maxIterations;
     protected final Random random = new Random(42);
     protected final FitnessModel fitnessModel = new FitnessModel();
+    protected double inertiaWeight = 0.7;
+    protected double cognitiveCoeff = 1.4;
+    protected double socialCoeff = 1.4;
+    protected double velocityClamp = 0.35;
 
     public PsoScheduler(int populationSize, int maxIterations) {
         this.populationSize = populationSize;
@@ -34,7 +39,7 @@ public class PsoScheduler implements SchedulerStrategy {
 
         for (int iter = 0; iter < maxIterations; iter++) {
             for (Particle particle : particles) {
-                double fitness = evaluate(particle.position);
+                double fitness = evaluate(particle.position, vmCapacities);
                 if (fitness > particle.bestFitness) {
                     particle.bestFitness = fitness;
                     particle.bestPosition = particle.position.clone();
@@ -44,7 +49,7 @@ public class PsoScheduler implements SchedulerStrategy {
                     globalBest = particle.position.clone();
                 }
             }
-            updateParticles(particles, globalBest);
+            updateParticles(particles, globalBest, iter);
         }
 
         int[] mapping = new int[taskCount];
@@ -54,26 +59,21 @@ public class PsoScheduler implements SchedulerStrategy {
         return mapping;
     }
 
-    protected void updateParticles(List<Particle> particles, double[] globalBest) {
-        double inertia = 0.7;
-        double c1 = 1.4;
-        double c2 = 1.4;
+    protected void updateParticles(List<Particle> particles, double[] globalBest, int iteration) {
         for (Particle p : particles) {
             for (int d = 0; d < p.position.length; d++) {
                 double r1 = random.nextDouble();
                 double r2 = random.nextDouble();
-                p.velocity[d] = inertia * p.velocity[d]
-                    + c1 * r1 * (p.bestPosition[d] - p.position[d])
-                    + c2 * r2 * (globalBest[d] - p.position[d]);
+                p.velocity[d] = inertiaWeight * p.velocity[d]
+                    + cognitiveCoeff * r1 * (p.bestPosition[d] - p.position[d])
+                    + socialCoeff * r2 * (globalBest[d] - p.position[d]);
+                p.velocity[d] = Math.max(-velocityClamp, Math.min(velocityClamp, p.velocity[d]));
                 p.position[d] = Math.max(0, Math.min(1, p.position[d] + p.velocity[d]));
             }
         }
     }
 
-    protected double evaluate(double[] position) {
-        double utilization = 0.6 + (random.nextDouble() * 0.4);
-        double sla = 0.7 + (random.nextDouble() * 0.3);
-        double energy = 0.5 + (random.nextDouble() * 0.5);
-        return fitnessModel.score(utilization, sla, energy);
+    protected double evaluate(double[] position, List<Double> vmCapacities) {
+        return MetricComputer.computeFitness(position, vmCapacities);
     }
 }
