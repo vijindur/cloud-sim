@@ -2,7 +2,11 @@ import csv
 import json
 import math
 from pathlib import Path
-from statistics import mean
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy import stats
 
 RESULTS = Path("results/experiment_results.csv")
 OUT = Path("results/plots")
@@ -32,88 +36,70 @@ def grouped_metric(rows, metric):
         groups.setdefault(row["algorithm"], []).append(float(row[metric]))
     return groups
 
-
-def anova(groups):
-    vals = list(groups.values())
-    k = len(vals)
-    n_total = sum(len(v) for v in vals)
-    grand_mean = sum(sum(v) for v in vals) / n_total
-
-    ss_between = sum(len(v) * (mean(v) - grand_mean) ** 2 for v in vals)
-    ss_within = sum(sum((x - mean(v)) ** 2 for x in v) for v in vals)
-
-    df_between = k - 1
-    df_within = n_total - k
-    ms_between = ss_between / max(1, df_between)
-    ms_within = ss_within / max(1, df_within)
-    f_stat = ms_between / max(1e-12, ms_within)
-
-    return {
-        "statistic": f_stat,
-        "pvalue_approx": 0.0,
-        "df_between": df_between,
-        "df_within": df_within,
-    }
+def plot_heatmap(df: pd.DataFrame):
+    grouped = df.groupby(["algorithm", "workload"])["utilization"].mean().unstack(fill_value=0)
+    plt.figure(figsize=(10, 5))
+    sns.heatmap(grouped, annot=True, cmap="viridis", fmt=".2f")
+    plt.title("Resource Utilization Heatmap")
+    plt.tight_layout()
+    plt.savefig(OUT / "utilization_heatmap.png")
+    plt.close()
 
 
-def quartiles(values):
-    s = sorted(values)
-    n = len(s)
-    def at(p):
-        idx = (n - 1) * p
-        lo = int(math.floor(idx))
-        hi = int(math.ceil(idx))
-        if lo == hi:
-            return s[lo]
-        return s[lo] + (s[hi] - s[lo]) * (idx - lo)
-    return min(s), at(0.25), at(0.5), at(0.75), max(s)
+def plot_pareto(df: pd.DataFrame):
+    pareto = df.groupby("algorithm", as_index=False).agg({"energyConsumption": "mean", "slaCompliance": "mean"})
+    plt.figure(figsize=(8, 6))
+    sns.scatterplot(data=pareto, x="energyConsumption", y="slaCompliance", hue="algorithm", s=120)
+    plt.title("Pareto Frontier: Energy vs SLA")
+    plt.tight_layout()
+    plt.savefig(OUT / "pareto_frontier.png")
+    plt.close()
 
 
-def render_boxplot_svg(groups, title, filename):
-    algos = list(groups.keys())
-    width = 1100
-    height = 520
-    margin = 70
-    plot_h = height - 2 * margin
+def plot_convergence(df: pd.DataFrame):
+    subset = df[df["algorithm"].isin(["PSO_STANDARD", "PSO_MODIFIED"])].copy()
+    if subset.empty or "convergenceStart" not in subset.columns or "convergenceEnd" not in subset.columns:
+        return
 
-    all_values = [x for vals in groups.values() for x in vals]
-    vmin, vmax = min(all_values), max(all_values)
-    span = max(1e-9, vmax - vmin)
-
-    def y(v):
-        return margin + (vmax - v) / span * plot_h
-
-    parts = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}">',
-        '<rect width="100%" height="100%" fill="white"/>',
-        f'<text x="{width/2}" y="35" text-anchor="middle" font-size="22">{title}</text>'
-    ]
-
-    step = (width - 2 * margin) / max(1, len(algos))
-    box_w = step * 0.45
-
-    for i, algo in enumerate(algos):
-        x = margin + step * (i + 0.5)
-        mn, q1, med, q3, mx = quartiles(groups[algo])
-        y_mn, y_q1, y_med, y_q3, y_mx = map(y, [mn, q1, med, q3, mx])
-        parts.append(f'<line x1="{x}" y1="{y_mx}" x2="{x}" y2="{y_q3}" stroke="black"/>')
-        parts.append(f'<line x1="{x}" y1="{y_q1}" x2="{x}" y2="{y_mn}" stroke="black"/>')
-        parts.append(f'<rect x="{x-box_w/2}" y="{y_q3}" width="{box_w}" height="{max(1, y_q1-y_q3)}" fill="#cfe8ff" stroke="black"/>')
-        parts.append(f'<line x1="{x-box_w/2}" y1="{y_med}" x2="{x+box_w/2}" y2="{y_med}" stroke="black" stroke-width="2"/>')
-        parts.append(f'<text x="{x}" y="{height-20}" text-anchor="middle" font-size="11" transform="rotate(20 {x} {height-20})">{algo}</text>')
-
-    parts.append('</svg>')
-    (OUT / filename).write_text("\n".join(parts))
+    points = []
+    for _, row in subset.iterrows():
+        points.append({"algorithm": row["algorithm"], "iteration": 0, "fitness": row["convergenceStart"]})
+        points.append({"algorithm": row["algorithm"], "iteration": 50, "fitness": row["convergenceEnd"]})
+    cdf = pd.DataFrame(points)
+    plt.figure(figsize=(8, 6))
+    sns.lineplot(data=cdf, x="iteration", y="fitness", hue="algorithm", marker="o")
+    plt.title("Convergence Trend (start/end)")
+    plt.tight_layout()
+    plt.savefig(OUT / "convergence.png")
+    plt.close()
 
 
 def main():
-    rows = load_rows()
-    report = {}
-    for metric, title, filename in METRICS:
-        groups = grouped_metric(rows, metric)
-        report[f"{metric}_anova"] = anova(groups)
-        render_boxplot_svg(groups, title, filename)
+    df = pd.read_csv(RESULTS)
+    plot_metric(df, "utilization", "Utilization Comparison", "utilization_boxplot.png")
+    plot_metric(df, "slaCompliance", "SLA Compliance Comparison", "sla_boxplot.png")
+    plot_metric(df, "energyConsumption", "Energy Consumption Comparison", "energy_boxplot.png")
+    plot_metric(df, "averageResponseTime", "Response Time Comparison", "response_time_boxplot.png")
+    plot_heatmap(df)
+    plot_pareto(df)
+    plot_convergence(df)
 
+    report = {
+        "utilization_anova": anova(df, "utilization")._asdict(),
+        "sla_anova": anova(df, "slaCompliance")._asdict(),
+        "energy_anova": anova(df, "energyConsumption")._asdict(),
+        "response_time_anova": anova(df, "averageResponseTime")._asdict(),
+    }
+    summary = (
+        df.groupby(["algorithm", "workload"]).agg(
+            energy_mean=("energyConsumption", "mean"),
+            energy_std=("energyConsumption", "std"),
+            response_mean=("averageResponseTime", "mean"),
+            response_std=("averageResponseTime", "std"),
+        )
+        .reset_index()
+    )
+    summary.to_csv(OUT / "summary_stats.csv", index=False)
     (OUT / "anova_report.json").write_text(json.dumps(report, indent=2))
     print("Analysis completed")
 

@@ -1,20 +1,13 @@
 package com.cloudoptimizer.pso;
 
-import com.cloudoptimizer.core.MetricComputer;
-import com.cloudoptimizer.scheduler.SchedulerStrategy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class PsoScheduler implements SchedulerStrategy {
+public class PsoScheduler extends BaseMetaHeuristicScheduler {
     protected final int populationSize;
     protected final int maxIterations;
     protected final Random random = new Random(42);
-    protected final FitnessModel fitnessModel = new FitnessModel();
-    protected double inertiaWeight = 0.7;
-    protected double cognitiveCoeff = 1.4;
-    protected double socialCoeff = 1.4;
-    protected double velocityClamp = 0.35;
 
     public PsoScheduler(int populationSize, int maxIterations) {
         this.populationSize = populationSize;
@@ -29,6 +22,7 @@ public class PsoScheduler implements SchedulerStrategy {
     @Override
     public int[] schedule(int taskCount, int vmCount, List<Double> vmCapacities) {
         int dimensions = taskCount;
+        lastConvergence = new ArrayList<>();
         List<Particle> particles = new ArrayList<>();
         for (int i = 0; i < populationSize; i++) {
             particles.add(new Particle(dimensions, random));
@@ -39,7 +33,7 @@ public class PsoScheduler implements SchedulerStrategy {
 
         for (int iter = 0; iter < maxIterations; iter++) {
             for (Particle particle : particles) {
-                double fitness = evaluate(particle.position, vmCapacities);
+                double fitness = evaluate(particle.position, vmCount);
                 if (fitness > particle.bestFitness) {
                     particle.bestFitness = fitness;
                     particle.bestPosition = particle.position.clone();
@@ -49,12 +43,17 @@ public class PsoScheduler implements SchedulerStrategy {
                     globalBest = particle.position.clone();
                 }
             }
-            updateParticles(particles, globalBest, iter);
+            lastConvergence.add(globalBestFitness);
+            updateParticles(particles, globalBest);
         }
 
+        return toMapping(globalBest, taskCount, vmCount);
+    }
+
+    protected int[] toMapping(double[] position, int taskCount, int vmCount) {
         int[] mapping = new int[taskCount];
         for (int i = 0; i < taskCount; i++) {
-            mapping[i] = (int) Math.floor(Math.abs(globalBest[i] * vmCount)) % vmCount;
+            mapping[i] = (int) Math.floor(Math.abs(position[i] * vmCount)) % vmCount;
         }
         return mapping;
     }
@@ -73,7 +72,8 @@ public class PsoScheduler implements SchedulerStrategy {
         }
     }
 
-    protected double evaluate(double[] position, List<Double> vmCapacities) {
-        return MetricComputer.computeFitness(position, vmCapacities);
+    protected double evaluate(double[] position, int vmCount) {
+        int[] mapping = toMapping(position, position.length, vmCount);
+        return evaluateMapping(mapping, vmCount);
     }
 }
