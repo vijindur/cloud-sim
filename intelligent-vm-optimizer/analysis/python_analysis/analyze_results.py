@@ -17,8 +17,13 @@ METRICS = [
 
 
 def load_rows():
+    if not RESULTS.exists():
+        raise FileNotFoundError(f"Expected results file not found: {RESULTS}")
     with RESULTS.open() as f:
-        return list(csv.DictReader(f))
+        rows = list(csv.DictReader(f))
+    if not rows:
+        raise ValueError(f"No experiment rows found in {RESULTS}")
+    return rows
 
 
 def grouped_metric(rows, metric):

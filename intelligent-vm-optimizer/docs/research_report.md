@@ -42,5 +42,5 @@ ANOVA is applied per metric across algorithms. Boxplots are generated for all pr
 Outputs:
 - `results/experiment_results.csv`
 - `results/experiment_results.json`
-- `results/plots/*.png`
+- `results/plots/*.svg`
 - `results/plots/anova_report.json`

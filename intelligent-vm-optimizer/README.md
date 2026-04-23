@@ -15,8 +15,7 @@ and exports `results/experiment_results.csv` and `results/experiment_results.jso
 ## Analysis
 
 ```bash
-pip install -r analysis/python_analysis/requirements.txt
-python analysis/python_analysis/analyze_results.py
+python3 analysis/python_analysis/analyze_results.py
 ```
 
 The analysis step generates ANOVA output and plots in `results/plots/`.
