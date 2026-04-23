@@ -15,26 +15,17 @@ public class ModifiedPsoScheduler extends PsoScheduler {
 
     @Override
     public int[] schedule(int taskCount, int vmCount, List<Double> vmCapacities) {
-        double threshold = 1e-3;
-        double previousBest = Double.NEGATIVE_INFINITY;
-
         int[] bestSchedule = super.schedule(taskCount, vmCount, vmCapacities);
+        double bestFitness = evaluateMapping(bestSchedule, vmCount);
+
         for (int i = 0; i < maxIterations; i++) {
             int[] candidate = super.schedule(taskCount, vmCount, vmCapacities);
-            double candidateFitness = evaluateFromSchedule(candidate, vmCount);
-            if (Math.abs(candidateFitness - previousBest) < threshold) {
-                return candidate;
+            double candidateFitness = evaluateMapping(candidate, vmCount);
+            if (candidateFitness > bestFitness) {
+                bestFitness = candidateFitness;
+                bestSchedule = candidate;
             }
-            previousBest = candidateFitness;
-            bestSchedule = candidate;
         }
         return bestSchedule;
-    }
-
-    private double evaluateFromSchedule(int[] schedule, int vmCount) {
-        double utilization = (double) schedule.length / Math.max(1, vmCount * 20);
-        double slaCompliance = 1.0 - Math.min(0.25, utilization * 0.1);
-        double energyEfficiency = 1.0 - Math.min(0.4, utilization * 0.2);
-        return fitnessModel.score(utilization, slaCompliance, energyEfficiency);
     }
 }

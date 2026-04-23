@@ -5,17 +5,25 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ResultExporter {
     public void toCsv(List<SimulationResult> results, Path path) throws IOException {
         Files.createDirectories(path.getParent());
         StringBuilder sb = new StringBuilder();
-        sb.append("algorithm,workload,utilization,slaCompliance,energyEfficiency,energyConsumption,averageResponseTime\n");
+        sb.append("algorithm,workload,utilization,slaCompliance,energyEfficiency,energyConsumption,averageResponseTime,migrationCost,migrationDowntimeMs,topologyPenalty,convergenceStart,convergenceEnd\n");
         for (SimulationResult r : results) {
-            sb.append(String.format("%s,%s,%.4f,%.4f,%.4f,%.4f,%.4f%n",
+            sb.append(String.format("%s,%s,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f%n",
                 r.algorithm(), r.workload(), r.utilization(), r.slaCompliance(),
-                r.energyEfficiency(), r.energyConsumption(), r.averageResponseTime()));
+                r.energyEfficiency(), r.energyConsumption(), r.averageResponseTime(),
+                r.extraMetrics().getOrDefault("migrationCost", 0.0),
+                r.extraMetrics().getOrDefault("migrationDowntimeMs", 0.0),
+                r.extraMetrics().getOrDefault("topologyPenalty", 0.0),
+                r.extraMetrics().getOrDefault("convergenceStart", 0.0),
+                r.extraMetrics().getOrDefault("convergenceEnd", 0.0)));
         }
         Files.writeString(path, sb.toString());
     }
@@ -24,5 +32,47 @@ public class ResultExporter {
         Files.createDirectories(path.getParent());
         ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
         mapper.writeValue(path.toFile(), results);
+    }
+
+    public void toSummaryCsv(List<SimulationResult> results, Path path) throws IOException {
+        Files.createDirectories(path.getParent());
+        Map<String, List<SimulationResult>> grouped = results.stream()
+            .collect(Collectors.groupingBy(r -> r.algorithm() + "|" + r.workload()));
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("algorithm,workload,energyMean,energyStd,responseMean,responseStd,slaMean,slaStd\n");
+        for (Map.Entry<String, List<SimulationResult>> e : grouped.entrySet()) {
+            String[] key = e.getKey().split("\\|");
+            List<SimulationResult> group = e.getValue();
+            sb.append(String.format("%s,%s,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f%n",
+                key[0], key[1],
+                mean(group, Metric.ENERGY), std(group, Metric.ENERGY),
+                mean(group, Metric.RESPONSE), std(group, Metric.RESPONSE),
+                mean(group, Metric.SLA), std(group, Metric.SLA)));
+        }
+        Files.writeString(path, sb.toString());
+    }
+
+    private enum Metric { ENERGY, RESPONSE, SLA }
+
+    private double mean(List<SimulationResult> group, Metric metric) {
+        DoubleSummaryStatistics stats = group.stream().mapToDouble(r -> value(r, metric)).summaryStatistics();
+        return stats.getAverage();
+    }
+
+    private double std(List<SimulationResult> group, Metric metric) {
+        double mean = mean(group, metric);
+        double variance = group.stream()
+            .mapToDouble(r -> Math.pow(value(r, metric) - mean, 2))
+            .average().orElse(0.0);
+        return Math.sqrt(variance);
+    }
+
+    private double value(SimulationResult r, Metric metric) {
+        return switch (metric) {
+            case ENERGY -> r.energyConsumption();
+            case RESPONSE -> r.averageResponseTime();
+            case SLA -> r.slaCompliance();
+        };
     }
 }
