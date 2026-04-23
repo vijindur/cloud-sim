@@ -1,0 +1,23 @@
+{
+  "hostCount": 80,
+  "vmCount": 600,
+  "cloudletCount": 1200,
+  "timeSteps": 12,
+  "runSeed": 10,
+  "workloadType": "VARIABLE",
+  "algorithm": "HYBRID",
+  "repetitions": 1,
+  "migrationCostPerGb": 0.15,
+  "migrationDowntimeMsPerGb": 250,
+  "hostTypes": [
+    {"name":"legacy","count":24,"pes":8,"peMips":1000,"ramMb":32768,"bwMbps":80000,"storageMb":1000000,"rackId":0,"cpuGeneration":1},
+    {"name":"balanced","count":32,"pes":16,"peMips":1500,"ramMb":65536,"bwMbps":120000,"storageMb":2000000,"rackId":1,"cpuGeneration":2},
+    {"name":"compute","count":24,"pes":24,"peMips":2200,"ramMb":131072,"bwMbps":200000,"storageMb":3000000,"rackId":2,"cpuGeneration":3}
+  ],
+  "vmTypes": [
+    {"name":"small","ratioWeight":5,"pes":1,"mips":500,"ramMb":2048,"bwMbps":2000,"sizeMb":10000},
+    {"name":"medium","ratioWeight":3,"pes":2,"mips":1000,"ramMb":4096,"bwMbps":3000,"sizeMb":15000},
+    {"name":"large","ratioWeight":2,"pes":4,"mips":2000,"ramMb":8192,"bwMbps":5000,"sizeMb":25000}
+  ],
+  "runSeeds": [11,12,13,14,15,16,17,18,19,20]
+}
