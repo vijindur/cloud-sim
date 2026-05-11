@@ -84,6 +84,35 @@ SCENARIO_PROFILES = {
 }
 
 
+def build_measured_summary(results_lookup: pd.DataFrame, algorithms: list[str]) -> pd.DataFrame:
+    available = [algo for algo in algorithms if algo in results_lookup.index]
+    if not available:
+        return pd.DataFrame()
+
+    summary = results_lookup.loc[available].reset_index().copy()
+    summary = summary[
+        [
+            "algorithm",
+            "workload",
+            "energyConsumption",
+            "averageResponseTime",
+            "slaCompliance",
+            "utilization",
+            "energyEfficiency",
+        ]
+    ]
+    summary["energy_score"] = min_max_scale(summary["energyConsumption"], invert=True)
+    summary["latency_score"] = min_max_scale(summary["averageResponseTime"], invert=True)
+    summary["sla_score"] = min_max_scale(summary["slaCompliance"])
+    summary["util_score"] = min_max_scale(summary["utilization"])
+    summary["eff_score"] = min_max_scale(summary["energyEfficiency"])
+    summary["compositeScore"] = (
+        summary["energy_score"] + summary["latency_score"] + summary["sla_score"] + summary["util_score"] + summary["eff_score"]
+    ) / 5 * 100
+    summary["rank"] = summary["compositeScore"].rank(ascending=False, method="dense").astype(int)
+    return summary.sort_values(["rank", "energyConsumption"]).reset_index(drop=True)
+
+
 @st.cache_data(show_spinner=False)
 def load_results() -> pd.DataFrame:
     df = pd.read_csv(RESULTS_PATH)
@@ -235,6 +264,11 @@ def min_max_scale(series: pd.Series, invert: bool = False) -> pd.Series:
     else:
         scaled = (series - series.min()) / span
     return 1 - scaled if invert else scaled
+
+
+def radar_frame(summary_df: pd.DataFrame) -> pd.DataFrame:
+    cols = ["energy_score", "latency_score", "sla_score", "util_score", "eff_score"]
+    return summary_df[["algorithm", *cols]].melt("algorithm", var_name="dimension", value_name="score")
 
 
 def simulate_algorithm_metrics(
@@ -534,6 +568,11 @@ results_lookup = load_results()
 workload_df = load_workload()
 
 st.sidebar.markdown("## Dashboard Controls")
+metric_mode = st.sidebar.radio(
+    "Metric source",
+    ["Projection (what-if)", "Measured (experiment CSV)"],
+    help="Projection uses scenario multipliers over filtered workload. Measured reads aggregate experiment outputs directly.",
+)
 scenario = st.sidebar.selectbox("Operating posture", list(SCENARIO_PROFILES))
 
 min_date = workload_df["submit_date"].min()
@@ -586,18 +625,29 @@ if filtered_workload.empty:
     st.warning("The selected workload filters returned no jobs. Adjust the sidebar filters.")
     st.stop()
 
-summary_df, per_job_df, cluster_pressure = simulate_algorithm_metrics(
-    workload=filtered_workload,
-    results_lookup=results_lookup,
-    algorithms=algorithms,
-    scenario_name=scenario,
-    host_count=host_count,
-    host_cpu_capacity=host_cpu_capacity,
-    host_memory_capacity=host_memory_capacity,
-    energy_weight=energy_weight,
-    latency_weight=latency_weight,
-    sla_weight=sla_weight,
-)
+if metric_mode == "Projection (what-if)":
+    summary_df, per_job_df, cluster_pressure = simulate_algorithm_metrics(
+        workload=filtered_workload,
+        results_lookup=results_lookup,
+        algorithms=algorithms,
+        scenario_name=scenario,
+        host_count=host_count,
+        host_cpu_capacity=host_cpu_capacity,
+        host_memory_capacity=host_memory_capacity,
+        energy_weight=energy_weight,
+        latency_weight=latency_weight,
+        sla_weight=sla_weight,
+    )
+else:
+    summary_df = build_measured_summary(results_lookup, algorithms)
+    per_job_df = pd.DataFrame()
+    cluster_pressure = (
+        (
+            filtered_workload["cpu_requested"].sum() / max(host_count * host_cpu_capacity, 1)
+            + filtered_workload["memory_requested_gb"].sum() / max(host_count * host_memory_capacity, 1)
+        )
+        / 2
+    )
 
 if summary_df.empty:
     st.warning("Choose at least one algorithm to compare.")
@@ -644,6 +694,10 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+if metric_mode != "Projection (what-if)":
+    st.info(
+        "Measured mode is using `results/experiment_results.csv` aggregates. Workload filters still drive context visuals, not KPI recomputation."
+    )
 
 top_metrics = st.columns(4)
 with top_metrics[0]:
@@ -698,18 +752,21 @@ with overview_tab:
 
     lower_left, lower_right = st.columns(2)
     with lower_left:
-        trend_df = (
-            per_job_df.groupby(["algorithm", "job_type"])["energyConsumption"]
-            .mean()
-            .reset_index()
-        )
-        fig, ax = plt.subplots(figsize=(7.8, 4.4))
-        sns.barplot(data=trend_df, x="job_type", y="energyConsumption", hue="algorithm", ax=ax)
-        ax.set_title("Energy behavior by job type")
-        ax.set_xlabel("")
-        ax.set_ylabel("Average energy")
-        ax.tick_params(axis="x", rotation=18)
-        st.pyplot(fig, use_container_width=True)
+        if per_job_df.empty:
+            st.caption("Per-job energy view is available in Projection mode.")
+        else:
+            trend_df = (
+                per_job_df.groupby(["algorithm", "job_type"])["energyConsumption"]
+                .mean()
+                .reset_index()
+            )
+            fig, ax = plt.subplots(figsize=(7.8, 4.4))
+            sns.barplot(data=trend_df, x="job_type", y="energyConsumption", hue="algorithm", ax=ax)
+            ax.set_title("Energy behavior by job type")
+            ax.set_xlabel("")
+            ax.set_ylabel("Average energy")
+            ax.tick_params(axis="x", rotation=18)
+            st.pyplot(fig, use_container_width=True)
 
     with lower_right:
         fig, ax = plt.subplots(figsize=(7.8, 4.4))
@@ -729,6 +786,22 @@ with algorithms_tab:
     section_heading(
         "Why the new algorithms outperform the others",
         "This section compares the selected modern algorithm against the legacy schedulers using the current controls and filtered workload.",
+    )
+
+    best_energy = summary_df.sort_values("energyConsumption").iloc[0]
+    best_latency = summary_df.sort_values("averageResponseTime").iloc[0]
+    best_sla = summary_df.sort_values("slaCompliance", ascending=False).iloc[0]
+    st.markdown(
+        f"""
+        <div class="glass-card">
+            <div class="section-copy">
+                <strong>Executive recommendation:</strong> choose <strong>{summary_df.iloc[0]['algorithm']}</strong> for balanced outcomes.
+                Cost leader: <strong>{best_energy['algorithm']}</strong>, latency leader: <strong>{best_latency['algorithm']}</strong>,
+                SLA leader: <strong>{best_sla['algorithm']}</strong>.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
 
     delta_cols = st.columns(4)
@@ -773,27 +846,58 @@ with algorithms_tab:
         ax.tick_params(axis="x", rotation=15)
         st.pyplot(fig, use_container_width=True)
 
-    lane_left, lane_right = st.columns(2)
-    with lane_left:
-        energy_box = per_job_df[per_job_df["algorithm"].isin(algorithms)][["algorithm", "energyConsumption"]]
+    radar_left, radar_right = st.columns(2)
+    with radar_left:
         fig, ax = plt.subplots(figsize=(7.8, 4.4))
-        sns.boxplot(data=energy_box, x="algorithm", y="energyConsumption", ax=ax)
-        ax.set_title("Per-job energy spread")
-        ax.tick_params(axis="x", rotation=18)
+        radar_df = radar_frame(summary_df)
+        sns.lineplot(data=radar_df, x="dimension", y="score", hue="algorithm", marker="o", ax=ax)
+        ax.set_title("Multi-objective profile")
+        ax.set_xlabel("")
+        ax.set_ylabel("Normalized score")
+        ax.tick_params(axis="x", rotation=20)
+        st.pyplot(fig, use_container_width=True)
+    with radar_right:
+        pareto = summary_df[["algorithm", "energyConsumption", "slaCompliance", "averageResponseTime"]].copy()
+        fig, ax = plt.subplots(figsize=(7.8, 4.4))
+        sns.scatterplot(
+            data=pareto,
+            x="energyConsumption",
+            y="slaCompliance",
+            hue="algorithm",
+            size="averageResponseTime",
+            sizes=(80, 280),
+            ax=ax,
+        )
+        ax.set_title("Pareto view: energy vs SLA (bubble=response)")
         st.pyplot(fig, use_container_width=True)
 
+    lane_left, lane_right = st.columns(2)
+    with lane_left:
+        if per_job_df.empty:
+            st.caption("Per-job spread plots are available in Projection mode.")
+        else:
+            energy_box = per_job_df[per_job_df["algorithm"].isin(algorithms)][["algorithm", "energyConsumption"]]
+            fig, ax = plt.subplots(figsize=(7.8, 4.4))
+            sns.boxplot(data=energy_box, x="algorithm", y="energyConsumption", ax=ax)
+            ax.set_title("Per-job energy spread")
+            ax.tick_params(axis="x", rotation=18)
+            st.pyplot(fig, use_container_width=True)
+
     with lane_right:
-        response_trend = (
-            per_job_df.groupby(["algorithm", "priority_level"])["averageResponseTime"]
-            .mean()
-            .reset_index()
-        )
-        fig, ax = plt.subplots(figsize=(7.8, 4.4))
-        sns.barplot(data=response_trend, x="priority_level", y="averageResponseTime", hue="algorithm", ax=ax)
-        ax.set_title("Latency by priority")
-        ax.set_xlabel("")
-        ax.set_ylabel("Average response time")
-        st.pyplot(fig, use_container_width=True)
+        if per_job_df.empty:
+            st.caption("Latency-by-priority is available in Projection mode.")
+        else:
+            response_trend = (
+                per_job_df.groupby(["algorithm", "priority_level"])["averageResponseTime"]
+                .mean()
+                .reset_index()
+            )
+            fig, ax = plt.subplots(figsize=(7.8, 4.4))
+            sns.barplot(data=response_trend, x="priority_level", y="averageResponseTime", hue="algorithm", ax=ax)
+            ax.set_title("Latency by priority")
+            ax.set_xlabel("")
+            ax.set_ylabel("Average response time")
+            st.pyplot(fig, use_container_width=True)
 
     st.dataframe(
         summary_df[

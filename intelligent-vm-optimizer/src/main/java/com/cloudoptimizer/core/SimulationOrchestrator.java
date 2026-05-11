@@ -31,7 +31,7 @@ public class SimulationOrchestrator {
     public SimulationResult run(SimulationConfig config, int runSeed) {
         List<WorkloadRequest> requests = loadRequests(config, runSeed);
         if (requests.isEmpty()) {
-            return new SimulationResult(config.algorithm(), config.workloadType().name(), runSeed, 0.0, 0.0, 0.0, 0.0, 0.0, Map.of());
+            return new SimulationResult(config.algorithm(), config.workloadType().name(), runSeed, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Map.of());
         }
 
         CloudSimulationEnvironment.State state = environment.create(config);
@@ -76,6 +76,11 @@ public class SimulationOrchestrator {
             energyEfficiency,
             energyConsumption,
             responseTime,
+            cloudSimMetrics.responseP95(),
+            timeline.migrationCost(),
+            timeline.hostOverloadRate(),
+            cloudSimMetrics.throughput(),
+            cloudSimMetrics.makespan(),
             extras
         );
     }
