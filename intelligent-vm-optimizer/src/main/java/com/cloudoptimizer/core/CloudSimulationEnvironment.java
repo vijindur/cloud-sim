@@ -1,46 +1,77 @@
 package com.cloudoptimizer.core;
 
+import com.cloudoptimizer.scheduler.HostSnapshot;
+import com.cloudoptimizer.workload.WorkloadRequest;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
-import org.cloudbus.cloudsim.allocationpolicies.VmAllocationPolicySimple;
-import org.cloudbus.cloudsim.brokers.DatacenterBrokerSimple;
-import org.cloudbus.cloudsim.cloudlets.Cloudlet;
-import org.cloudbus.cloudsim.cloudlets.CloudletSimple;
-import org.cloudbus.cloudsim.core.CloudSim;
-import org.cloudbus.cloudsim.datacenters.Datacenter;
-import org.cloudbus.cloudsim.datacenters.DatacenterSimple;
-import org.cloudbus.cloudsim.hosts.Host;
-import org.cloudbus.cloudsim.hosts.HostSimple;
-import org.cloudbus.cloudsim.resources.Pe;
-import org.cloudbus.cloudsim.resources.PeSimple;
-import org.cloudbus.cloudsim.schedulers.cloudlet.CloudletSchedulerTimeShared;
-import org.cloudbus.cloudsim.schedulers.vm.VmSchedulerTimeShared;
-import org.cloudbus.cloudsim.utilizationmodels.UtilizationModelDynamic;
-import org.cloudbus.cloudsim.vms.Vm;
-import org.cloudbus.cloudsim.vms.VmSimple;
+import org.cloudsimplus.allocationpolicies.VmAllocationPolicySimple;
+import org.cloudsimplus.brokers.DatacenterBrokerSimple;
+import org.cloudsimplus.cloudlets.Cloudlet;
+import org.cloudsimplus.cloudlets.CloudletSimple;
+import org.cloudsimplus.core.CloudSimPlus;
+import org.cloudsimplus.datacenters.Datacenter;
+import org.cloudsimplus.datacenters.DatacenterSimple;
+import org.cloudsimplus.hosts.Host;
+import org.cloudsimplus.hosts.HostSimple;
+import org.cloudsimplus.resources.Pe;
+import org.cloudsimplus.resources.PeSimple;
+import org.cloudsimplus.schedulers.cloudlet.CloudletSchedulerSpaceShared;
+import org.cloudsimplus.schedulers.vm.VmSchedulerSpaceShared;
+import org.cloudsimplus.utilizationmodels.UtilizationModelDynamic;
+import org.cloudsimplus.vms.Vm;
+import org.cloudsimplus.vms.VmSimple;
 
 public class CloudSimulationEnvironment {
-    public record State(CloudSim simulation, Datacenter datacenter, DatacenterBrokerSimple broker,
-                        List<Host> hosts, List<Vm> vms, List<Cloudlet> cloudlets,
-                        List<Integer> hostRackMap, List<Long> vmSizesMb) {}
+    public record State(
+        CloudSimPlus simulation,
+        Datacenter datacenter,
+        DatacenterBrokerSimple broker,
+        List<Host> hosts,
+        List<Vm> serviceVms,
+        List<HostSnapshot> hostSnapshots
+    ) {}
 
-    public State create(SimulationConfig config, int runSeed) {
-        CloudSim simulation = new CloudSim();
-        List<Integer> hostRackMap = new ArrayList<>();
-        List<Host> hosts = createHosts(config, hostRackMap);
+    public State create(SimulationConfig config) {
+        CloudSimPlus simulation = new CloudSimPlus();
+        List<HostSnapshot> snapshots = new ArrayList<>();
+        List<Host> hosts = createHosts(config, snapshots);
         Datacenter datacenter = new DatacenterSimple(simulation, hosts, new VmAllocationPolicySimple());
         DatacenterBrokerSimple broker = new DatacenterBrokerSimple(simulation);
-        List<Long> vmSizesMb = new ArrayList<>();
-        List<Vm> vms = createVms(config, runSeed, vmSizesMb);
-        List<Cloudlet> cloudlets = createCloudlets(config.cloudletCount(), config.workloadType(), runSeed);
-        broker.submitVmList(vms);
-        broker.submitCloudletList(cloudlets);
-        return new State(simulation, datacenter, broker, hosts, vms, cloudlets, hostRackMap, vmSizesMb);
+        List<Vm> serviceVms = createServiceVms(snapshots);
+        broker.submitVmList(serviceVms);
+        return new State(simulation, datacenter, broker, hosts, serviceVms, snapshots);
     }
 
-    private List<Host> createHosts(SimulationConfig config, List<Integer> hostRackMap) {
+    public List<Cloudlet> createCloudlets(List<WorkloadRequest> requests, double baseMips) {
+        if (requests.isEmpty()) {
+            return List.of();
+        }
+        long firstSubmit = requests.stream().mapToLong(WorkloadRequest::submitTimeSeconds).min().orElse(0L);
+        long lastSubmit = requests.stream().mapToLong(WorkloadRequest::submitTimeSeconds).max().orElse(firstSubmit);
+        double horizonSeconds = Math.max(1.0, lastSubmit - firstSubmit);
+        double submissionScale = Math.max(1.0, horizonSeconds / Math.max(60.0, requests.size() * 12.0));
+        List<Cloudlet> cloudlets = new ArrayList<>();
+        for (WorkloadRequest request : requests) {
+            int pes = Math.max(1, Math.min(4, request.requestedCpuPes()));
+            long length = Math.max(1L, Math.round(request.durationSeconds() * baseMips * request.requestedCpuPes()));
+            double utilization = Math.max(
+                0.15,
+                Math.min(1.0, request.usedCpuPes() / (double) Math.max(1, request.requestedCpuPes()))
+            );
+            Cloudlet cloudlet = new CloudletSimple(length, pes, new UtilizationModelDynamic(utilization));
+            cloudlet.setFileSize(Math.max(300L, request.requestedMemoryMb() / 4));
+            cloudlet.setOutputSize(Math.max(300L, request.usedMemoryMb() / 8));
+            cloudlet.setSizes(Math.max(1024L, request.requestedMemoryMb()));
+            cloudlet.setSubmissionDelay(Math.max(0.0, (request.submitTimeSeconds() - firstSubmit) / submissionScale));
+            cloudlets.add(cloudlet);
+        }
+        return cloudlets;
+    }
+
+    private List<Host> createHosts(SimulationConfig config, List<HostSnapshot> snapshots) {
         List<Host> hosts = new ArrayList<>();
+        int hostIndex = 0;
         for (SimulationConfig.HostTypeConfig type : config.hostTypes()) {
             for (int i = 0; i < type.count(); i++) {
                 List<Pe> peList = new ArrayList<>();
@@ -48,48 +79,41 @@ public class CloudSimulationEnvironment {
                     peList.add(new PeSimple(type.peMips()));
                 }
                 Host host = new HostSimple(type.ramMb(), type.bwMbps(), type.storageMb(), peList);
-                host.setVmScheduler(new VmSchedulerTimeShared());
+                host.setVmScheduler(new VmSchedulerSpaceShared());
                 hosts.add(host);
-                hostRackMap.add(type.rackId());
+                snapshots.add(new HostSnapshot(
+                    hostIndex++,
+                    type.pes(),
+                    type.peMips(),
+                    type.ramMb(),
+                    type.bwMbps(),
+                    type.storageMb(),
+                    type.rackId(),
+                    type.cpuGeneration()
+                ));
             }
         }
         return hosts;
     }
 
-    private List<Vm> createVms(SimulationConfig config, int runSeed, List<Long> vmSizesMb) {
-        List<Vm> vms = new ArrayList<>();
-        List<SimulationConfig.VmTypeConfig> weightedTypes = new ArrayList<>();
-        for (SimulationConfig.VmTypeConfig type : config.vmTypes()) {
-            for (int i = 0; i < type.ratioWeight(); i++) {
-                weightedTypes.add(type);
-            }
+    private List<Vm> createServiceVms(List<HostSnapshot> snapshots) {
+        List<HostSnapshot> ordered = snapshots.stream()
+            .sorted(Comparator.comparingInt(HostSnapshot::hostIndex))
+            .toList();
+        List<Vm> serviceVms = new ArrayList<>();
+        for (HostSnapshot snapshot : ordered) {
+            int vmPes = Math.max(1, Math.min(4, snapshot.totalPes() / 2));
+            double vmMips = Math.max(500.0, snapshot.peMips() * 0.8);
+            long vmRam = Math.max(2048L, Math.min(16_384L, snapshot.totalRamMb() / 4));
+            long vmBw = Math.max(2_000L, Math.min(20_000L, snapshot.totalBwMbps() / 6));
+            long vmSize = Math.max(10_000L, Math.min(80_000L, snapshot.totalStorageMb() / 20));
+            Vm vm = new VmSimple(vmMips, vmPes);
+            vm.setRam(vmRam)
+                .setBw(vmBw)
+                .setSize(vmSize);
+            vm.setCloudletScheduler(new CloudletSchedulerSpaceShared());
+            serviceVms.add(vm);
         }
-        Random random = new Random(runSeed);
-        for (int i = 0; i < config.vmCount(); i++) {
-            SimulationConfig.VmTypeConfig type = weightedTypes.get(random.nextInt(weightedTypes.size()));
-            Vm vm = new VmSimple(type.mips(), type.pes());
-            vm.setRam(type.ramMb()).setBw(type.bwMbps()).setSize(type.sizeMb());
-            vm.setCloudletScheduler(new CloudletSchedulerTimeShared());
-            vms.add(vm);
-            vmSizesMb.add(type.sizeMb());
-        }
-        return vms;
-    }
-
-    private List<Cloudlet> createCloudlets(int count, WorkloadType workloadType, int runSeed) {
-        List<Cloudlet> cloudlets = new ArrayList<>();
-        UtilizationModelDynamic utilization = new UtilizationModelDynamic(0.5);
-        Random random = new Random(runSeed * 31L);
-        for (int i = 0; i < count; i++) {
-            long length = switch (workloadType) {
-                case STEADY -> 10_000;
-                case VARIABLE -> 5_000 + random.nextInt(20) * 1_000L;
-                case BURST -> (i % 5 == 0) ? 50_000 : 8_000;
-            };
-            Cloudlet cloudlet = new CloudletSimple(length, 1, utilization);
-            cloudlet.setSizes(1024);
-            cloudlets.add(cloudlet);
-        }
-        return cloudlets;
+        return serviceVms;
     }
 }

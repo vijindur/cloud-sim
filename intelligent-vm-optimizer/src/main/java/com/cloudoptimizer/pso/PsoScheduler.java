@@ -1,8 +1,13 @@
 package com.cloudoptimizer.pso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import com.cloudoptimizer.scheduler.HostSnapshot;
+import com.cloudoptimizer.scheduler.SchedulingProblem;
+import com.cloudoptimizer.scheduler.SchedulingRequest;
+import com.cloudoptimizer.scheduler.SchedulingResult;
 
 public class PsoScheduler extends BaseMetaHeuristicScheduler {
     protected final int populationSize;
@@ -20,8 +25,9 @@ public class PsoScheduler extends BaseMetaHeuristicScheduler {
     }
 
     @Override
-    public int[] schedule(int taskCount, int vmCount, List<Double> vmCapacities) {
-        int dimensions = taskCount;
+    public SchedulingResult schedule(SchedulingProblem problem) {
+        int dimensions = problem.requests().size();
+        int hostCount = problem.hosts().size();
         lastConvergence = new ArrayList<>();
         List<Particle> particles = new ArrayList<>();
         for (int i = 0; i < populationSize; i++) {
@@ -33,7 +39,7 @@ public class PsoScheduler extends BaseMetaHeuristicScheduler {
 
         for (int iter = 0; iter < maxIterations; iter++) {
             for (Particle particle : particles) {
-                double fitness = evaluate(particle.position, vmCount);
+                double fitness = evaluate(problem, particle.position, hostCount);
                 if (fitness > particle.bestFitness) {
                     particle.bestFitness = fitness;
                     particle.bestPosition = particle.position.clone();
@@ -47,7 +53,8 @@ public class PsoScheduler extends BaseMetaHeuristicScheduler {
             updateParticles(particles, globalBest);
         }
 
-        return toMapping(globalBest, taskCount, vmCount);
+        int[] mapping = repairMapping(problem, toMapping(globalBest, dimensions, hostCount));
+        return new SchedulingResult(mapping, globalBestFitness, new HashMap<>(diagnostics(problem, mapping)));
     }
 
     protected int[] toMapping(double[] position, int taskCount, int vmCount) {
@@ -74,8 +81,59 @@ public class PsoScheduler extends BaseMetaHeuristicScheduler {
         }
     }
 
-    protected double evaluate(double[] position, int vmCount) {
-        int[] mapping = toMapping(position, position.length, vmCount);
-        return evaluateMapping(mapping, vmCount);
+    protected double evaluate(SchedulingProblem problem, double[] position, int hostCount) {
+        int[] mapping = toMapping(position, position.length, hostCount);
+        mapping = repairMapping(problem, mapping);
+        return evaluateMapping(problem, mapping);
+    }
+
+    protected int[] repairMapping(SchedulingProblem problem, int[] mapping) {
+        List<SchedulingRequest> requests = problem.requests();
+        List<HostSnapshot> hosts = problem.hosts();
+        double[] usedPes = new double[hosts.size()];
+        double[] usedRam = new double[hosts.size()];
+        int[] repaired = mapping.clone();
+
+        for (int i = 0; i < requests.size(); i++) {
+            SchedulingRequest request = requests.get(i);
+            int target = sanitizeHostIndex(repaired[i], hosts.size());
+            HostSnapshot host = hosts.get(target);
+            if (usedPes[target] + request.cpuPes() > host.totalPes()
+                || usedRam[target] + request.memoryMb() > host.totalRamMb()) {
+                target = findBestFeasibleHost(request, hosts, usedPes, usedRam);
+            }
+            repaired[i] = target;
+            usedPes[target] += request.cpuPes();
+            usedRam[target] += request.memoryMb();
+        }
+        return repaired;
+    }
+
+    protected int findBestFeasibleHost(
+        SchedulingRequest request,
+        List<HostSnapshot> hosts,
+        double[] usedPes,
+        double[] usedRam
+    ) {
+        int bestHost = -1;
+        double bestScore = Double.NEGATIVE_INFINITY;
+        for (int hostIndex = 0; hostIndex < hosts.size(); hostIndex++) {
+            HostSnapshot host = hosts.get(hostIndex);
+            double cpuRemaining = host.totalPes() - (usedPes[hostIndex] + request.cpuPes());
+            double ramRemaining = host.totalRamMb() - (usedRam[hostIndex] + request.memoryMb());
+            if (cpuRemaining >= 0 && ramRemaining >= 0) {
+                double balance = 1.0 - Math.abs(cpuRemaining / Math.max(1.0, host.totalPes())
+                    - ramRemaining / Math.max(1.0, host.totalRamMb()));
+                double score = balance - (cpuRemaining / Math.max(1.0, host.totalPes())) * 0.35;
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestHost = hostIndex;
+                }
+            }
+        }
+        if (bestHost >= 0) {
+            return bestHost;
+        }
+        return chooseLeastOverloadedHost(request, hosts, usedPes, usedRam);
     }
 }

@@ -26,7 +26,7 @@ public class Main {
     }
 
     private static SimulationConfig loadConfig() {
-        Path path = Path.of("config/simulation-config.json");
+        Path path = Path.of(System.getProperty("simulation.config", "config/simulation-config.json"));
         try {
             return SimulationConfig.fromJson(path);
         } catch (IOException e) {

@@ -4,42 +4,50 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class BestFitDecreasingScheduler implements SchedulerStrategy {
+public class BestFitDecreasingScheduler extends AbstractResourceAwareScheduler {
     @Override
     public String name() {
         return "BEST_FIT_DECREASING";
     }
 
     @Override
-    public int[] schedule(int taskCount, int vmCount, List<Double> vmCapacities) {
-        List<Integer> taskIds = new ArrayList<>();
-        for (int i = 0; i < taskCount; i++) {
-            taskIds.add(i);
+    public SchedulingResult schedule(SchedulingProblem problem) {
+        List<SchedulingRequest> requests = problem.requests();
+        List<HostSnapshot> hosts = problem.hosts();
+        List<Integer> requestIds = new ArrayList<>();
+        for (int i = 0; i < requests.size(); i++) {
+            requestIds.add(i);
         }
-        taskIds.sort(Comparator.comparingDouble((Integer t) -> -(1 + (t % 10))));
+        requestIds.sort(Comparator.comparingDouble((Integer idx) ->
+            -(requests.get(idx).cpuPes() + requests.get(idx).memoryMb() / 1024.0)));
 
-        int[] mapping = new int[taskCount];
-        double[] remaining = new double[vmCount];
-        for (int i = 0; i < vmCount; i++) {
-            remaining[i] = vmCapacities.get(i);
-        }
+        int[] mapping = new int[requests.size()];
+        double[] usedPes = new double[hosts.size()];
+        double[] usedRam = new double[hosts.size()];
 
-        for (int task : taskIds) {
-            double demand = 1 + (task % 10);
-            int bestVm = 0;
-            double tightest = Double.POSITIVE_INFINITY;
-            for (int vm = 0; vm < vmCount; vm++) {
-                if (remaining[vm] >= demand) {
-                    double slack = remaining[vm] - demand;
-                    if (slack < tightest) {
-                        tightest = slack;
-                        bestVm = vm;
+        for (int requestIndex : requestIds) {
+            SchedulingRequest request = requests.get(requestIndex);
+            int bestHost = -1;
+            double bestSlack = Double.POSITIVE_INFINITY;
+            for (int hostIndex = 0; hostIndex < hosts.size(); hostIndex++) {
+                HostSnapshot host = hosts.get(hostIndex);
+                double cpuSlack = host.totalPes() - (usedPes[hostIndex] + request.cpuPes());
+                double ramSlack = host.totalRamMb() - (usedRam[hostIndex] + request.memoryMb());
+                if (cpuSlack >= 0 && ramSlack >= 0) {
+                    double slack = cpuSlack * 0.65 + (ramSlack / 1024.0) * 0.35;
+                    if (slack < bestSlack) {
+                        bestSlack = slack;
+                        bestHost = hostIndex;
                     }
                 }
             }
-            remaining[bestVm] = Math.max(0, remaining[bestVm] - demand);
-            mapping[task] = bestVm;
+            if (bestHost < 0) {
+                bestHost = chooseLeastOverloadedHost(request, hosts, usedPes, usedRam);
+            }
+            mapping[requestIndex] = bestHost;
+            usedPes[bestHost] += request.cpuPes();
+            usedRam[bestHost] += request.memoryMb();
         }
-        return mapping;
+        return buildResult(problem, mapping, 0.0);
     }
 }
