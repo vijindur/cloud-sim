@@ -27,6 +27,9 @@ python analysis/python_analysis/analyze_results.py
 ```
 
 Generated plots include box plots, utilization heatmap, Pareto frontier and convergence trend.
+Statistical outputs now also include:
+- `results/plots/confidence_intervals.csv` (95% confidence intervals)
+- `results/plots/ablation_study.csv` (HYBRID vs PSO_MODIFIED and BEST_FIT deltas/effect sizes)
 
 ## Dataset ingestion
 Sample Google/Alibaba traces are under `datasets/`. Parsers:

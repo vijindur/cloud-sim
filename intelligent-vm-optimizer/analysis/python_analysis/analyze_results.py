@@ -16,6 +16,28 @@ def anova(df: pd.DataFrame, metric: str):
     return stats.f_oneway(*groups)
 
 
+def confidence_interval(series: pd.Series, confidence: float = 0.95) -> tuple[float, float]:
+    values = series.dropna().values
+    if len(values) < 2:
+        mean = float(np.mean(values)) if len(values) == 1 else 0.0
+        return mean, mean
+    mean = float(np.mean(values))
+    sem = stats.sem(values)
+    margin = sem * stats.t.ppf((1 + confidence) / 2.0, len(values) - 1)
+    return mean - margin, mean + margin
+
+
+def cohens_d(a: pd.Series, b: pd.Series) -> float:
+    va = a.dropna().values
+    vb = b.dropna().values
+    if len(va) < 2 or len(vb) < 2:
+        return 0.0
+    pooled = np.sqrt((((len(va) - 1) * np.var(va, ddof=1)) + ((len(vb) - 1) * np.var(vb, ddof=1))) / (len(va) + len(vb) - 2))
+    if pooled == 0:
+        return 0.0
+    return float((np.mean(va) - np.mean(vb)) / pooled)
+
+
 def plot_metric(df: pd.DataFrame, metric: str, title: str, filename: str):
     plt.figure(figsize=(10, 6))
     sns.boxplot(data=df, x="algorithm", y=metric)
@@ -109,7 +131,57 @@ def main():
         )
         .reset_index()
     )
+    ci_rows = []
+    for (algorithm, workload), group in df.groupby(["algorithm", "workload"]):
+        e_low, e_high = confidence_interval(group["energyConsumption"])
+        r_low, r_high = confidence_interval(group["averageResponseTime"])
+        sla_low, sla_high = confidence_interval(group["slaCompliance"])
+        ci_rows.append(
+            {
+                "algorithm": algorithm,
+                "workload": workload,
+                "energy_ci95_low": e_low,
+                "energy_ci95_high": e_high,
+                "response_ci95_low": r_low,
+                "response_ci95_high": r_high,
+                "sla_ci95_low": sla_low,
+                "sla_ci95_high": sla_high,
+            }
+        )
+    ci_df = pd.DataFrame(ci_rows)
+
+    ablation_rows = []
+    for workload, wdf in df.groupby("workload"):
+        hybrid = wdf[wdf["algorithm"] == "HYBRID"]
+        pso_mod = wdf[wdf["algorithm"] == "PSO_MODIFIED"]
+        best_fit = wdf[wdf["algorithm"] == "BEST_FIT"]
+        if not hybrid.empty and not pso_mod.empty:
+            ablation_rows.append(
+                {
+                    "workload": workload,
+                    "comparison": "HYBRID_vs_PSO_MODIFIED",
+                    "energy_delta_pct": (pso_mod["energyConsumption"].mean() - hybrid["energyConsumption"].mean()) / pso_mod["energyConsumption"].mean() * 100,
+                    "latency_delta_pct": (pso_mod["averageResponseTime"].mean() - hybrid["averageResponseTime"].mean()) / pso_mod["averageResponseTime"].mean() * 100,
+                    "sla_delta_pts": (hybrid["slaCompliance"].mean() - pso_mod["slaCompliance"].mean()) * 100,
+                    "energy_effect_size_d": cohens_d(hybrid["energyConsumption"], pso_mod["energyConsumption"]),
+                }
+            )
+        if not hybrid.empty and not best_fit.empty:
+            ablation_rows.append(
+                {
+                    "workload": workload,
+                    "comparison": "HYBRID_vs_BEST_FIT",
+                    "energy_delta_pct": (best_fit["energyConsumption"].mean() - hybrid["energyConsumption"].mean()) / best_fit["energyConsumption"].mean() * 100,
+                    "latency_delta_pct": (best_fit["averageResponseTime"].mean() - hybrid["averageResponseTime"].mean()) / best_fit["averageResponseTime"].mean() * 100,
+                    "sla_delta_pts": (hybrid["slaCompliance"].mean() - best_fit["slaCompliance"].mean()) * 100,
+                    "energy_effect_size_d": cohens_d(hybrid["energyConsumption"], best_fit["energyConsumption"]),
+                }
+            )
+    ablation_df = pd.DataFrame(ablation_rows)
+
     summary.to_csv(OUT / "summary_stats.csv", index=False)
+    ci_df.to_csv(OUT / "confidence_intervals.csv", index=False)
+    ablation_df.to_csv(OUT / "ablation_study.csv", index=False)
     (OUT / "anova_report.json").write_text(json.dumps(report, indent=2))
     print("Analysis completed")
 

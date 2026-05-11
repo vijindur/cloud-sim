@@ -31,10 +31,12 @@ public class ExperimentRunner {
             .filter(w -> workloadFilter.isEmpty() || workloadFilter.contains(w.name()))
             .toList();
         List<Integer> selectedSeeds = baseConfig.runSeeds().stream().limit(Math.max(1, maxSeeds)).toList();
+        int runsPerScenario = Math.max(1, baseConfig.repetitions());
 
         for (String algorithm : selectedAlgorithms) {
             for (WorkloadType workloadType : selectedWorkloads) {
-                for (int seed : selectedSeeds) {
+                for (int run = 0; run < runsPerScenario; run++) {
+                    int seed = selectedSeeds.get(run % selectedSeeds.size());
                     SimulationConfig config = new SimulationConfig(
                         baseConfig.hostCount(), baseConfig.vmCount(), baseConfig.cloudletCount(),
                         baseConfig.timeSteps(), seed, workloadType, algorithm, baseConfig.repetitions(),
