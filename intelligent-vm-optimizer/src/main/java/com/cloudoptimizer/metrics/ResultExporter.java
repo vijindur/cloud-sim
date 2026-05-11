@@ -14,14 +14,20 @@ public class ResultExporter {
     public void toCsv(List<SimulationResult> results, Path path) throws IOException {
         Files.createDirectories(path.getParent());
         StringBuilder sb = new StringBuilder();
-        sb.append("algorithm,workload,utilization,slaCompliance,energyEfficiency,energyConsumption,averageResponseTime,migrationCost,migrationDowntimeMs,topologyPenalty,convergenceStart,convergenceEnd\n");
+        sb.append("algorithm,workload,runSeed,utilization,slaCompliance,energyEfficiency,energyConsumption,averageResponseTime,migrationCount,migrationCost,migrationDowntimeMs,topologyPenalty,hostOverloadRate,avgQueueDelay,makespan,throughputJobsPerTime,responseP95,convergenceStart,convergenceEnd\n");
         for (SimulationResult r : results) {
-            sb.append(String.format("%s,%s,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f%n",
-                r.algorithm(), r.workload(), r.utilization(), r.slaCompliance(),
+            sb.append(String.format("%s,%s,%d,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f%n",
+                r.algorithm(), r.workload(), r.runSeed(), r.utilization(), r.slaCompliance(),
                 r.energyEfficiency(), r.energyConsumption(), r.averageResponseTime(),
+                r.extraMetrics().getOrDefault("migrationCount", 0.0),
                 r.extraMetrics().getOrDefault("migrationCost", 0.0),
                 r.extraMetrics().getOrDefault("migrationDowntimeMs", 0.0),
                 r.extraMetrics().getOrDefault("topologyPenalty", 0.0),
+                r.extraMetrics().getOrDefault("hostOverloadRate", 0.0),
+                r.extraMetrics().getOrDefault("avgQueueDelay", 0.0),
+                r.extraMetrics().getOrDefault("makespan", 0.0),
+                r.extraMetrics().getOrDefault("throughputJobsPerTime", 0.0),
+                r.extraMetrics().getOrDefault("responseP95", 0.0),
                 r.extraMetrics().getOrDefault("convergenceStart", 0.0),
                 r.extraMetrics().getOrDefault("convergenceEnd", 0.0)));
         }
@@ -40,20 +46,24 @@ public class ResultExporter {
             .collect(Collectors.groupingBy(r -> r.algorithm() + "|" + r.workload()));
 
         StringBuilder sb = new StringBuilder();
-        sb.append("algorithm,workload,energyMean,energyStd,responseMean,responseStd,slaMean,slaStd\n");
+        sb.append("algorithm,workload,runs,energyMean,energyStd,responseMean,responseStd,slaMean,slaStd,utilizationMean,utilizationStd,migrationMean,queueDelayMean\n");
         for (Map.Entry<String, List<SimulationResult>> e : grouped.entrySet()) {
             String[] key = e.getKey().split("\\|");
             List<SimulationResult> group = e.getValue();
-            sb.append(String.format("%s,%s,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f%n",
+            sb.append(String.format("%s,%s,%d,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f%n",
                 key[0], key[1],
+                group.size(),
                 mean(group, Metric.ENERGY), std(group, Metric.ENERGY),
                 mean(group, Metric.RESPONSE), std(group, Metric.RESPONSE),
-                mean(group, Metric.SLA), std(group, Metric.SLA)));
+                mean(group, Metric.SLA), std(group, Metric.SLA),
+                mean(group, Metric.UTILIZATION), std(group, Metric.UTILIZATION),
+                mean(group, Metric.MIGRATION),
+                mean(group, Metric.QUEUE_DELAY)));
         }
         Files.writeString(path, sb.toString());
     }
 
-    private enum Metric { ENERGY, RESPONSE, SLA }
+    private enum Metric { ENERGY, RESPONSE, SLA, UTILIZATION, MIGRATION, QUEUE_DELAY }
 
     private double mean(List<SimulationResult> group, Metric metric) {
         DoubleSummaryStatistics stats = group.stream().mapToDouble(r -> value(r, metric)).summaryStatistics();
@@ -73,6 +83,9 @@ public class ResultExporter {
             case ENERGY -> r.energyConsumption();
             case RESPONSE -> r.averageResponseTime();
             case SLA -> r.slaCompliance();
+            case UTILIZATION -> r.utilization();
+            case MIGRATION -> r.extraMetrics().getOrDefault("migrationCount", 0.0);
+            case QUEUE_DELAY -> r.extraMetrics().getOrDefault("avgQueueDelay", 0.0);
         };
     }
 }

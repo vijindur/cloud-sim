@@ -1,6 +1,8 @@
 package com.cloudoptimizer.pso;
 
 import java.util.List;
+import com.cloudoptimizer.scheduler.SchedulingProblem;
+import com.cloudoptimizer.scheduler.SchedulingResult;
 
 public class ModifiedPsoScheduler extends PsoScheduler {
 
@@ -14,18 +16,20 @@ public class ModifiedPsoScheduler extends PsoScheduler {
     }
 
     @Override
-    public int[] schedule(int taskCount, int vmCount, List<Double> vmCapacities) {
-        int[] bestSchedule = super.schedule(taskCount, vmCount, vmCapacities);
-        double bestFitness = evaluateMapping(bestSchedule, vmCount);
+    public SchedulingResult schedule(SchedulingProblem problem) {
+        SchedulingResult initial = super.schedule(problem);
+        int[] bestSchedule = initial.hostMapping();
+        double bestFitness = initial.fitnessScore();
 
         for (int i = 0; i < maxIterations; i++) {
-            int[] candidate = super.schedule(taskCount, vmCount, vmCapacities);
-            double candidateFitness = evaluateMapping(candidate, vmCount);
+            SchedulingResult candidateResult = super.schedule(problem);
+            int[] candidate = candidateResult.hostMapping();
+            double candidateFitness = candidateResult.fitnessScore();
             if (candidateFitness > bestFitness) {
                 bestFitness = candidateFitness;
                 bestSchedule = candidate;
             }
         }
-        return bestSchedule;
+        return new SchedulingResult(bestSchedule, bestFitness, diagnostics(problem, bestSchedule));
     }
 }

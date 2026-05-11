@@ -1,56 +1,22 @@
-[
-  {
-    "algorithm": "ROUND_ROBIN",
-    "workload": "STEADY",
-    "utilization": "0.72",
-    "slaCompliance": "0.81",
-    "energyEfficiency": "0.67",
-    "energyConsumption": "11.2",
-    "averageResponseTime": "220"
-  },
-  {
-    "algorithm": "FCFS",
-    "workload": "STEADY",
-    "utilization": "0.69",
-    "slaCompliance": "0.79",
-    "energyEfficiency": "0.65",
-    "energyConsumption": "11.5",
-    "averageResponseTime": "240"
-  },
-  {
-    "algorithm": "BEST_FIT",
-    "workload": "STEADY",
-    "utilization": "0.76",
-    "slaCompliance": "0.84",
-    "energyEfficiency": "0.71",
-    "energyConsumption": "10.8",
-    "averageResponseTime": "210"
-  },
-  {
-    "algorithm": "PSO_STANDARD",
-    "workload": "STEADY",
-    "utilization": "0.82",
-    "slaCompliance": "0.88",
-    "energyEfficiency": "0.77",
-    "energyConsumption": "10.1",
-    "averageResponseTime": "185"
-  },
-  {
-    "algorithm": "PSO_MODIFIED",
-    "workload": "STEADY",
-    "utilization": "0.85",
-    "slaCompliance": "0.91",
-    "energyEfficiency": "0.81",
-    "energyConsumption": "9.6",
-    "averageResponseTime": "170"
-  },
-  {
-    "algorithm": "HYBRID",
-    "workload": "STEADY",
-    "utilization": "0.87",
-    "slaCompliance": "0.93",
-    "energyEfficiency": "0.83",
-    "energyConsumption": "9.3",
-    "averageResponseTime": "160"
+[ {
+  "algorithm" : "HYBRID",
+  "workload" : "VARIABLE",
+  "runSeed" : 11,
+  "utilization" : 0.028628121482001417,
+  "slaCompliance" : 0.6888888888888889,
+  "energyEfficiency" : 0.3453754629275764,
+  "energyConsumption" : 5.056091666726712,
+  "averageResponseTime" : 9476.589143610541,
+  "extraMetrics" : {
+    "migrationCount" : 7.0,
+    "migrationCost" : 5.681740722656249,
+    "migrationDowntimeMs" : 9469.56787109375,
+    "topologyPenalty" : 32.75999999999999,
+    "hostOverloadRate" : 0.0,
+    "avgQueueDelay" : 4129.233482443482,
+    "makespan" : 19004.233863636364,
+    "throughputJobsPerTime" : 4.7357868065500095E-4,
+    "responseP95" : 18963.567196969696,
+    "timelineSteps" : 3.0
   }
-]
+} ]

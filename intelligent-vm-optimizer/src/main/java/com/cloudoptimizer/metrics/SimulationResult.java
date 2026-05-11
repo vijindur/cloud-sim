@@ -5,6 +5,7 @@ import java.util.Map;
 public record SimulationResult(
     String algorithm,
     String workload,
+    int runSeed,
     double utilization,
     double slaCompliance,
     double energyEfficiency,

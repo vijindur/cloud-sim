@@ -37,10 +37,19 @@ def plot_heatmap(df: pd.DataFrame):
 
 
 def plot_pareto(df: pd.DataFrame):
-    pareto = df.groupby("algorithm", as_index=False).agg({"energyConsumption": "mean", "slaCompliance": "mean"})
+    pareto = df.groupby("algorithm", as_index=False).agg(
+        {"energyConsumption": "mean", "slaCompliance": "mean", "averageResponseTime": "mean"}
+    )
     plt.figure(figsize=(8, 6))
-    sns.scatterplot(data=pareto, x="energyConsumption", y="slaCompliance", hue="algorithm", s=120)
-    plt.title("Pareto Frontier: Energy vs SLA")
+    sns.scatterplot(
+        data=pareto,
+        x="energyConsumption",
+        y="slaCompliance",
+        hue="algorithm",
+        size="averageResponseTime",
+        sizes=(80, 220),
+    )
+    plt.title("Pareto Frontier: Energy vs SLA vs Response")
     plt.tight_layout()
     plt.savefig(OUT / "pareto_frontier.png")
     plt.close()
@@ -70,6 +79,10 @@ def main():
     plot_metric(df, "slaCompliance", "SLA Compliance Comparison", "sla_boxplot.png")
     plot_metric(df, "energyConsumption", "Energy Consumption Comparison", "energy_boxplot.png")
     plot_metric(df, "averageResponseTime", "Response Time Comparison", "response_time_boxplot.png")
+    if "migrationCount" in df.columns:
+        plot_metric(df, "migrationCount", "Migration Count Comparison", "migration_boxplot.png")
+    if "avgQueueDelay" in df.columns:
+        plot_metric(df, "avgQueueDelay", "Queue Delay Comparison", "queue_delay_boxplot.png")
     plot_heatmap(df)
     plot_pareto(df)
     plot_convergence(df)
@@ -82,10 +95,17 @@ def main():
     }
     summary = (
         df.groupby(["algorithm", "workload"]).agg(
+            runs=("runSeed", "count"),
             energy_mean=("energyConsumption", "mean"),
             energy_std=("energyConsumption", "std"),
             response_mean=("averageResponseTime", "mean"),
             response_std=("averageResponseTime", "std"),
+            sla_mean=("slaCompliance", "mean"),
+            sla_std=("slaCompliance", "std"),
+            utilization_mean=("utilization", "mean"),
+            utilization_std=("utilization", "std"),
+            migration_mean=("migrationCount", "mean") if "migrationCount" in df.columns else ("energyConsumption", "count"),
+            queue_delay_mean=("avgQueueDelay", "mean") if "avgQueueDelay" in df.columns else ("averageResponseTime", "mean"),
         )
         .reset_index()
     )

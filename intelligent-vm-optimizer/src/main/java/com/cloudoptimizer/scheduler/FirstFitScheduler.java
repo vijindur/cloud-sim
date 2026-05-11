@@ -2,28 +2,38 @@ package com.cloudoptimizer.scheduler;
 
 import java.util.List;
 
-public class FirstFitScheduler implements SchedulerStrategy {
+public class FirstFitScheduler extends AbstractResourceAwareScheduler {
     @Override
     public String name() {
         return "FIRST_FIT";
     }
 
     @Override
-    public int[] schedule(int taskCount, int vmCount, List<Double> vmCapacities) {
-        int[] mapping = new int[taskCount];
-        double[] used = new double[vmCount];
-        for (int t = 0; t < taskCount; t++) {
-            double demand = 1 + (t % 10);
-            int target = 0;
-            for (int v = 0; v < vmCount; v++) {
-                if (used[v] + demand <= vmCapacities.get(v)) {
-                    target = v;
-                    used[v] += demand;
+    public SchedulingResult schedule(SchedulingProblem problem) {
+        List<SchedulingRequest> requests = problem.requests();
+        List<HostSnapshot> hosts = problem.hosts();
+        int[] mapping = new int[requests.size()];
+        double[] usedPes = new double[hosts.size()];
+        double[] usedRam = new double[hosts.size()];
+
+        for (int i = 0; i < requests.size(); i++) {
+            SchedulingRequest request = requests.get(i);
+            int chosen = -1;
+            for (int hostIndex = 0; hostIndex < hosts.size(); hostIndex++) {
+                HostSnapshot host = hosts.get(hostIndex);
+                if (usedPes[hostIndex] + request.cpuPes() <= host.totalPes()
+                    && usedRam[hostIndex] + request.memoryMb() <= host.totalRamMb()) {
+                    chosen = hostIndex;
                     break;
                 }
             }
-            mapping[t] = target;
+            if (chosen < 0) {
+                chosen = chooseLeastOverloadedHost(request, hosts, usedPes, usedRam);
+            }
+            mapping[i] = chosen;
+            usedPes[chosen] += request.cpuPes();
+            usedRam[chosen] += request.memoryMb();
         }
-        return mapping;
+        return buildResult(problem, mapping, 0.0);
     }
 }

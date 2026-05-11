@@ -16,6 +16,8 @@ public record SimulationConfig(
     int repetitions,
     double migrationCostPerGb,
     double migrationDowntimeMsPerGb,
+    String workloadDatasetPath,
+    double responseTimeSlaFactor,
     List<HostTypeConfig> hostTypes,
     List<VmTypeConfig> vmTypes,
     List<Integer> runSeeds
@@ -37,6 +39,8 @@ public record SimulationConfig(
             1,
             0.15,
             250,
+            "datasets/cloud_workload_dataset.csv",
+            1.25,
             List.of(
                 new HostTypeConfig("legacy", 24, 8, 1000, 32768, 80_000, 1_000_000, 0, 1),
                 new HostTypeConfig("balanced", 32, 16, 1500, 65536, 120_000, 2_000_000, 1, 2),
