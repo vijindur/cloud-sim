@@ -1,0 +1,7 @@
+target/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.streamlit/
+results/plots/
+results/simulation.log*

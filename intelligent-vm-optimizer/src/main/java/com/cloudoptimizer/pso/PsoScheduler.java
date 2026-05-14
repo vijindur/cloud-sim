@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import com.cloudoptimizer.core.SimulationConfig;
 import com.cloudoptimizer.scheduler.HostSnapshot;
 import com.cloudoptimizer.scheduler.SchedulingProblem;
 import com.cloudoptimizer.scheduler.SchedulingRequest;
@@ -15,6 +16,11 @@ public class PsoScheduler extends BaseMetaHeuristicScheduler {
     protected final Random random = new Random(42);
 
     public PsoScheduler(int populationSize, int maxIterations) {
+        this(populationSize, maxIterations, SimulationConfig.FitnessWeights.defaults());
+    }
+
+    public PsoScheduler(int populationSize, int maxIterations, SimulationConfig.FitnessWeights weights) {
+        super(weights);
         this.populationSize = populationSize;
         this.maxIterations = maxIterations;
     }
