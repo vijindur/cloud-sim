@@ -8,8 +8,6 @@ from pathlib import Path
 import sys
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 import streamlit as st
 from datetime import datetime
 import plotly.graph_objects as go
@@ -70,12 +68,13 @@ st.markdown("""
 }
 
 /* Force all text to be visible */
-body, div, p, span, label, h1, h2, h3, h4, h5, h6 {
+[data-testid="stAppViewContainer"], body, div, p, span, label, h1, h2, h3, h4, h5, h6 {
     color: #1a1a1a !important;
 }
 
 /* Navigation buttons - highly visible */
 .stButton > button {
+    width: 100%;
     background-color: #f0ebe4 !important;
     color: #1a1a1a !important;
     border: 2px solid #1a1a1a !important;
@@ -187,6 +186,17 @@ h3 { color: #2d5a54 !important; font-size: 1.2rem; font-weight: 700; margin-top:
     background-color: #2d5a54;
     color: #ffffff !important;
     border: 2px solid #2d5a54;
+}
+
+@media (max-width: 1024px) {
+    h1 { font-size: 1.8rem !important; }
+    h2 { font-size: 1.35rem !important; }
+    .metric-card { padding: 1rem; }
+}
+@media (max-width: 768px) {
+    .comparison-row { flex-direction: column; gap: 1rem; }
+    .step-container { padding: 1rem; }
+    .stButton > button { font-size: 0.9rem !important; padding: 10px !important; }
 }
 
 /* Animation walkthrough steps */
@@ -555,52 +565,27 @@ def section_overview(data, all_algorithms, all_workloads):
         "slaCompliance": lambda x: x.mean() * 100,
     }).round(2)
     
-    # Create comparison chart with real data
-    fig, axes = plt.subplots(1, 3, figsize=(16, 5))
-    fig.patch.set_facecolor('#f8f9fa')
-    
-    # Energy
-    energy_sorted = comparison_data["energyConsumption"].sort_values()
-    colors_energy = [get_algorithm_color(algo) for algo in energy_sorted.index]
-    axes[0].barh(range(len(energy_sorted)), energy_sorted.values, color=colors_energy)
-    axes[0].set_yticks(range(len(energy_sorted)))
-    axes[0].set_yticklabels(energy_sorted.index, fontweight='bold', color='#1a1a1a')
-    axes[0].set_xlabel('Energy Consumption (kWh)', fontweight='bold', color='#1a1a1a')
-    axes[0].set_title('Energy Efficiency Comparison\n(Lower is Better)', fontweight='bold', color='#1a3a37', fontsize=12)
-    axes[0].grid(axis='x', alpha=0.3)
-    
-    # Add value labels
-    for i, v in enumerate(energy_sorted.values):
-        axes[0].text(v, i, f' {v:.2f}', va='center', fontweight='bold', color='#1a1a1a')
-    
-    # Response Time
-    response_sorted = comparison_data["averageResponseTime"].sort_values()
-    colors_response = [get_algorithm_color(algo) for algo in response_sorted.index]
-    axes[1].barh(range(len(response_sorted)), response_sorted.values, color=colors_response)
-    axes[1].set_yticks(range(len(response_sorted)))
-    axes[1].set_yticklabels(response_sorted.index, fontweight='bold', color='#1a1a1a')
-    axes[1].set_xlabel('Response Time (ms)', fontweight='bold', color='#1a1a1a')
-    axes[1].set_title('Speed Comparison\n(Lower is Better)', fontweight='bold', color='#1a3a37', fontsize=12)
-    axes[1].grid(axis='x', alpha=0.3)
-    
-    for i, v in enumerate(response_sorted.values):
-        axes[1].text(v, i, f' {v:.0f}', va='center', fontweight='bold', color='#1a1a1a')
-    
-    # SLA
-    sla_sorted = comparison_data["slaCompliance"].sort_values(ascending=False)
-    colors_sla = [get_algorithm_color(algo) for algo in sla_sorted.index]
-    axes[2].barh(range(len(sla_sorted)), sla_sorted.values, color=colors_sla)
-    axes[2].set_yticks(range(len(sla_sorted)))
-    axes[2].set_yticklabels(sla_sorted.index, fontweight='bold', color='#1a1a1a')
-    axes[2].set_xlabel('Compliance (%)', fontweight='bold', color='#1a1a1a')
-    axes[2].set_title('Service Reliability\n(Higher is Better)', fontweight='bold', color='#1a3a37', fontsize=12)
-    axes[2].grid(axis='x', alpha=0.3)
-    
-    for i, v in enumerate(sla_sorted.values):
-        axes[2].text(v, i, f' {v:.1f}%', va='center', fontweight='bold', color='#1a1a1a')
-    
-    plt.tight_layout()
-    st.pyplot(fig)
+    chart_df = comparison_data.reset_index()
+    melt_df = chart_df.melt(id_vars="algorithm", var_name="metric", value_name="value")
+    metric_labels = {
+        "energyConsumption": "Energy (kWh) ↓",
+        "averageResponseTime": "Response Time (ms) ↓",
+        "slaCompliance": "SLA Compliance (%) ↑",
+    }
+    melt_df["metric"] = melt_df["metric"].map(metric_labels)
+    fig = px.bar(
+        melt_df,
+        x="value",
+        y="algorithm",
+        color="algorithm",
+        facet_col="metric",
+        orientation="h",
+        color_discrete_map=COLORS,
+        category_orders={"metric": list(metric_labels.values())},
+        height=420
+    )
+    fig.update_layout(showlegend=False, margin=dict(l=0, r=0, t=40, b=0))
+    st.plotly_chart(fig, use_container_width=True)
     
     st.caption("📌 Same colors used consistently across all charts for easy recognition")
 
@@ -723,40 +708,18 @@ def section_workload_analysis(data, all_workloads):
         with col1:
             # Energy performance
             energy_by_algo = workload_data.groupby("algorithm")["energyConsumption"].mean().sort_values()
-            fig, ax = plt.subplots(figsize=(10, 5))
-            fig.patch.set_facecolor('#f8f9fa')
-            colors = [get_algorithm_color(algo) for algo in energy_by_algo.index]
-            bars = ax.barh(range(len(energy_by_algo)), energy_by_algo.values, color=colors)
-            ax.set_yticks(range(len(energy_by_algo)))
-            ax.set_yticklabels(energy_by_algo.index, fontweight='bold', color='#1a1a1a')
-            ax.set_xlabel('Energy (kWh)', fontweight='bold', color='#1a1a1a')
-            ax.set_title(f'Energy Efficiency in {workload} Workload', fontweight='bold', color='#1a3a37')
-            ax.grid(axis='x', alpha=0.3)
-            
-            for i, v in enumerate(energy_by_algo.values):
-                ax.text(v, i, f' {v:.2f}', va='center', fontweight='bold', color='#1a1a1a')
-            
-            plt.tight_layout()
-            st.pyplot(fig)
+            energy_df = energy_by_algo.reset_index(name="energyConsumption")
+            fig = px.bar(energy_df, x="energyConsumption", y="algorithm", color="algorithm", orientation="h",
+                         color_discrete_map=COLORS, title=f'Energy Efficiency in {workload} Workload')
+            st.plotly_chart(fig, use_container_width=True)
         
         with col2:
             # Response time performance
             response_by_algo = workload_data.groupby("algorithm")["averageResponseTime"].mean().sort_values()
-            fig, ax = plt.subplots(figsize=(10, 5))
-            fig.patch.set_facecolor('#f8f9fa')
-            colors = [get_algorithm_color(algo) for algo in response_by_algo.index]
-            bars = ax.barh(range(len(response_by_algo)), response_by_algo.values, color=colors)
-            ax.set_yticks(range(len(response_by_algo)))
-            ax.set_yticklabels(response_by_algo.index, fontweight='bold', color='#1a1a1a')
-            ax.set_xlabel('Response Time (ms)', fontweight='bold', color='#1a1a1a')
-            ax.set_title(f'Speed in {workload} Workload', fontweight='bold', color='#1a3a37')
-            ax.grid(axis='x', alpha=0.3)
-            
-            for i, v in enumerate(response_by_algo.values):
-                ax.text(v, i, f' {v:.0f}', va='center', fontweight='bold', color='#1a1a1a')
-            
-            plt.tight_layout()
-            st.pyplot(fig)
+            response_df = response_by_algo.reset_index(name="averageResponseTime")
+            fig = px.bar(response_df, x="averageResponseTime", y="algorithm", color="algorithm", orientation="h",
+                         color_discrete_map=COLORS, title=f'Speed in {workload} Workload')
+            st.plotly_chart(fig, use_container_width=True)
 
 # ============================================================================
 # SECTION 4: ANIMATED WALKTHROUGH
