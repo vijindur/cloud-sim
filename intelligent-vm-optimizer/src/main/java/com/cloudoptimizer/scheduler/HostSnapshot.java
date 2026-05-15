@@ -8,9 +8,7 @@ public record HostSnapshot(
     long totalBwMbps,
     long totalStorageMb,
     int rackId,
-    int cpuGeneration,
-    double idlePowerWatts,
-    double maxPowerWatts
+    int cpuGeneration
 ) {
     public double totalMips() {
         return totalPes * peMips;
