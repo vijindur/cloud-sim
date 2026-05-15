@@ -5,7 +5,7 @@ import com.cloudoptimizer.workload.WorkloadRequest;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import org.cloudsimplus.allocationpolicies.VmAllocationPolicyBestFit;
+import org.cloudsimplus.allocationpolicies.VmAllocationPolicySimple;
 import org.cloudsimplus.brokers.DatacenterBrokerSimple;
 import org.cloudsimplus.cloudlets.Cloudlet;
 import org.cloudsimplus.cloudlets.CloudletSimple;
@@ -29,7 +29,6 @@ public class CloudSimulationEnvironment {
         DatacenterBrokerSimple broker,
         List<Host> hosts,
         List<Vm> serviceVms,
-        List<Integer> vmHomeHosts,
         List<HostSnapshot> hostSnapshots
     ) {}
 
@@ -37,12 +36,11 @@ public class CloudSimulationEnvironment {
         CloudSimPlus simulation = new CloudSimPlus();
         List<HostSnapshot> snapshots = new ArrayList<>();
         List<Host> hosts = createHosts(config, snapshots);
-        Datacenter datacenter = new DatacenterSimple(simulation, hosts, new VmAllocationPolicyBestFit());
+        Datacenter datacenter = new DatacenterSimple(simulation, hosts, new VmAllocationPolicySimple());
         DatacenterBrokerSimple broker = new DatacenterBrokerSimple(simulation);
-        VmPool vmPool = createServiceVms(config, snapshots);
-        List<Vm> serviceVms = vmPool.vms();
+        List<Vm> serviceVms = createServiceVms(snapshots);
         broker.submitVmList(serviceVms);
-        return new State(simulation, datacenter, broker, hosts, serviceVms, vmPool.homeHosts(), snapshots);
+        return new State(simulation, datacenter, broker, hosts, serviceVms, snapshots);
     }
 
     public List<Cloudlet> createCloudlets(List<WorkloadRequest> requests, double baseMips) {
@@ -91,56 +89,31 @@ public class CloudSimulationEnvironment {
                     type.bwMbps(),
                     type.storageMb(),
                     type.rackId(),
-                    type.cpuGeneration(),
-                    type.effectiveIdlePowerWatts(),
-                    type.effectiveMaxPowerWatts()
+                    type.cpuGeneration()
                 ));
             }
         }
         return hosts;
     }
 
-    private VmPool createServiceVms(SimulationConfig config, List<HostSnapshot> snapshots) {
+    private List<Vm> createServiceVms(List<HostSnapshot> snapshots) {
         List<HostSnapshot> ordered = snapshots.stream()
             .sorted(Comparator.comparingInt(HostSnapshot::hostIndex))
             .toList();
         List<Vm> serviceVms = new ArrayList<>();
-        List<Integer> homeHosts = new ArrayList<>();
-        int vmCount = Math.max(ordered.size(), config.vmCount());
-        List<SimulationConfig.VmTypeConfig> vmTypes = expandVmTypes(config.vmTypes(), vmCount);
-        for (int i = 0; i < vmCount; i++) {
-            HostSnapshot snapshot = ordered.get(i % ordered.size());
-            SimulationConfig.VmTypeConfig type = vmTypes.get(i);
-            Vm vm = new VmSimple(Math.max(1.0, type.mips()), Math.max(1, type.pes()));
-            vm.setRam(Math.max(512L, type.ramMb()))
-                .setBw(Math.max(1_000L, type.bwMbps()))
-                .setSize(Math.max(1_000L, type.sizeMb()));
+        for (HostSnapshot snapshot : ordered) {
+            int vmPes = Math.max(1, Math.min(4, snapshot.totalPes() / 2));
+            double vmMips = Math.max(500.0, snapshot.peMips() * 0.8);
+            long vmRam = Math.max(2048L, Math.min(16_384L, snapshot.totalRamMb() / 4));
+            long vmBw = Math.max(2_000L, Math.min(20_000L, snapshot.totalBwMbps() / 6));
+            long vmSize = Math.max(10_000L, Math.min(80_000L, snapshot.totalStorageMb() / 20));
+            Vm vm = new VmSimple(vmMips, vmPes);
+            vm.setRam(vmRam)
+                .setBw(vmBw)
+                .setSize(vmSize);
             vm.setCloudletScheduler(new CloudletSchedulerSpaceShared());
             serviceVms.add(vm);
-            homeHosts.add(snapshot.hostIndex());
         }
-        return new VmPool(serviceVms, homeHosts);
+        return serviceVms;
     }
-
-    private List<SimulationConfig.VmTypeConfig> expandVmTypes(List<SimulationConfig.VmTypeConfig> vmTypes, int vmCount) {
-        if (vmTypes == null || vmTypes.isEmpty()) {
-            return List.of(new SimulationConfig.VmTypeConfig("default", 1, 1, 1000, 2048, 2_000, 10_000));
-        }
-        List<SimulationConfig.VmTypeConfig> expanded = new ArrayList<>();
-        int totalWeight = vmTypes.stream().mapToInt(t -> Math.max(1, t.ratioWeight())).sum();
-        for (SimulationConfig.VmTypeConfig type : vmTypes) {
-            int count = Math.max(1, (int) Math.round(vmCount * (Math.max(1, type.ratioWeight()) / (double) totalWeight)));
-            for (int i = 0; i < count && expanded.size() < vmCount; i++) {
-                expanded.add(type);
-            }
-        }
-        while (expanded.size() < vmCount) {
-            expanded.add(vmTypes.get(expanded.size() % vmTypes.size()));
-        }
-        return expanded.stream()
-            .sorted(Comparator.comparingInt(SimulationConfig.VmTypeConfig::pes).reversed())
-            .toList();
-    }
-
-    private record VmPool(List<Vm> vms, List<Integer> homeHosts) {}
 }

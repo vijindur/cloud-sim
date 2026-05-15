@@ -4,23 +4,14 @@ import com.cloudoptimizer.scheduler.AbstractResourceAwareScheduler;
 import com.cloudoptimizer.scheduler.HostSnapshot;
 import com.cloudoptimizer.scheduler.SchedulingProblem;
 import com.cloudoptimizer.scheduler.SchedulingRequest;
-import com.cloudoptimizer.core.SimulationConfig;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public abstract class BaseMetaHeuristicScheduler extends AbstractResourceAwareScheduler {
-    protected final FitnessModel fitnessModel;
+    protected final FitnessModel fitnessModel = new FitnessModel();
     protected List<Double> lastConvergence = new ArrayList<>();
-
-    protected BaseMetaHeuristicScheduler() {
-        this(SimulationConfig.FitnessWeights.defaults());
-    }
-
-    protected BaseMetaHeuristicScheduler(SimulationConfig.FitnessWeights weights) {
-        this.fitnessModel = new FitnessModel(weights);
-    }
 
     protected double evaluateMapping(SchedulingProblem problem, int[] mapping) {
         List<HostSnapshot> hosts = problem.hosts();

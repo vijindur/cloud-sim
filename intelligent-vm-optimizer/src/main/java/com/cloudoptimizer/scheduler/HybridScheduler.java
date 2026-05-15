@@ -1,7 +1,6 @@
 package com.cloudoptimizer.scheduler;
 
 import com.cloudoptimizer.decision.AdaptiveDecisionEngine;
-import com.cloudoptimizer.core.SimulationConfig;
 import com.cloudoptimizer.pso.ModifiedPsoScheduler;
 import com.cloudoptimizer.scheduler.SchedulingProblem;
 import com.cloudoptimizer.scheduler.SchedulingResult;
@@ -12,17 +11,9 @@ import java.util.List;
 
 public class HybridScheduler implements SchedulerStrategy {
     private final BestFitScheduler bestFitScheduler = new BestFitScheduler();
-    private final ModifiedPsoScheduler modifiedPsoScheduler;
+    private final ModifiedPsoScheduler modifiedPsoScheduler = new ModifiedPsoScheduler();
     private final AdaptiveDecisionEngine decisionEngine = new AdaptiveDecisionEngine();
     private final WorkloadAnalyzer workloadAnalyzer = new WorkloadAnalyzer();
-
-    public HybridScheduler() {
-        this(SimulationConfig.FitnessWeights.defaults());
-    }
-
-    public HybridScheduler(SimulationConfig.FitnessWeights weights) {
-        this.modifiedPsoScheduler = new ModifiedPsoScheduler(weights);
-    }
 
     @Override
     public String name() {

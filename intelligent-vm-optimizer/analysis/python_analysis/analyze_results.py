@@ -2,9 +2,6 @@ import json
 from pathlib import Path
 import numpy as np
 import pandas as pd
-import matplotlib
-
-matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
@@ -15,11 +12,8 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 
 def anova(df: pd.DataFrame, metric: str):
-    groups = [g[metric].dropna().values for _, g in df.groupby("algorithm") if len(g[metric].dropna()) > 0]
-    if len(groups) < 2:
-        return {"statistic": None, "pvalue": None, "note": "ANOVA requires at least two algorithm groups."}
-    result = stats.f_oneway(*groups)
-    return result._asdict()
+    groups = [g[metric].values for _, g in df.groupby("algorithm")]
+    return stats.f_oneway(*groups)
 
 
 def confidence_interval(series: pd.Series, confidence: float = 0.95) -> tuple[float, float]:
@@ -103,8 +97,6 @@ def plot_convergence(df: pd.DataFrame):
 
 def main():
     df = pd.read_csv(RESULTS)
-    if df.empty:
-        raise ValueError(f"No simulation rows found in {RESULTS}. Run the simulator before analysis.")
     plot_metric(df, "utilization", "Utilization Comparison", "utilization_boxplot.png")
     plot_metric(df, "slaCompliance", "SLA Compliance Comparison", "sla_boxplot.png")
     plot_metric(df, "energyConsumption", "Energy Consumption Comparison", "energy_boxplot.png")
@@ -118,10 +110,10 @@ def main():
     plot_convergence(df)
 
     report = {
-        "utilization_anova": anova(df, "utilization"),
-        "sla_anova": anova(df, "slaCompliance"),
-        "energy_anova": anova(df, "energyConsumption"),
-        "response_time_anova": anova(df, "averageResponseTime"),
+        "utilization_anova": anova(df, "utilization")._asdict(),
+        "sla_anova": anova(df, "slaCompliance")._asdict(),
+        "energy_anova": anova(df, "energyConsumption")._asdict(),
+        "response_time_anova": anova(df, "averageResponseTime")._asdict(),
     }
     summary = (
         df.groupby(["algorithm", "workload"]).agg(
