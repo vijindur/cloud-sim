@@ -1,109 +1,134 @@
-# Intelligent VM Optimizer
+# Intelligent Resource Optimization for Virtual Machines in Cloud Environments
 
-Research-grade simulation framework for intelligent VM scheduling using CloudSim Plus.
+## 1) Project Overview
+A research-oriented, production-leaning cloud optimization platform that couples **CloudSim Plus simulation**, **workload-aware scheduling**, and an **interactive analytics dashboard**.
 
-## What is modeled now
-- **Config-driven VM pool**: `vmCount` and weighted `vmTypes` now create the CloudSim VM pool instead of hardcoded service VMs.
-- **Scheduler-aware CloudSim binding**: accepted workloads are bound to VMs closest to the scheduler-selected host pool.
-- **Admission control**: overloaded placements can be queued or rejected, with acceptance/rejection metrics exported.
-- **Host-specific power models**: each host type has idle/max wattage for more realistic energy estimates.
-- **Rack-aware network delay**: same-rack and cross-rack latency/bandwidth are configurable and included in topology metrics.
-- **VM migration penalties**: migration cost (`$/GB`) and downtime (`ms/GB`) are part of objective outputs.
-- **Heterogeneous hardware**: host pools and VM profiles are declared explicitly in config.
-- **Network topology awareness**: hosts are grouped by rack and cross-rack placement is penalized using configured network characteristics.
-- **Dynamic workload loop**: each run executes multiple simulation time steps and tracks placement transitions.
-- **Benchmarks included**: First Fit and Best Fit Decreasing baselines are part of experiment sweeps.
-- **Statistical rigor**: experiment sweeps use multiple random seeds and export mean/std summaries.
+## 2) Problem Statement
+Traditional VM schedulers optimize one objective at a time and respond poorly to shifting workload pressure (bursty, CPU-heavy, latency-sensitive), causing energy waste, SLA violations, and unstable response time.
 
-## Build and Run
+## 3) Research Motivation
+We need reproducible, metrics-driven evaluation of multi-objective schedulers using real workload traces, not static demos.
 
-Run commands from the project root:
+## 4) Objectives
+- Optimize utilization, response time, SLA compliance, migration cost, and energy.
+- Ensure workload type + metric priorities change actual outcomes.
+- Provide reproducible simulation and explainable visual analytics.
 
-```powershell
-cd C:\Users\HP\Desktop\NSBM\cloud-sim\intelligent-vm-optimizer
-```
+## 5) System Architecture
+Dataset → Parser → Workload Profiler → Scheduler Engine → CloudSim Execution → Metrics Export → Dashboard.
 
-```powershell
-mvn clean package
-mvn test
-mvn -q exec:java "-Dsimulation.config=config/smoke-config.json" "-Dsimulation.algorithms=FIRST_FIT" "-Dsimulation.workloads=VARIABLE" "-Dsimulation.maxSeeds=1"
-```
+Details: `docs/architecture.md`.
 
-Configuration is loaded from `config/simulation-config.json`.
+## 6) Features
+- CloudSim Plus simulation with config-driven hosts/VMs.
+- Multiple algorithms: FCFS, First Fit, Best Fit, BFD, PSO, Modified PSO, HYBRID.
+- Workload-aware request selection and normalization.
+- Admission control, migration penalties, topology/network effects, host energy models.
+- Streamlit dashboard with interactive filtering and walkthrough.
 
-For the full experiment sweep, use:
+## 7) Technologies Used
+- Java 17+, Maven, CloudSim Plus
+- Python (Streamlit, Plotly, Pandas)
+- Docker / Docker Compose
 
-```powershell
-mvn -q exec:java
-```
+## 8) Algorithms Implemented
+See `src/main/java/com/cloudoptimizer/scheduler` and `src/main/java/com/cloudoptimizer/pso`.
 
-The full sweep runs every configured algorithm/workload/seed combination and can take much longer than the smoke command.
+## 9) Workload Intelligence
+Workload parsing and type-aware selection are implemented in `src/main/java/com/cloudoptimizer/workload` and integrated in `SimulationOrchestrator`.
 
-## Analysis
+## 10) Dataset Information
+Primary dataset file:
+- `datasets/cloud_workload_dataset.csv`
 
-```powershell
-python -m pip install -r analysis/python_analysis/requirements.txt
-python analysis/python_analysis/analyze_results.py
-``` 
-
-Generated plots include box plots, utilization heatmap, Pareto frontier and convergence trend.
-Statistical outputs now also include:
-- `results/plots/confidence_intervals.csv` (95% confidence intervals)
-- `results/plots/ablation_study.csv` (HYBRID vs PSO_MODIFIED and BEST_FIT deltas/effect sizes)
-- `results/plots/anova_report.json` (ANOVA tests for statistical significance)
-- `results/plots/summary_stats.csv` (Mean/std per algorithm/workload combination)
-
-## Dataset ingestion
-Sample Google/Alibaba traces are under `datasets/`. Parsers:
+Parsers included for additional traces:
 - `GoogleTraceParser`
 - `AlibabaTraceParser`
 
-## Dashboard
+## 11) Real Metrics
+All dashboard charts are driven by exported simulation results (`results/experiment_results.csv` / `.json`).
 
-```powershell
+## 12) Screenshots/Diagrams
+- Add architecture diagram screenshot here.
+- Add dashboard overview screenshot here.
+
+## 13) Installation
+```bash
+git clone <repo>
+cd intelligent-vm-optimizer
+```
+
+## 14) Docker Setup
+```bash
+docker compose up --build
+```
+
+## 15) Local Development
+```bash
+mvn -q exec:java
+python -m pip install -r analysis/python_analysis/requirements.txt
 python -m streamlit run visualization/dashboard/app.py
 ```
 
-If your terminal is still in the parent `cloud-sim` folder, use:
-
-```powershell
-python -m streamlit run intelligent-vm-optimizer/visualization/dashboard/app.py
-```
-
-The dashboard now highlights **HYBRID** as the new flagship algorithm and displays measured results from comprehensive multi-algorithm, multi-workload, multi-seed experiments.
-
-## Experimental Results (May 2026)
-
-Comprehensive benchmark suite completed with **45 simulation runs** covering:
-
-**Algorithms (5):**
-- HYBRID (NEW - PSO + consolidation)
-- PSO_MODIFIED (adaptive PSO)
-- PSO_STANDARD (baseline optimization)
-- BEST_FIT_DECREASING (sort-and-place)
-- BEST_FIT (tight packing)
-
-**Workloads (3):**
-- STEADY (predictable demand)
-- VARIABLE (dynamic changes)
-- BURST (spike-heavy traffic)
-
-**Repetitions:**
-- 3 random seeds per combination for statistical rigor
-
-**Key Findings:**
-- Utilization difference: HIGHLY SIGNIFICANT (ANOVA p=1.22e-11)
-- HYBRID achieves 1.07%-1.33% energy improvement vs BEST_FIT
-- Latency improvements vary by workload: -3.71% to +31.39% vs BEST_FIT
-- All metrics have 95% confidence bounds documented in `results/plots/confidence_intervals.csv`
-
-**Output Files:**
-- 45 detailed simulation results with 24 metrics each
-- 9 visualization plots (boxplots, heatmap, Pareto frontier, convergence)
-- Statistical reports: ANOVA, confidence intervals, ablation study
-
-## Docker
-
+## 16) Run Simulations
 ```bash
-docker-compose up --build
+mvn -q exec:java "-Dsimulation.config=config/simulation-config.json"
 ```
+
+## 17) Switch Schedulers
+```bash
+mvn -q exec:java "-Dsimulation.algorithms=HYBRID,BEST_FIT,PSO_MODIFIED"
+```
+
+## 18) Test Workload Types
+```bash
+mvn -q exec:java "-Dsimulation.workloads=STEADY,VARIABLE,BURST"
+```
+
+## 19) API Documentation
+Current project is simulation + dashboard centric (no standalone REST API contract yet).
+
+## 20) Folder Structure
+- `src/main/java`: core simulation, schedulers, workload, metrics
+- `config`: simulation configs
+- `datasets`: workload traces
+- `results`: simulation outputs
+- `analysis/python_analysis`: analytics scripts
+- `visualization/dashboard`: Streamlit UI
+
+## 21) Performance Results
+Generated after experiment runs and summarized in:
+- `results/experiment_summary.csv`
+- `results/experiment_results.csv`
+
+## 22) Benchmark Comparisons
+Run multi-algorithm sweeps and compare in dashboard filters and analysis scripts.
+
+## 23) Achievements
+- End-to-end dataset→simulation→metrics→dashboard pipeline
+- Multi-objective outputs with scheduler-dependent divergence
+- Interactive visualization for comparative decision-making
+
+## 24) Current Limitations
+- Maven dependency fetch may fail in restricted networks.
+- Walkthrough uses Streamlit state animation (not full Framer/GSAP web stack).
+- External trace ingestion beyond bundled dataset requires format alignment.
+
+## 25) Future Improvements
+- Add REST service for simulation control.
+- Add RL-based scheduler and online learning loop.
+- Add richer real-time event streaming charts.
+
+## 26) Troubleshooting
+- If Java run fails, verify JDK/Maven versions and internet access for dependencies.
+- If dashboard appears blank, ensure `results/experiment_results.csv` exists.
+
+## 27) Deployment Instructions
+1. Build and validate simulation outputs.
+2. Start dashboard via Docker Compose.
+3. Verify charts update with changed algorithm/workload filters.
+
+## 28) Contribution Guidelines
+- Use feature branches.
+- Add tests for scheduler/metrics logic changes.
+- Keep configs/data assumptions explicit and reproducible.
