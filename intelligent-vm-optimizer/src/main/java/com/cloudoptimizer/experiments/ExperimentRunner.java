@@ -6,6 +6,7 @@ import com.cloudoptimizer.core.WorkloadType;
 import com.cloudoptimizer.metrics.ResultExporter;
 import com.cloudoptimizer.metrics.SimulationResult;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,9 @@ public class ExperimentRunner {
                         baseConfig.timeSteps(), seed, workloadType, algorithm, baseConfig.repetitions(),
                         baseConfig.migrationCostPerGb(), baseConfig.migrationDowntimeMsPerGb(),
                         baseConfig.workloadDatasetPath(), baseConfig.responseTimeSlaFactor(),
-                        baseConfig.hostTypes(), baseConfig.vmTypes(), baseConfig.runSeeds());
+                        baseConfig.hostTypes(), baseConfig.vmTypes(),
+                        baseConfig.effectiveNetwork(), baseConfig.effectiveAdmission(),
+                        baseConfig.effectiveFitnessWeights(), baseConfig.runSeeds());
                     results.add(orchestrator.run(config, seed));
                 }
             }
@@ -51,10 +54,26 @@ public class ExperimentRunner {
     }
 
     public void export(List<SimulationResult> results) throws IOException {
+        Path resultsDir = Path.of("results");
+        Files.createDirectories(resultsDir);
+
         ResultExporter exporter = new ResultExporter();
-        exporter.toCsv(results, Path.of("results/experiment_results.csv"));
-        exporter.toJson(results, Path.of("results/experiment_results.json"));
-        exporter.toSummaryCsv(results, Path.of("results/experiment_summary.csv"));
+        Path csvPath = resultsDir.resolve("experiment_results.csv");
+        Path jsonPath = resultsDir.resolve("experiment_results.json");
+        Path summaryPath = resultsDir.resolve("experiment_summary.csv");
+        
+        // Append to CSV if it exists, otherwise create new
+        if (Files.exists(csvPath)) {
+            exporter.appendToCsv(results, csvPath);
+        } else {
+            exporter.toCsv(results, csvPath);
+        }
+        
+        // Always overwrite JSON (for detailed results)
+        exporter.toJson(results, jsonPath);
+        
+        // Overwrite summary (it's aggregated)
+        exporter.toSummaryCsv(results, summaryPath);
     }
 
     private Set<String> parseFilter(String propertyName) {

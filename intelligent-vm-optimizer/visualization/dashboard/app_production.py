@@ -75,24 +75,33 @@ body, div, p, span, label, h1, h2, h3, h4, h5, h6 {
 }
 
 /* Navigation buttons - highly visible */
-.stButton > button {
-    background-color: #f0ebe4 !important;
-    color: #1a1a1a !important;
-    border: 2px solid #1a1a1a !important;
-    font-weight: 700 !important;
-    font-size: 1rem !important;
-    padding: 12px 20px !important;
-    border-radius: 8px !important;
-}
-
-.stButton > button:hover {
-    background-color: #d9cfc4 !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
-}
-
-.stButton > button:active {
-    background-color: #2d5a54 !important;
+.nav-button {
+    background-color: #2d5a54;
     color: #ffffff !important;
+    border: 3px solid #2d5a54;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 8px 4px;
+    text-align: center;
+    display: inline-block;
+}
+
+.nav-button:hover {
+    background-color: #1a3a37;
+    border-color: #1a3a37;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(45, 90, 84, 0.3);
+}
+
+.nav-button-active {
+    background-color: #1a3a37;
+    color: #ffffff !important;
+    border: 3px solid #c9915a;
+    box-shadow: 0 0 0 4px rgba(201, 145, 90, 0.2);
 }
 
 /* Cards */
@@ -381,7 +390,7 @@ def get_algorithm_explanation(algo):
 def render_navigation():
     """Render high-contrast navigation buttons."""
     st.markdown("---")
-    col1, col2, col3, col4 = st.columns(4, gap="small")
+    col1, col2, col3, col4 = st.columns(4, gap="medium")
     
     with col1:
         if st.button(

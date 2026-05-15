@@ -1,6 +1,18 @@
 package com.cloudoptimizer.pso;
 
+import com.cloudoptimizer.core.SimulationConfig;
+
 public class FitnessModel {
+    private final SimulationConfig.FitnessWeights weights;
+
+    public FitnessModel() {
+        this(SimulationConfig.FitnessWeights.defaults());
+    }
+
+    public FitnessModel(SimulationConfig.FitnessWeights weights) {
+        this.weights = weights != null ? weights : SimulationConfig.FitnessWeights.defaults();
+    }
+
     public double score(
         double utilizationScore,
         double slaScore,
@@ -9,11 +21,14 @@ public class FitnessModel {
         double migrationScore,
         double consolidationScore
     ) {
-        return 0.24 * utilizationScore
-            + 0.22 * slaScore
-            + 0.20 * energyScore
-            + 0.16 * responseScore
-            + 0.10 * migrationScore
-            + 0.08 * consolidationScore;
+        double totalWeight = weights.utilization() + weights.sla() + weights.energy()
+            + weights.responseTime() + weights.migration() + weights.consolidation();
+        double safeTotal = totalWeight > 0 ? totalWeight : 1.0;
+        return (weights.utilization() * utilizationScore
+            + weights.sla() * slaScore
+            + weights.energy() * energyScore
+            + weights.responseTime() * responseScore
+            + weights.migration() * migrationScore
+            + weights.consolidation() * consolidationScore) / safeTotal;
     }
 }

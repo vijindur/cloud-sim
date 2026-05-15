@@ -35,7 +35,7 @@ public class SimulationOrchestrator {
         }
 
         CloudSimulationEnvironment.State state = environment.create(config);
-        SchedulerStrategy scheduler = schedulerFactory.fromName(config.algorithm());
+        SchedulerStrategy scheduler = schedulerFactory.fromName(config.algorithm(), config.effectiveFitnessWeights());
         TimelineMetrics timeline = simulateTimeline(config, scheduler, requests, state.hostSnapshots());
         CloudSimMetrics cloudSimMetrics = executeInCloudSim(state, requests, timeline.cloudletAssignments(), config.responseTimeSlaFactor());
 
@@ -56,7 +56,12 @@ public class SimulationOrchestrator {
         extras.put("migrationCost", timeline.migrationCost());
         extras.put("migrationDowntimeMs", timeline.migrationDowntimeMs());
         extras.put("topologyPenalty", timeline.topologyPenalty());
+        extras.put("networkDelayMs", timeline.networkDelayMs());
         extras.put("hostOverloadRate", timeline.hostOverloadRate());
+        extras.put("acceptedRequests", (double) timeline.acceptedRequests());
+        extras.put("queuedRequests", (double) timeline.queuedRequests());
+        extras.put("rejectedRequests", (double) timeline.rejectedRequests());
+        extras.put("acceptanceRate", timeline.acceptanceRate());
         extras.put("avgQueueDelay", cloudSimMetrics.averageQueueDelay());
         extras.put("makespan", cloudSimMetrics.makespan());
         extras.put("throughputJobsPerTime", cloudSimMetrics.throughput());
@@ -147,11 +152,17 @@ public class SimulationOrchestrator {
         double totalUtilization = 0.0;
         double totalOverloadRate = 0.0;
         double totalTopologyPenalty = 0.0;
+        double totalNetworkDelayMs = 0.0;
         int migrationCount = 0;
         double migrationCost = 0.0;
         double migrationDowntime = 0.0;
         int slaViolations = 0;
         int totalScheduledRequests = 0;
+        int acceptedRequests = 0;
+        int queuedRequests = 0;
+        int rejectedRequests = 0;
+        SimulationConfig.AdmissionConfig admission = config.effectiveAdmission();
+        SimulationConfig.NetworkConfig network = config.effectiveNetwork();
 
         for (int step = 0; step < config.timeSteps(); step++) {
             long windowStart = start + (step * stepDuration);
@@ -179,16 +190,31 @@ public class SimulationOrchestrator {
                 int hostIndex = Math.max(0, Math.min(hosts.size() - 1, mapping[i]));
                 HostSnapshot host = hosts.get(hostIndex);
 
+                totalScheduledRequests++;
+                boolean wouldOverload = hostCpuUse[hostIndex] + request.requestedCpuPes() > host.totalPes()
+                    || hostRamUse[hostIndex] + request.requestedMemoryMb() > host.totalRamMb();
+                if (admission.enabled() && wouldOverload && !admission.allowOvercommit()) {
+                    if (request.queueWaitSeconds() <= admission.maxQueueDelaySeconds()) {
+                        queuedRequests++;
+                    } else {
+                        rejectedRequests++;
+                    }
+                    slaViolations++;
+                    continue;
+                }
+
                 hostCpuUse[hostIndex] += request.requestedCpuPes();
                 hostRamUse[hostIndex] += request.requestedMemoryMb();
-                totalTopologyPenalty += topologyPenalty(host, request);
-                totalScheduledRequests++;
+                totalTopologyPenalty += topologyPenalty(host, request, network);
+                totalNetworkDelayMs += networkDelayMs(host, request, network);
+                acceptedRequests++;
 
                 Integer previousHost = previousAssignments.get(request.jobId());
                 if (previousHost != null && previousHost != hostIndex) {
+                    HostSnapshot previous = hosts.get(Math.max(0, Math.min(hosts.size() - 1, previousHost)));
                     migrationCount++;
                     migrationCost += request.vmImageSizeGb() * config.migrationCostPerGb();
-                    migrationDowntime += request.vmImageSizeGb() * config.migrationDowntimeMsPerGb();
+                    migrationDowntime += migrationDowntimeMs(previous, host, request, config);
                 }
                 previousAssignments.put(request.jobId(), hostIndex);
                 firstAssignments.putIfAbsent(request.jobId(), hostIndex);
@@ -208,7 +234,7 @@ public class SimulationOrchestrator {
 
             double stepUtilization = utilizations.stream().mapToDouble(v -> Math.min(1.0, v)).average().orElse(0.0);
             totalUtilization += stepUtilization;
-            totalEnergy += energyMonitor.totalEnergyKwh(utilizations, stepDuration / 3600.0);
+            totalEnergy += energyMonitor.totalEnergyKwh(hosts, utilizations, stepDuration / 3600.0);
             totalOverloadRate += overloadCount / (double) Math.max(1, hosts.size());
             slaViolations += overloadCount;
         }
@@ -224,9 +250,13 @@ public class SimulationOrchestrator {
             migrationCost,
             migrationDowntime,
             totalTopologyPenalty,
+            totalNetworkDelayMs,
             avgOverloadRate,
             slaViolationRate,
-            firstAssignments
+            firstAssignments,
+            acceptedRequests,
+            queuedRequests,
+            rejectedRequests
         );
     }
 
@@ -237,18 +267,22 @@ public class SimulationOrchestrator {
         double responseTimeSlaFactor
     ) {
         double baseMips = state.hostSnapshots().stream().mapToDouble(HostSnapshot::peMips).average().orElse(1000.0);
-        List<Cloudlet> cloudlets = environment.createCloudlets(requests, baseMips);
+        List<WorkloadRequest> executableRequests = requests.stream()
+            .filter(request -> assignments.containsKey(request.jobId()))
+            .toList();
+        List<Cloudlet> cloudlets = environment.createCloudlets(executableRequests, baseMips);
         Map<String, Cloudlet> cloudletById = new HashMap<>();
-        for (int i = 0; i < requests.size(); i++) {
-            cloudletById.put(requests.get(i).jobId(), cloudlets.get(i));
+        for (int i = 0; i < executableRequests.size(); i++) {
+            cloudletById.put(executableRequests.get(i).jobId(), cloudlets.get(i));
         }
 
         state.broker().submitCloudletList(cloudlets);
         List<Vm> vms = state.serviceVms();
-        for (WorkloadRequest request : requests) {
+        for (WorkloadRequest request : executableRequests) {
             Cloudlet cloudlet = cloudletById.get(request.jobId());
-            int hostIndex = Math.max(0, Math.min(vms.size() - 1, assignments.getOrDefault(request.jobId(), 0)));
-            state.broker().bindCloudletToVm(cloudlet, vms.get(hostIndex));
+            int hostIndex = assignments.getOrDefault(request.jobId(), 0);
+            int vmIndex = selectVmForHost(state, hostIndex, request);
+            state.broker().bindCloudletToVm(cloudlet, vms.get(vmIndex));
         }
 
         state.simulation().start();
@@ -263,8 +297,8 @@ public class SimulationOrchestrator {
         int violations = 0;
         List<Double> responseTimes = new ArrayList<>();
         Map<Cloudlet, WorkloadRequest> requestByCloudlet = new HashMap<>();
-        for (int i = 0; i < requests.size(); i++) {
-            requestByCloudlet.put(cloudlets.get(i), requests.get(i));
+        for (int i = 0; i < executableRequests.size(); i++) {
+            requestByCloudlet.put(cloudlets.get(i), executableRequests.get(i));
         }
 
         for (Cloudlet cloudlet : finished) {
@@ -281,7 +315,10 @@ public class SimulationOrchestrator {
         }
 
         responseTimes.sort(Double::compareTo);
-        double responseP95 = responseTimes.get((int) Math.min(responseTimes.size() - 1, Math.floor(responseTimes.size() * 0.95)));
+        // 95th percentile using "nearest-rank": rank = ceil(0.95*N) - 1 (0-indexed), clamped to [0, N-1]
+        int p95Index = (int) Math.ceil(responseTimes.size() * 0.95) - 1;
+        p95Index = Math.max(0, Math.min(responseTimes.size() - 1, p95Index));
+        double responseP95 = responseTimes.get(p95Index);
         double makespan = finishMax - finished.stream().mapToDouble(Cloudlet::getSubmissionDelay).min().orElse(0.0);
         double throughput = finished.size() / Math.max(1.0, makespan);
         return new CloudSimMetrics(
@@ -294,10 +331,57 @@ public class SimulationOrchestrator {
         );
     }
 
-    private double topologyPenalty(HostSnapshot host, WorkloadRequest request) {
-        double rackPenalty = host.rackId() * 0.35;
-        double generationBonus = Math.max(0.0, 4 - host.cpuGeneration()) * 0.08;
-        return request.nodeCount() * (rackPenalty + generationBonus);
+    private int selectVmForHost(CloudSimulationEnvironment.State state, int hostIndex, WorkloadRequest request) {
+        List<Vm> vms = state.serviceVms();
+        int bestIndex = 0;
+        double bestScore = Double.POSITIVE_INFINITY;
+        for (int i = 0; i < vms.size(); i++) {
+            Vm vm = vms.get(i);
+            int homeHost = state.vmHomeHosts().get(i);
+            double hostPenalty = homeHost == hostIndex ? 0.0 : 1000.0 + Math.abs(homeHost - hostIndex);
+            double cpuSlack = Math.max(0.0, vm.getPesNumber() - request.requestedCpuPes());
+            double ramSlack = Math.max(0.0, vm.getRam().getCapacity() - request.requestedMemoryMb()) / 1024.0;
+            double score = hostPenalty + cpuSlack + ramSlack;
+            if (score < bestScore) {
+                bestScore = score;
+                bestIndex = i;
+            }
+        }
+        return bestIndex;
+    }
+
+    private double topologyPenalty(HostSnapshot host, WorkloadRequest request, SimulationConfig.NetworkConfig network) {
+        double crossRackFactor = host.rackId() == 0 ? 0.0 : 1.0;
+        double latencyPenalty = crossRackFactor * network.effectiveCrossRackLatencyMs();
+        double bandwidthPenalty = request.nodeCount() * 1000.0 / network.effectiveCrossRackBandwidthMbps();
+        double generationPenalty = Math.max(0.0, 4 - host.cpuGeneration()) * 0.08;
+        return request.nodeCount() * (latencyPenalty + bandwidthPenalty + generationPenalty);
+    }
+
+    private double networkDelayMs(HostSnapshot host, WorkloadRequest request, SimulationConfig.NetworkConfig network) {
+        if (request.nodeCount() <= 1) {
+            return network.effectiveSameRackLatencyMs();
+        }
+        boolean crossRack = host.rackId() != 0;
+        double latency = crossRack ? network.effectiveCrossRackLatencyMs() : network.effectiveSameRackLatencyMs();
+        double bandwidth = crossRack ? network.effectiveCrossRackBandwidthMbps() : network.effectiveSameRackBandwidthMbps();
+        double transferMb = Math.max(1.0, request.usedMemoryMb() * 0.05);
+        return latency * request.nodeCount() + (transferMb * 8.0 / bandwidth) * 1000.0;
+    }
+
+    private double migrationDowntimeMs(
+        HostSnapshot previous,
+        HostSnapshot next,
+        WorkloadRequest request,
+        SimulationConfig config
+    ) {
+        SimulationConfig.NetworkConfig network = config.effectiveNetwork();
+        double bandwidth = previous.rackId() == next.rackId()
+            ? network.effectiveSameRackBandwidthMbps()
+            : network.effectiveCrossRackBandwidthMbps();
+        double transferMs = request.vmImageSizeGb() * 8192.0 / bandwidth * 1000.0;
+        double dirtyPageDowntime = transferMs * 0.08;
+        return Math.max(config.migrationDowntimeMsPerGb() * request.vmImageSizeGb(), dirtyPageDowntime);
     }
 
     private record TimelineMetrics(
@@ -307,10 +391,19 @@ public class SimulationOrchestrator {
         double migrationCost,
         double migrationDowntimeMs,
         double topologyPenalty,
+        double networkDelayMs,
         double hostOverloadRate,
         double slaViolationRate,
-        Map<String, Integer> cloudletAssignments
-    ) {}
+        Map<String, Integer> cloudletAssignments,
+        int acceptedRequests,
+        int queuedRequests,
+        int rejectedRequests
+    ) {
+        double acceptanceRate() {
+            int total = acceptedRequests + queuedRequests + rejectedRequests;
+            return acceptedRequests / (double) Math.max(1, total);
+        }
+    }
 
     private record CloudSimMetrics(
         double averageResponseTime,
@@ -321,7 +414,14 @@ public class SimulationOrchestrator {
         double responseP95
     ) {
         CloudSimMetrics(double averageResponseTime, double slaViolationRate, double averageQueueDelay, double makespan, double throughput) {
-            this(averageResponseTime, slaViolationRate, averageQueueDelay, makespan, throughput, averageResponseTime);
+            this(
+                averageResponseTime,
+                slaViolationRate,
+                averageQueueDelay,
+                makespan,
+                throughput,
+                averageResponseTime
+            );
         }
     }
 }
